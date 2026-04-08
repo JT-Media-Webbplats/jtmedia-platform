@@ -1,19 +1,15 @@
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
-// Derive the setAll parameter type directly from createServerClient's signature
-// so it stays in sync automatically as @supabase/ssr updates.
-type SetAllCookies = NonNullable<
-  NonNullable<Parameters<typeof createServerClient>[2]['cookies']>['setAll']
->
-type CookiesToSet = Parameters<SetAllCookies>[0]
-
 /**
  * Server-side Supabase client.
  * Use in Server Components, Route Handlers, and Server Actions.
  */
 export async function createClient() {
   const cookieStore = await cookies()
+
+  // Derive options type from cookieStore.set so it stays in sync with Next.js.
+  type SetOptions = Parameters<(typeof cookieStore)['set']>[2]
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -23,7 +19,7 @@ export async function createClient() {
         getAll() {
           return cookieStore.getAll()
         },
-        setAll(cookiesToSet: CookiesToSet) {
+        setAll(cookiesToSet: { name: string; value: string; options?: SetOptions }[]) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
