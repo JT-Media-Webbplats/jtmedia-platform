@@ -1,5 +1,12 @@
-import { createServerClient, type CookieMethodsServer } from '@supabase/ssr'
+import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+
+// Derive the setAll parameter type directly from createServerClient's signature
+// so it stays in sync automatically as @supabase/ssr updates.
+type SetAllCookies = NonNullable<
+  NonNullable<Parameters<typeof createServerClient>[2]['cookies']>['setAll']
+>
+type CookiesToSet = Parameters<SetAllCookies>[0]
 
 /**
  * Server-side Supabase client.
@@ -16,7 +23,7 @@ export async function createClient() {
         getAll() {
           return cookieStore.getAll()
         },
-        setAll(cookiesToSet: Parameters<CookieMethodsServer['setAll']>[0]) {
+        setAll(cookiesToSet: CookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
