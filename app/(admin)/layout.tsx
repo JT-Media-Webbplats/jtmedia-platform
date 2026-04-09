@@ -27,9 +27,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const displayName = profile?.full_name ?? profile?.email ?? user.email ?? 'Admin'
 
   return (
-    <div className="min-h-screen flex bg-[#0a0a0a] text-gray-100">
-      {/* Sidebar */}
-      <aside className="w-60 border-r border-white/5 flex flex-col shrink-0 sticky top-0 h-screen">
+    <div className="min-h-screen flex">
+      {/* Sidebar — stays dark */}
+      <aside className="w-60 bg-[#0a0a0a] border-r border-white/5 flex flex-col shrink-0 sticky top-0 h-screen">
         {/* Logo */}
         <div className="px-5 py-5 border-b border-white/5">
           <div className="flex items-center gap-2.5">
@@ -53,8 +53,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </div>
       </aside>
 
-      {/* Main content */}
-      <main className="flex-1 overflow-auto min-w-0">{children}</main>
+      {/* Main content — light */}
+      <main className="flex-1 overflow-auto min-w-0 bg-gray-50">{children}</main>
     </div>
   )
 }

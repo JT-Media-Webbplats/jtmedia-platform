@@ -8,10 +8,10 @@ export const metadata: Metadata = { title: 'Kunddetaljer' }
 
 const statusBadge: Record<string, string> = {
   active:    'bg-brand-green/15 text-brand-green',
-  paused:    'bg-yellow-400/15 text-yellow-400',
-  inactive:  'bg-white/8 text-white/30',
-  completed: 'bg-blue-400/15 text-blue-400',
-  cancelled: 'bg-red-400/15 text-red-400',
+  paused:    'bg-yellow-400/15 text-yellow-600',
+  inactive:  'bg-gray-100 text-gray-500',
+  completed: 'bg-blue-400/15 text-blue-500',
+  cancelled: 'bg-red-400/15 text-red-500',
 }
 const statusLabel: Record<string, string> = {
   active: 'Aktiv', paused: 'Pausad', inactive: 'Inaktiv',
@@ -46,15 +46,15 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
   return (
     <div className="p-8 max-w-5xl">
       {/* Back */}
-      <Link href="/admin/customers" className="inline-flex items-center gap-1.5 text-white/40 hover:text-white text-sm mb-6 transition-colors">
+      <Link href="/admin/customers" className="inline-flex items-center gap-1.5 text-gray-400 hover:text-gray-900 text-sm mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" /> Tillbaka till kunder
       </Link>
 
       {/* Header */}
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-black text-white">{customer.name}</h1>
-          {customer.company && <p className="text-white/40 mt-1">{customer.company}</p>}
+          <h1 className="text-3xl font-black text-gray-900">{customer.name}</h1>
+          {customer.company && <p className="text-gray-500 mt-1">{customer.company}</p>}
         </div>
         <span className={`text-xs font-semibold px-3 py-1.5 rounded-full ${statusBadge[customer.status]}`}>
           {statusLabel[customer.status]}
@@ -63,40 +63,40 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
 
       <div className="grid lg:grid-cols-3 gap-6 mb-8">
         {/* Contact card */}
-        <div className="bg-white/4 border border-white/6 rounded-2xl p-6">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-white/30 mb-4">Kontaktinfo</h2>
+        <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Kontaktinfo</h2>
           <div className="space-y-3">
             <div className="flex items-center gap-2.5">
-              <Mail className="w-4 h-4 text-white/25 shrink-0" />
-              <a href={`mailto:${customer.email}`} className="text-sm text-white/70 hover:text-brand-green transition-colors">
+              <Mail className="w-4 h-4 text-gray-300 shrink-0" />
+              <a href={`mailto:${customer.email}`} className="text-sm text-gray-700 hover:text-brand-green transition-colors">
                 {customer.email}
               </a>
             </div>
             {customer.phone && (
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-white/25 shrink-0" />
-                <a href={`tel:${customer.phone}`} className="text-sm text-white/70 hover:text-brand-green transition-colors">
+                <Phone className="w-4 h-4 text-gray-300 shrink-0" />
+                <a href={`tel:${customer.phone}`} className="text-sm text-gray-700 hover:text-brand-green transition-colors">
                   {customer.phone}
                 </a>
               </div>
             )}
             {customer.address && (
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-white/25 shrink-0 mt-0.5" />
-                <p className="text-sm text-white/50">{customer.address}</p>
+                <MapPin className="w-4 h-4 text-gray-300 shrink-0 mt-0.5" />
+                <p className="text-sm text-gray-600">{customer.address}</p>
               </div>
             )}
             {customer.org_number && (
               <div className="flex items-center gap-2.5">
-                <Building2 className="w-4 h-4 text-white/25 shrink-0" />
-                <p className="text-sm text-white/50">{customer.org_number}</p>
+                <Building2 className="w-4 h-4 text-gray-300 shrink-0" />
+                <p className="text-sm text-gray-600">{customer.org_number}</p>
               </div>
             )}
           </div>
           {customer.notes && (
-            <div className="mt-5 pt-4 border-t border-white/6">
-              <p className="text-xs font-semibold text-white/25 uppercase tracking-widest mb-2">Anteckningar</p>
-              <p className="text-sm text-white/45 leading-relaxed">{customer.notes}</p>
+            <div className="mt-5 pt-4 border-t border-gray-100">
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Anteckningar</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{customer.notes}</p>
             </div>
           )}
         </div>
@@ -111,8 +111,8 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
         </div>
 
         {/* Quick stats */}
-        <div className="bg-white/4 border border-white/6 rounded-2xl p-6">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-white/30 mb-4">Projektstatus</h2>
+        <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Projektstatus</h2>
           <div className="space-y-3">
             {(['active', 'completed', 'paused'] as const).map((s) => {
               const count = projects?.filter((p) => p.status === s).length ?? 0
@@ -121,7 +121,7 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
                   <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${statusBadge[s]}`}>
                     {statusLabel[s]}
                   </span>
-                  <span className="text-lg font-black text-white">{count}</span>
+                  <span className="text-lg font-black text-gray-900">{count}</span>
                 </div>
               )
             })}
@@ -130,26 +130,26 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
       </div>
 
       {/* Projects */}
-      <div className="bg-white/4 border border-white/6 rounded-2xl overflow-hidden mb-6">
-        <div className="px-6 py-4 border-b border-white/6">
-          <h2 className="text-sm font-bold text-white uppercase tracking-widest">Projekt</h2>
+      <div className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden mb-6">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <h2 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Projekt</h2>
         </div>
         {!projects || projects.length === 0 ? (
-          <p className="px-6 py-8 text-white/30 text-sm text-center">Inga projekt ännu.</p>
+          <p className="px-6 py-8 text-gray-400 text-sm text-center">Inga projekt ännu.</p>
         ) : (
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-white/5">
+              <tr className="border-b border-gray-100">
                 {['Projektnamn', 'Status', 'Budgeterade timmar', 'Startdatum'].map((h) => (
-                  <th key={h} className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white/25">{h}</th>
+                  <th key={h} className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-widest text-gray-400">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-gray-100">
               {projects.map((p) => (
-                <tr key={p.id} className="hover:bg-white/4 transition-colors">
+                <tr key={p.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-3">
-                    <Link href={`/admin/projects/${p.id}`} className="font-medium text-white hover:text-brand-green transition-colors">
+                    <Link href={`/admin/projects/${p.id}`} className="font-medium text-gray-900 hover:text-brand-green transition-colors">
                       {p.name}
                     </Link>
                   </td>
@@ -158,8 +158,8 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
                       {statusLabel[p.status]}
                     </span>
                   </td>
-                  <td className="px-6 py-3 text-white/45">{p.budget_hours ? `${p.budget_hours}h` : '—'}</td>
-                  <td className="px-6 py-3 text-white/35 text-xs">{p.started_at ?? '—'}</td>
+                  <td className="px-6 py-3 text-gray-500">{p.budget_hours ? `${p.budget_hours}h` : '—'}</td>
+                  <td className="px-6 py-3 text-gray-400 text-xs">{p.started_at ?? '—'}</td>
                 </tr>
               ))}
             </tbody>
@@ -168,32 +168,33 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
       </div>
 
       {/* Billing schedules */}
-      <div className="bg-white/4 border border-white/6 rounded-2xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-white/6">
-          <h2 className="text-sm font-bold text-white uppercase tracking-widest">Faktureringsschema</h2>
+      <div className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <h2 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Faktureringsschema</h2>
         </div>
         {!billing || billing.length === 0 ? (
-          <p className="px-6 py-8 text-white/30 text-sm text-center">Inga fakturor registrerade.</p>
+          <p className="px-6 py-8 text-gray-400 text-sm text-center">Inga fakturor registrerade.</p>
         ) : (
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-white/5">
-                {['Belopp', 'Intervall', 'Nästa datum', 'Senast betald', 'Status'].map((h) => (
-                  <th key={h} className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white/25">{h}</th>
+              <tr className="border-b border-gray-100">
+                {['Tjänst', 'Belopp', 'Intervall', 'Nästa datum', 'Senast betald', 'Status'].map((h) => (
+                  <th key={h} className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-widest text-gray-400">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-gray-100">
               {billing.map((b) => (
-                <tr key={b.id} className="hover:bg-white/4 transition-colors">
-                  <td className="px-6 py-3 font-semibold text-white">
+                <tr key={b.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-3 text-gray-700 text-xs">{b.notes ?? '—'}</td>
+                  <td className="px-6 py-3 font-semibold text-gray-900">
                     {Number(b.amount).toLocaleString('sv-SE')} {b.currency}
                   </td>
-                  <td className="px-6 py-3 text-white/45 capitalize">{b.billing_interval}</td>
-                  <td className="px-6 py-3 text-white/65">{b.next_billing_date}</td>
-                  <td className="px-6 py-3 text-white/35">{b.last_billed_date ?? '—'}</td>
+                  <td className="px-6 py-3 text-gray-500 capitalize">{b.billing_interval}</td>
+                  <td className="px-6 py-3 text-gray-700">{b.next_billing_date}</td>
+                  <td className="px-6 py-3 text-gray-400">{b.last_billed_date ?? '—'}</td>
                   <td className="px-6 py-3">
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${b.is_active ? 'bg-brand-green/15 text-brand-green' : 'bg-white/8 text-white/30'}`}>
+                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${b.is_active ? 'bg-brand-green/15 text-brand-green' : 'bg-gray-100 text-gray-500'}`}>
                       {b.is_active ? 'Aktiv' : 'Pausad'}
                     </span>
                   </td>

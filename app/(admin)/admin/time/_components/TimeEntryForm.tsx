@@ -4,8 +4,8 @@ import { useState, useTransition } from 'react'
 import { createTimeEntry } from '@/app/actions/time'
 import { Loader2 } from 'lucide-react'
 
-const inputCls = 'w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/25 outline-none focus:border-brand-green transition-colors'
-const labelCls = 'block text-xs font-semibold text-white/50 mb-1.5'
+const inputCls = 'w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-colors'
+const labelCls = 'block text-xs font-semibold text-gray-600 mb-1.5'
 
 type Customer = { id: string; name: string }
 type Project  = { id: string; name: string; customer_id: string }
@@ -47,7 +47,7 @@ export default function TimeEntryForm({
           <select
             value={customerId}
             onChange={(e) => setCustomerId(e.target.value)}
-            className={inputCls + ' bg-[#1a1a1a]'}
+            className={inputCls}
           >
             <option value="">Alla kunder</option>
             {customers.map((c) => (
@@ -57,7 +57,7 @@ export default function TimeEntryForm({
         </div>
         <div>
           <label className={labelCls}>Projekt *</label>
-          <select name="project_id" required className={inputCls + ' bg-[#1a1a1a]'}>
+          <select name="project_id" required className={inputCls}>
             <option value="">Välj projekt…</option>
             {filtered.map((p) => (
               <option key={p.id} value={p.id}>{p.name}</option>
@@ -98,10 +98,10 @@ export default function TimeEntryForm({
       </div>
 
       {error && (
-        <p className="text-red-400 text-xs bg-red-400/10 border border-red-400/20 rounded-xl px-4 py-3">{error}</p>
+        <p className="text-red-600 text-xs bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>
       )}
       {success && (
-        <p className="text-brand-green text-xs bg-brand-green/10 border border-brand-green/20 rounded-xl px-4 py-3">Tid loggad!</p>
+        <p className="text-brand-green text-xs bg-brand-green/8 border border-brand-green/20 rounded-xl px-4 py-3">Tid loggad!</p>
       )}
 
       <div className="flex justify-end">

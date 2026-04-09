@@ -97,12 +97,12 @@ export default async function AdminDashboardPage() {
       {/* Header */}
       <div className="mb-10 flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-black text-white tracking-tight">Dashboard</h1>
-          <p className="text-white/30 text-sm mt-1">
-            Inloggad som <span className="text-white/60">{user?.email}</span>
+          <h1 className="text-3xl font-black text-gray-900 tracking-tight">Dashboard</h1>
+          <p className="text-gray-500 text-sm mt-1">
+            Inloggad som <span className="text-gray-700">{user?.email}</span>
           </p>
         </div>
-        <span className="text-xs text-white/20 pt-1">
+        <span className="text-xs text-gray-400 pt-1">
           {new Date().toLocaleDateString('sv-SE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </span>
       </div>
@@ -113,16 +113,16 @@ export default async function AdminDashboardPage() {
           <div
             key={label}
             className={`rounded-2xl p-6 border ${
-              accent ? 'bg-brand-green border-brand-green' : 'bg-white/4 border-white/6'
+              accent ? 'bg-brand-green border-brand-green' : 'bg-white border-gray-200 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between mb-4">
-              <p className={`text-xs font-semibold uppercase tracking-widest ${accent ? 'text-black/50' : 'text-white/30'}`}>
+              <p className={`text-xs font-semibold uppercase tracking-widest ${accent ? 'text-black/50' : 'text-gray-500'}`}>
                 {label}
               </p>
-              <Icon className={`w-4 h-4 ${accent ? 'text-black/40' : 'text-white/20'}`} />
+              <Icon className={`w-4 h-4 ${accent ? 'text-black/40' : 'text-gray-300'}`} />
             </div>
-            <p className={`text-4xl font-black ${accent ? 'text-black' : 'text-white'}`}>
+            <p className={`text-4xl font-black ${accent ? 'text-black' : 'text-gray-900'}`}>
               {value}
             </p>
           </div>
@@ -130,9 +130,9 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Activity feed */}
-      <div className="bg-white/4 border border-white/6 rounded-2xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-white/6 flex items-center justify-between">
-          <h2 className="text-sm font-bold text-white uppercase tracking-widest">
+      <div className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+          <h2 className="text-sm font-bold text-gray-900 uppercase tracking-widest">
             Senaste aktivitet
           </h2>
           <span className="text-xs text-brand-green font-medium flex items-center gap-1.5">
@@ -142,18 +142,18 @@ export default async function AdminDashboardPage() {
         </div>
 
         {feed.length === 0 ? (
-          <p className="px-6 py-8 text-white/30 text-sm text-center">
+          <p className="px-6 py-8 text-gray-400 text-sm text-center">
             Ingen aktivitet ännu. Lägg till kunder och projekt för att komma igång.
           </p>
         ) : (
-          <div className="divide-y divide-white/5">
+          <div className="divide-y divide-gray-100">
             {feed.slice(0, 10).map((item) => (
-              <div key={item.key} className="px-6 py-4 flex items-center justify-between hover:bg-white/4 transition-colors">
+              <div key={item.key} className="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors">
                 <div>
-                  <p className="text-sm font-semibold text-white">{item.who}</p>
-                  <p className="text-xs text-white/40 mt-0.5">{item.what}</p>
+                  <p className="text-sm font-semibold text-gray-900">{item.who}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{item.what}</p>
                 </div>
-                <span className="text-xs text-white/25 shrink-0 ml-8">{item.when}</span>
+                <span className="text-xs text-gray-400 shrink-0 ml-8">{item.when}</span>
               </div>
             ))}
           </div>
