@@ -13,6 +13,7 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -20,4 +21,65 @@
     background-color: #ffffff;
     color: #000000;
   }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 7s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 28s linear infinite;
+  }
+
+  .animate-marquee-slow {
+    animation: marquee 40s linear infinite;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  .animate-glow {
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 12s linear infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-10px) rotate(0.5deg); }
+  66%       { transform: translateY(-5px) rotate(-0.5deg); }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 24px rgba(168, 213, 112, 0.25); }
+  50%       { box-shadow: 0 0 48px rgba(168, 213, 112, 0.55); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes barGrow {
+  from { width: 0; }
+  to   { width: var(--bar-w); }
 }
