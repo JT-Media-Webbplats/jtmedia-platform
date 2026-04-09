@@ -6,42 +6,50 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
+const navItems = [
+  { label: 'Dashboard', href: '/admin', icon: '▪' },
+  { label: 'Kunder', href: '/admin/customers', icon: '▪' },
+  { label: 'Projekt', href: '/admin/projects', icon: '▪' },
+  { label: 'Användare', href: '/admin/users', icon: '▪' },
+  { label: 'Inställningar', href: '/admin/settings', icon: '▪' },
+]
+
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen flex bg-gray-950 text-gray-100">
+    <div className="min-h-screen flex bg-[#0a0a0a] text-gray-100">
       {/* Sidebar */}
-      <aside className="w-56 border-r border-gray-800 flex flex-col p-6 gap-6">
-        <div>
-          <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+      <aside className="w-60 border-r border-white/5 flex flex-col shrink-0">
+        {/* Logo */}
+        <div className="px-6 py-6 border-b border-white/5">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-green mb-0.5">
             JT Media
-          </span>
-          <p className="text-sm font-bold text-white mt-0.5">Admin</p>
+          </p>
+          <p className="text-xs text-white/30">Admin Portal</p>
         </div>
-        <nav className="flex flex-col gap-1 text-sm">
-          {[
-            { label: 'Dashboard', href: '/admin' },
-            { label: 'Kunder', href: '/admin/customers' },
-            { label: 'Projekt', href: '/admin/projects' },
-            { label: 'Användare', href: '/admin/users' },
-            { label: 'Inställningar', href: '/admin/settings' },
-          ].map((item) => (
+
+        {/* Nav */}
+        <nav className="flex-1 px-3 py-4 flex flex-col gap-0.5">
+          {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="px-3 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/50 hover:text-white hover:bg-white/5 transition-all"
             >
+              <span className="text-brand-green text-[8px]">{item.icon}</span>
               {item.label}
             </a>
           ))}
         </nav>
-        <div className="mt-auto pt-6 border-t border-gray-800">
+
+        {/* Footer */}
+        <div className="px-6 py-5 border-t border-white/5">
           <a
             href="/api/auth/signout"
-            className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+            className="text-xs text-white/30 hover:text-white/60 transition-colors"
           >
             Logga ut
           </a>
@@ -49,7 +57,7 @@ export default function AdminLayout({
       </aside>
 
       {/* Main */}
-      <main className="flex-1 p-8 overflow-auto">{children}</main>
+      <main className="flex-1 overflow-auto">{children}</main>
     </div>
   )
 }

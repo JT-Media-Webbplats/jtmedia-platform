@@ -11,22 +11,22 @@ export default function WebsiteLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-gray-100">
+    <div className="min-h-screen flex flex-col bg-white">
+      <header className="border-b border-black/10">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-xl font-bold tracking-tight text-gray-900">
+          <span className="text-xl font-black tracking-tight text-black uppercase">
             JT Media
           </span>
-          <nav className="flex gap-6 text-sm text-gray-600">
-            <a href="#tjanster" className="hover:text-gray-900 transition-colors">
+          <nav className="flex items-center gap-6 text-sm font-medium">
+            <a href="#tjanster" className="text-black/60 hover:text-black transition-colors">
               Tjänster
             </a>
-            <a href="#om-oss" className="hover:text-gray-900 transition-colors">
+            <a href="#om-oss" className="text-black/60 hover:text-black transition-colors">
               Om oss
             </a>
             <a
               href="/customer"
-              className="bg-brand-600 text-white px-4 py-1.5 rounded-full hover:bg-brand-700 transition-colors"
+              className="bg-black text-white px-4 py-1.5 rounded-full hover:bg-black/80 transition-colors"
             >
               Logga in
             </a>
@@ -36,8 +36,19 @@ export default function WebsiteLayout({
 
       <main className="flex-1">{children}</main>
 
-      <footer className="border-t border-gray-100 py-8 text-center text-sm text-gray-400">
-        © {new Date().getFullYear()} JT Media. Alla rättigheter förbehållna.
+      <footer className="bg-black text-white py-10">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="text-xl font-black uppercase tracking-tight">JT Media</span>
+          <p className="text-sm text-white/40">
+            © {new Date().getFullYear()} JT Media. Alla rättigheter förbehållna.
+          </p>
+          <a
+            href="mailto:hej@jtmedia.se"
+            className="text-brand-green hover:text-brand-green-light transition-colors text-sm font-medium"
+          >
+            hej@jtmedia.se
+          </a>
+        </div>
       </footer>
     </div>
   )
