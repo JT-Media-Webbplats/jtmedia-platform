@@ -27,7 +27,7 @@ export default function WebsiteLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="playfair-headings min-h-screen flex flex-col bg-white">
       {/* Sticky header */}
       <header className="sticky top-0 z-50 border-b border-black/8 bg-white/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">

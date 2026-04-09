@@ -23,7 +23,10 @@ const statusConfig = {
 }
 
 const intervalLabel: Record<string, string> = {
-  monthly: 'Månadsvis', quarterly: 'Kvartalsvis', yearly: 'Årsvis',
+  monthly:      'Månadsvis',
+  quarterly:    'Kvartalsvis',
+  'semi-annual':'Halvårsvis',
+  yearly:       'Årsvis',
 }
 
 export default async function BillingPage() {
@@ -43,9 +46,20 @@ export default async function BillingPage() {
 
   const overdueCount  = active.filter((s) => classifyDate(s.next_billing_date) === 'overdue').length
   const thisWeekCount = active.filter((s) => classifyDate(s.next_billing_date) === 'this-week').length
-  const totalMonthly  = active
-    .filter((s) => s.billing_interval === 'monthly')
-    .reduce((sum, s) => sum + Number(s.amount), 0)
+
+  type S = { amount: number | string; billing_interval?: string | null }
+  const mrr = active.reduce((sum, s: S) => {
+    const amt = Number(s.amount)
+    switch ((s as {billing_interval?: string}).billing_interval) {
+      case 'monthly':       return sum + amt
+      case 'quarterly':     return sum + amt / 3
+      case 'semi-annual':   return sum + amt / 6
+      case 'yearly':        return sum + amt / 12
+      default:              return sum + amt
+    }
+  }, 0)
+  const arr = mrr * 12
+  const fmtKr = (n: number) => `${Math.round(n).toLocaleString('sv-SE')} kr`
 
   return (
     <div className="p-8">
@@ -55,18 +69,24 @@ export default async function BillingPage() {
       </div>
 
       {/* Summary cards */}
-      <div className="grid sm:grid-cols-3 gap-4 mb-8">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
         <div className={`rounded-2xl p-5 border shadow-sm ${overdueCount > 0 ? 'bg-red-50 border-red-200' : 'bg-white border-gray-200'}`}>
-          <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Förfallna</p>
+          <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Förfallna</p>
           <p className={`text-3xl font-black ${overdueCount > 0 ? 'text-red-500' : 'text-gray-900'}`}>{overdueCount}</p>
         </div>
         <div className={`rounded-2xl p-5 border shadow-sm ${thisWeekCount > 0 ? 'bg-yellow-50 border-yellow-200' : 'bg-white border-gray-200'}`}>
-          <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Denna vecka</p>
+          <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Denna vecka</p>
           <p className={`text-3xl font-black ${thisWeekCount > 0 ? 'text-yellow-600' : 'text-gray-900'}`}>{thisWeekCount}</p>
         </div>
-        <div className="bg-brand-green/8 border border-brand-green/20 rounded-2xl p-5 shadow-sm">
-          <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Månadsintäkt</p>
-          <p className="text-3xl font-black text-brand-green">{totalMonthly.toLocaleString('sv-SE')} kr</p>
+        <div className="bg-brand-green border border-brand-green rounded-2xl p-5 shadow-sm">
+          <p className="text-xs text-black/50 uppercase tracking-widest mb-2">MRR</p>
+          <p className="text-3xl font-black text-black">{fmtKr(mrr)}</p>
+          <p className="text-xs text-black/40 mt-1">Månadsintäkt</p>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+          <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">ARR</p>
+          <p className="text-3xl font-black text-gray-900">{fmtKr(arr)}</p>
+          <p className="text-xs text-gray-400 mt-1">Årsintäkt</p>
         </div>
       </div>
 
@@ -161,7 +181,7 @@ export default async function BillingPage() {
                       ) : '—'}
                     </td>
                     <td className="px-6 py-3 text-gray-600">{Number(s.amount).toLocaleString('sv-SE')} {s.currency}</td>
-                    <td className="px-6 py-3 text-gray-500">{(s as {billing_interval?: string}).billing_interval ?? '—'}</td>
+                    <td className="px-6 py-3 text-gray-500">{intervalLabel[(s as {billing_interval?: string}).billing_interval ?? ''] ?? (s as {billing_interval?: string}).billing_interval ?? '—'}</td>
                     <td className="px-6 py-3 text-gray-500">{s.next_billing_date}</td>
                   </tr>
                 )

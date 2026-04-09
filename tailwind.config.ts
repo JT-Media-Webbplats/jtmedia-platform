@@ -19,8 +19,9 @@ const config: Config = {
         },
       },
       fontFamily: {
+        sans:     ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
         playfair: ['var(--font-playfair)', 'Georgia', 'serif'],
-        bakerie: ['Bakerie', 'Comic Neue', 'cursive'],
+        bakerie:  ['Bakerie', 'Comic Neue', 'cursive'],
       },
     },
   },

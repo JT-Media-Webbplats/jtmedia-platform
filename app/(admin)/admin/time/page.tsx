@@ -55,7 +55,7 @@ export default async function TimePage() {
   const hoursThisMonth = (monthEntries ?? []).reduce((s, e) => s + Number(e.hours), 0)
 
   return (
-    <div className="p-8 max-w-5xl">
+    <div className="p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-black text-gray-900 tracking-tight">Tidrapportering</h1>
         <p className="text-gray-500 text-sm mt-1">{(entries ?? []).length} poster senaste 50</p>
@@ -93,11 +93,12 @@ export default async function TimePage() {
         {!entries || entries.length === 0 ? (
           <p className="px-6 py-8 text-gray-400 text-sm text-center">Inga tidsloggningar ännu.</p>
         ) : (
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100">
                 {['Datum', 'Projekt', 'Kund', 'Timmar', 'Beskrivning', ''].map((h) => (
-                  <th key={h} className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-widest text-gray-400">{h}</th>
+                  <th key={h} className="text-left px-6 py-3 text-xs font-bold uppercase tracking-widest text-gray-600">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -138,6 +139,7 @@ export default async function TimePage() {
               })}
             </tbody>
           </table>
+          </div>
         )}
       </div>
     </div>

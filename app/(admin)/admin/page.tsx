@@ -51,30 +51,28 @@ export default async function AdminDashboardPage() {
 
   const totalHours = (timeData ?? []).reduce((s: number, r: { hours: number }) => s + Number(r.hours), 0)
 
-  // MRR = monthly schedules + quarterly/12 + yearly/12
+  // MRR: monthly×1, quarterly÷3, semi-annual÷6, yearly÷12
   type RawSchedule = { amount: number | string; billing_interval?: string | null }
   const mrr = (billingSchedules ?? []).reduce((sum: number, s: RawSchedule) => {
     const amt = Number(s.amount)
     switch (s.billing_interval) {
-      case 'monthly':   return sum + amt
-      case 'quarterly': return sum + amt / 3
-      case 'yearly':    return sum + amt / 12
-      default:          return sum + amt // treat unknown as monthly
+      case 'monthly':       return sum + amt
+      case 'quarterly':     return sum + amt / 3
+      case 'semi-annual':   return sum + amt / 6
+      case 'yearly':        return sum + amt / 12
+      default:              return sum + amt
     }
   }, 0)
   const arr = mrr * 12
 
-  const fmtKr = (n: number) =>
-    n >= 1000
-      ? `${Math.round(n / 1000)}k kr`
-      : `${Math.round(n).toLocaleString('sv-SE')} kr`
+  const fmtKr = (n: number) => `${Math.round(n).toLocaleString('sv-SE')} kr`
 
   const stats = [
-    { label: 'Aktiva kunder',  value: customerCount ?? 0,        Icon: Users,        accent: false },
-    { label: 'Aktiva projekt', value: projectCount  ?? 0,        Icon: FolderKanban, accent: false },
-    { label: 'MRR',            value: fmtKr(mrr),               Icon: TrendingUp,   accent: true  },
-    { label: 'ARR',            value: fmtKr(arr),               Icon: TrendingUp,   accent: false },
-    { label: 'Timmar / mån',   value: `${totalHours.toFixed(1)}h`, Icon: Clock,      accent: false },
+    { label: 'Aktiva kunder',  value: customerCount ?? 0,           sub: null,         Icon: Users,        accent: false },
+    { label: 'Aktiva projekt', value: projectCount  ?? 0,           sub: null,         Icon: FolderKanban, accent: false },
+    { label: 'MRR',            value: fmtKr(mrr),                   sub: 'Månadsintäkt', Icon: TrendingUp, accent: true  },
+    { label: 'ARR',            value: fmtKr(arr),                   sub: 'Årsintäkt',  Icon: TrendingUp,   accent: false },
+    { label: 'Timmar / mån',   value: `${totalHours.toFixed(1)}h`,  sub: null,         Icon: Clock,        accent: false },
   ]
 
   // Build activity feed
@@ -126,7 +124,7 @@ export default async function AdminDashboardPage() {
 
       {/* Stats */}
       <div className="grid sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-10">
-        {stats.map(({ label, value, Icon, accent }) => (
+        {stats.map(({ label, value, sub, Icon, accent }) => (
           <div
             key={label}
             className={`rounded-2xl p-6 border ${
@@ -139,9 +137,10 @@ export default async function AdminDashboardPage() {
               </p>
               <Icon className={`w-4 h-4 ${accent ? 'text-black/40' : 'text-gray-300'}`} />
             </div>
-            <p className={`text-4xl font-black ${accent ? 'text-black' : 'text-gray-900'}`}>
+            <p className={`text-3xl font-black ${accent ? 'text-black' : 'text-gray-900'}`}>
               {value}
             </p>
+            {sub && <p className={`text-xs mt-1 ${accent ? 'text-black/40' : 'text-gray-400'}`}>{sub}</p>}
           </div>
         ))}
       </div>

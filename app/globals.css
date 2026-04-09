@@ -26,9 +26,19 @@
   }
 
   body {
-    font-family: var(--font-playfair), Georgia, serif;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
     background-color: #ffffff;
     color: #000000;
+  }
+
+  /* h1 page titles always use Playfair Display */
+  h1 {
+    font-family: var(--font-playfair), Georgia, serif;
+  }
+  /* Within .playfair-headings containers (website), h2/h3 also use Playfair */
+  .playfair-headings h2,
+  .playfair-headings h3 {
+    font-family: var(--font-playfair), Georgia, serif;
   }
 }
 
