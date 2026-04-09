@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Navbar from './_components/Navbar'
 
 export const metadata: Metadata = {
   title: 'JT Media Sweden — Din externa marknadsavdelning',
@@ -7,19 +8,14 @@ export const metadata: Metadata = {
     'JT Media Sweden hjälper svenska företag att växa med webb, AI-lösningar, SEO, sociala medier och grafisk design — till en bråkdel av kostnaden av en intern avdelning.',
 }
 
-const navLinks = [
-  { label: 'Tjänster', href: '#tjanster' },
-  { label: 'AI & Plattformar', href: '#ai' },
-  { label: 'Om oss', href: '#om-oss' },
-  { label: 'Kontakt', href: '#kontakt' },
-]
-
 const footerServices = [
-  'Webb & Hemsidor',
-  'AI-lösningar',
-  'SEO & Digital Boost',
-  'Sociala medier',
-  'Grafisk design',
+  { label: 'Webb & Hemsidor', href: '/tjanster/webb' },
+  { label: 'AI-lösningar', href: '/tjanster/ai' },
+  { label: 'SEO', href: '/tjanster/seo' },
+  { label: 'Google Ads', href: '/tjanster/google-ads' },
+  { label: 'Sociala medier', href: '/tjanster/sociala-medier' },
+  { label: 'Digital Boost', href: '/tjanster/digital-boost' },
+  { label: 'Grafisk design', href: '/tjanster/grafisk-design' },
 ]
 
 export default function WebsiteLayout({
@@ -29,43 +25,7 @@ export default function WebsiteLayout({
 }) {
   return (
     <div className="playfair-headings min-h-screen flex flex-col bg-white">
-      {/* Sticky header */}
-      <header className="sticky top-0 z-50 border-b border-black/8 bg-white/90 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <a href="/" className="flex items-center">
-            <Image
-              src="/images/jt-media-logo-black.svg"
-              alt="JT Media Sweden"
-              width={130}
-              height={130}
-              className="h-10 w-auto"
-              priority
-            />
-          </a>
-
-          {/* Nav */}
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
-            {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-black/55 hover:text-black transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* CTA */}
-          <a
-            href="#kontakt"
-            className="bg-brand-green text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-brand-green-dark transition-colors"
-          >
-            Kom igång →
-          </a>
-        </div>
-      </header>
+      <Navbar />
 
       <main className="flex-1">{children}</main>
 
@@ -136,12 +96,12 @@ export default function WebsiteLayout({
             </p>
             <ul className="space-y-3">
               {footerServices.map((s) => (
-                <li key={s}>
+                <li key={s.href}>
                   <a
-                    href="#tjanster"
+                    href={s.href}
                     className="text-sm text-white/55 hover:text-white transition-colors"
                   >
-                    {s}
+                    {s.label}
                   </a>
                 </li>
               ))}
@@ -155,10 +115,11 @@ export default function WebsiteLayout({
             </p>
             <ul className="space-y-3 text-sm text-white/55">
               {[
-                { label: 'Om oss', href: '#om-oss' },
-                { label: 'AI & Plattformar', href: '#ai' },
-                { label: 'SEO-tester', href: '#seo-tester' },
+                { label: 'Om oss', href: '/om-oss' },
+                { label: 'Kundcase', href: '/kundcase' },
+                { label: 'SEO-test', href: '/seo-test' },
                 { label: 'Kundportal', href: '/customer' },
+                { label: 'Villkor', href: '/villkor' },
               ].map((l) => (
                 <li key={l.label}>
                   <a href={l.href} className="hover:text-white transition-colors">
