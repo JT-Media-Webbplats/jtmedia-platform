@@ -20,6 +20,7 @@ const config: Config = {
       },
       fontFamily: {
         playfair: ['var(--font-playfair)', 'Georgia', 'serif'],
+        bakerie: ['Bakerie', 'Comic Neue', 'cursive'],
       },
     },
   },

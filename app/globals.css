@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Bakerie local font ──────────────────────────────── */
+@font-face {
+  font-family: 'Bakerie';
+  src: url('/fonts/bakerie.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --color-black: #000000;
@@ -24,39 +33,40 @@
 }
 
 @layer utilities {
+  /* ── Floating card animation ── */
   .animate-float {
     animation: float 7s ease-in-out infinite;
   }
-
   .animate-float-slow {
     animation: float 10s ease-in-out infinite;
   }
 
+  /* ── Marquee ── */
   .animate-marquee {
     animation: marquee 28s linear infinite;
   }
 
-  .animate-marquee-slow {
-    animation: marquee 40s linear infinite;
+  /* ── Scroll-reveal (driven by JS IntersectionObserver in ScrollReveal.tsx) ── */
+  .reveal-hidden {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .animate-fade-up {
-    animation: fadeUp 0.7s ease forwards;
-  }
-
+  /* ── Glow pulse for green CTA ── */
   .animate-glow {
     animation: glowPulse 3s ease-in-out infinite;
-  }
-
-  .animate-spin-slow {
-    animation: spin 12s linear infinite;
   }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33%       { transform: translateY(-10px) rotate(0.5deg); }
-  66%       { transform: translateY(-5px) rotate(-0.5deg); }
+  33%       { transform: translateY(-10px) rotate(0.6deg); }
+  66%       { transform: translateY(-5px) rotate(-0.4deg); }
 }
 
 @keyframes marquee {
@@ -64,22 +74,7 @@
   100% { transform: translateX(-50%); }
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 24px rgba(168, 213, 112, 0.25); }
-  50%       { box-shadow: 0 0 48px rgba(168, 213, 112, 0.55); }
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes barGrow {
-  from { width: 0; }
-  to   { width: var(--bar-w); }
+  0%, 100% { box-shadow: 0 0 24px rgba(168, 213, 112, 0.35); }
+  50%       { box-shadow: 0 0 52px rgba(168, 213, 112, 0.65); }
 }
