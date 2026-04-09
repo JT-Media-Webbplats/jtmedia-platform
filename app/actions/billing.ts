@@ -69,3 +69,31 @@ export async function createBillingSchedule(formData: FormData) {
   revalidatePath('/admin/billing')
   return { success: true }
 }
+
+export async function deleteBillingSchedule(id: string, customerId: string) {
+  const supabase = await createClient()
+  const { error } = await supabase.from('billing_schedules').delete().eq('id', id)
+  if (error) return { error: error.message }
+  revalidatePath('/admin/billing')
+  revalidatePath(`/admin/customers/${customerId}`)
+  return { success: true }
+}
+
+export async function updateBillingSchedule(id: string, customerId: string, formData: FormData) {
+  const supabase = await createClient()
+
+  const payload = {
+    notes:             (formData.get('notes') as string) || null,
+    amount:            Number(formData.get('amount')),
+    billing_day:       Number(formData.get('billing_day')) || 1,
+    next_billing_date: formData.get('next_billing_date') as string,
+    is_active:         formData.get('is_active') === 'true',
+  }
+
+  const { error } = await supabase.from('billing_schedules').update(payload).eq('id', id)
+  if (error) return { error: error.message }
+
+  revalidatePath('/admin/billing')
+  revalidatePath(`/admin/customers/${customerId}`)
+  return { success: true }
+}

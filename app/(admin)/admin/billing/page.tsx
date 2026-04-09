@@ -48,7 +48,7 @@ export default async function BillingPage() {
     .reduce((sum, s) => sum + Number(s.amount), 0)
 
   return (
-    <div className="p-8 max-w-5xl">
+    <div className="p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-black text-gray-900 tracking-tight">Fakturering</h1>
         <p className="text-gray-500 text-sm mt-1">{active.length} aktiva · {overdueCount > 0 ? `${overdueCount} förfallna` : 'inga förfallna'}</p>
@@ -79,11 +79,12 @@ export default async function BillingPage() {
         {active.length === 0 ? (
           <p className="px-6 py-8 text-gray-400 text-sm text-center">Inga aktiva fakturor.</p>
         ) : (
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100">
                 {['Status', 'Kund', 'Belopp', 'Intervall', 'Nästa datum', 'Senast betald', ''].map((h) => (
-                  <th key={h} className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-widest text-gray-400">{h}</th>
+                  <th key={h} className="text-left px-6 py-3 text-xs font-bold uppercase tracking-widest text-gray-600">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -128,6 +129,7 @@ export default async function BillingPage() {
               })}
             </tbody>
           </table>
+          </div>
         )}
       </div>
 
@@ -135,13 +137,14 @@ export default async function BillingPage() {
       {inactive.length > 0 && (
         <div className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Pausade fakturor</h2>
+            <h2 className="text-sm font-bold text-gray-500 uppercase tracking-widest">Pausade fakturor</h2>
           </div>
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100">
                 {['Kund', 'Belopp', 'Intervall', 'Nästa datum'].map((h) => (
-                  <th key={h} className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-widest text-gray-300">{h}</th>
+                  <th key={h} className="text-left px-6 py-3 text-xs font-bold uppercase tracking-widest text-gray-500">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -158,13 +161,14 @@ export default async function BillingPage() {
                       ) : '—'}
                     </td>
                     <td className="px-6 py-3 text-gray-600">{Number(s.amount).toLocaleString('sv-SE')} {s.currency}</td>
-                    <td className="px-6 py-3 text-gray-500">{intervalLabel[s.billing_interval] ?? s.billing_interval}</td>
+                    <td className="px-6 py-3 text-gray-500">{(s as {billing_interval?: string}).billing_interval ?? '—'}</td>
                     <td className="px-6 py-3 text-gray-500">{s.next_billing_date}</td>
                   </tr>
                 )
               })}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>

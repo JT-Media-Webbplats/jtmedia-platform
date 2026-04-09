@@ -24,6 +24,7 @@ export async function createTimeEntry(formData: FormData) {
 
   revalidatePath('/admin/time')
   revalidatePath('/admin')
+  revalidatePath(`/admin/projects/${payload.project_id}`)
   return { success: true }
 }
 

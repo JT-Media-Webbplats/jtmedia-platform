@@ -48,11 +48,12 @@ export default async function CustomersPage() {
             <p className="text-gray-300 text-xs">Klicka &quot;Ny kund&quot; för att lägga till din första kund.</p>
           </div>
         ) : (
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
                 {['Namn', 'Kontakt', 'Adress', 'Nästa faktura', 'Status'].map((h) => (
-                  <th key={h} className="text-left px-6 py-4 text-xs font-semibold uppercase tracking-widest text-gray-400">
+                  <th key={h} className="text-left px-6 py-4 text-xs font-bold uppercase tracking-widest text-gray-600">
                     {h}
                   </th>
                 ))}
@@ -90,6 +91,7 @@ export default async function CustomersPage() {
               })}
             </tbody>
           </table>
+          </div>
         )}
       </div>
     </div>

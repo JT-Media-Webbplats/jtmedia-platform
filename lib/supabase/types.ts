@@ -20,6 +20,9 @@ export interface Customer {
   company: string | null
   org_number: string | null
   address: string | null
+  postal_code: string | null
+  city: string | null
+  customer_number: string | null
   notes: string | null
   status: CustomerStatus
   created_at: string

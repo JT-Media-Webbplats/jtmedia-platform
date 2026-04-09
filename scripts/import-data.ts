@@ -81,7 +81,7 @@ type Interval = 'monthly' | 'quarterly' | 'yearly'
 interface RawCustomer {
   name:            string
   customer_number?: string
-  org_number?:      string
+  // org_number is not in any migration — omitted intentionally
   email?:           string
   phone?:           string
   postal_code?:     string
@@ -446,24 +446,40 @@ const BILLING: RawBilling[] = [
 
 // ─── Import logic ─────────────────────────────────────────────────────────────
 
+/** Deterministic placeholder email for customers without a real email address */
+function placeholderEmail(name: string): string {
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return `noemail-${slug}@import.jtmedia.se`
+}
+
 async function importCustomers(): Promise<Map<string, string>> {
   console.log(`\n📋  Importing ${CUSTOMERS.length} customers…`)
   const idMap = new Map<string, string>()
 
   for (const c of CUSTOMERS) {
     // Check if customer already exists by name
-    const { data: existing } = await supabase
+    const { data: existing, error: selectError } = await supabase
       .from('customers')
       .select('id, name')
       .eq('name', c.name)
       .maybeSingle()
+
+    if (selectError) {
+      console.error(`  ✗  SELECT error for "${c.name}": [${selectError.code}] ${selectError.message}`)
+      // 42P01 = table does not exist — no point continuing
+      if (selectError.code === '42P01') {
+        console.error('\n  ❌  Table "customers" does not exist.')
+        console.error('      Apply the migrations in Supabase SQL Editor first, then re-run.\n')
+        process.exit(1)
+      }
+      continue
+    }
 
     if (existing) {
       idMap.set(c.name, existing.id)
       // Update extra fields if they're being supplied
       const updates: Record<string, unknown> = {}
       if (c.customer_number) updates.customer_number = c.customer_number
-      if (c.org_number)      updates.org_number      = c.org_number
       if (c.email)           updates.email           = c.email
       if (c.phone)           updates.phone           = c.phone
       if (c.postal_code)     updates.postal_code     = c.postal_code
@@ -471,33 +487,44 @@ async function importCustomers(): Promise<Map<string, string>> {
       if (c.country)         updates.country         = c.country
 
       if (Object.keys(updates).length > 0) {
-        await supabase.from('customers').update(updates).eq('id', existing.id)
-        console.log(`  ↻  Updated: ${c.name}`)
+        const { error: updateError } = await supabase.from('customers').update(updates).eq('id', existing.id)
+        if (updateError) {
+          console.error(`  ✗  Update error for "${c.name}": [${updateError.code}] ${updateError.message}`)
+        } else {
+          console.log(`  ↻  Updated: ${c.name}`)
+        }
       } else {
         console.log(`  ✓  Exists:  ${c.name}`)
       }
       continue
     }
 
-    // Insert new customer
+    // Build insert payload — only include columns that exist in the schema.
+    // email is NOT NULL UNIQUE in the base schema; use a placeholder when not supplied.
+    // org_number is NOT in any migration — never include it.
+    // customer_number, postal_code, city, country require migration 002.
+    const payload: Record<string, unknown> = {
+      name:   c.name,
+      email:  c.email ?? placeholderEmail(c.name),
+      phone:  c.phone ?? null,
+      status: 'active',
+    }
+    // Extra fields (only populated when the caller actually provides them)
+    if (c.customer_number !== undefined) payload.customer_number = c.customer_number
+    if (c.postal_code     !== undefined) payload.postal_code     = c.postal_code
+    if (c.city            !== undefined) payload.city            = c.city
+    if (c.country         !== undefined) payload.country         = c.country
+
     const { data: inserted, error } = await supabase
       .from('customers')
-      .insert({
-        name:            c.name,
-        customer_number: c.customer_number ?? null,
-        org_number:      c.org_number      ?? null,
-        email:           c.email           ?? '',
-        phone:           c.phone           ?? null,
-        postal_code:     c.postal_code     ?? null,
-        city:            c.city            ?? null,
-        country:         c.country         ?? 'SE',
-        status:          'active',
-      })
+      .insert(payload)
       .select('id')
       .single()
 
     if (error) {
-      console.error(`  ✗  Failed to insert ${c.name}: ${error.message}`)
+      console.error(`  ✗  Failed to insert "${c.name}": [${error.code}] ${error.message}`)
+      if (error.details) console.error(`      Details: ${error.details}`)
+      if (error.hint)    console.error(`      Hint:    ${error.hint}`)
       continue
     }
 
@@ -505,7 +532,13 @@ async function importCustomers(): Promise<Map<string, string>> {
     console.log(`  +  Created: ${c.name}`)
   }
 
-  console.log(`    → ${idMap.size} customers ready\n`)
+  console.log(`    → ${idMap.size}/${CUSTOMERS.length} customers ready\n`)
+
+  if (idMap.size === 0) {
+    console.error('  ❌  No customers were created or found. Aborting billing import.\n')
+    process.exit(1)
+  }
+
   return idMap
 }
 
@@ -532,18 +565,27 @@ async function importBilling(idMap: Map<string, string>) {
       .eq('notes', b.notes)
       .maybeSingle()
 
+    // billing_day = day-of-month extracted from next_billing_date, clamped to 1-28
+    const billingDay = Math.min(parseInt(b.next_billing_date.split('-')[2], 10), 28)
+
     if (existing) {
       // Update next_billing_date and amount in case data changed
-      await supabase
+      // (billing_interval is not a column in the schema — omitted)
+      const { error: updateError } = await supabase
         .from('billing_schedules')
         .update({
           amount:            b.amount,
-          billing_interval:  b.interval,
+          billing_day:       billingDay,
           next_billing_date: b.next_billing_date,
           is_active:         true,
         })
         .eq('id', existing.id)
-      skipped++
+      if (updateError) {
+        console.error(`  ✗  Update error for "${b.customer} / ${b.notes}": ${updateError.message}`)
+        errors++
+      } else {
+        skipped++
+      }
       continue
     }
 
@@ -552,7 +594,7 @@ async function importBilling(idMap: Map<string, string>) {
       notes:             b.notes,
       amount:            b.amount,
       currency:          'SEK',
-      billing_interval:  b.interval,
+      billing_day:       billingDay,
       next_billing_date: b.next_billing_date,
       is_active:         true,
     })

@@ -34,3 +34,33 @@ export async function updateProjectStatus(id: string, status: string) {
   revalidatePath(`/admin/projects/${id}`)
   return { success: true }
 }
+
+export async function updateProject(id: string, formData: FormData) {
+  const supabase = await createClient()
+
+  const payload: Record<string, unknown> = {
+    name:         formData.get('name') as string,
+    status:       formData.get('status') as string,
+    description:  (formData.get('description') as string) || null,
+    budget_hours: formData.get('budget_hours') ? Number(formData.get('budget_hours')) : null,
+    started_at:   (formData.get('started_at') as string) || null,
+    ended_at:     (formData.get('ended_at') as string) || null,
+  }
+
+  if (!payload.name) return { error: 'Projektnamn krävs.' }
+
+  const { error } = await supabase.from('projects').update(payload).eq('id', id)
+  if (error) return { error: error.message }
+
+  revalidatePath('/admin/projects')
+  revalidatePath(`/admin/projects/${id}`)
+  return { success: true }
+}
+
+export async function deleteProject(id: string) {
+  const supabase = await createClient()
+  const { error } = await supabase.from('projects').delete().eq('id', id)
+  if (error) return { error: error.message }
+  revalidatePath('/admin/projects')
+  return { success: true }
+}

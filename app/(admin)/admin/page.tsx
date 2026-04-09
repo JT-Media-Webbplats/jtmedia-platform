@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import { Users, FolderKanban, Receipt, Clock } from 'lucide-react'
+import { Users, FolderKanban, TrendingUp, Clock } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Dashboard' }
@@ -23,7 +23,7 @@ export default async function AdminDashboardPage() {
   const [
     { count: customerCount },
     { count: projectCount },
-    { count: billingCount },
+    { data: billingSchedules },
     { data: timeData },
     { data: recentProjects },
     { data: recentCustomers },
@@ -32,10 +32,8 @@ export default async function AdminDashboardPage() {
     supabase.from('customers').select('*', { count: 'exact', head: true }).eq('status', 'active'),
     supabase.from('projects').select('*', { count: 'exact', head: true }).eq('status', 'active'),
     supabase.from('billing_schedules')
-      .select('*', { count: 'exact', head: true })
-      .eq('is_active', true)
-      .gte('next_billing_date', som)
-      .lte('next_billing_date', eom),
+      .select('amount, billing_interval')
+      .eq('is_active', true),
     supabase.from('time_entries').select('hours').gte('logged_on', som),
     supabase.from('projects')
       .select('id, name, status, created_at, customers(name)')
@@ -53,11 +51,30 @@ export default async function AdminDashboardPage() {
 
   const totalHours = (timeData ?? []).reduce((s: number, r: { hours: number }) => s + Number(r.hours), 0)
 
+  // MRR = monthly schedules + quarterly/12 + yearly/12
+  type RawSchedule = { amount: number | string; billing_interval?: string | null }
+  const mrr = (billingSchedules ?? []).reduce((sum: number, s: RawSchedule) => {
+    const amt = Number(s.amount)
+    switch (s.billing_interval) {
+      case 'monthly':   return sum + amt
+      case 'quarterly': return sum + amt / 3
+      case 'yearly':    return sum + amt / 12
+      default:          return sum + amt // treat unknown as monthly
+    }
+  }, 0)
+  const arr = mrr * 12
+
+  const fmtKr = (n: number) =>
+    n >= 1000
+      ? `${Math.round(n / 1000)}k kr`
+      : `${Math.round(n).toLocaleString('sv-SE')} kr`
+
   const stats = [
-    { label: 'Aktiva kunder',   value: customerCount ?? 0, Icon: Users,        accent: true },
-    { label: 'Aktiva projekt',  value: projectCount  ?? 0, Icon: FolderKanban, accent: false },
-    { label: 'Fakturor / mån',  value: billingCount  ?? 0, Icon: Receipt,      accent: false },
-    { label: 'Timmar / mån',    value: `${totalHours.toFixed(1)}h`, Icon: Clock, accent: false },
+    { label: 'Aktiva kunder',  value: customerCount ?? 0,        Icon: Users,        accent: false },
+    { label: 'Aktiva projekt', value: projectCount  ?? 0,        Icon: FolderKanban, accent: false },
+    { label: 'MRR',            value: fmtKr(mrr),               Icon: TrendingUp,   accent: true  },
+    { label: 'ARR',            value: fmtKr(arr),               Icon: TrendingUp,   accent: false },
+    { label: 'Timmar / mån',   value: `${totalHours.toFixed(1)}h`, Icon: Clock,      accent: false },
   ]
 
   // Build activity feed
@@ -108,7 +125,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-10">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-10">
         {stats.map(({ label, value, Icon, accent }) => (
           <div
             key={label}

@@ -49,11 +49,12 @@ export default async function ProjectsPage() {
             <p className="text-gray-400 text-sm">Inga projekt ännu.</p>
           </div>
         ) : (
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
                 {['Projekt', 'Kund', 'Status', 'Timmar', 'Uppdaterad'].map((h) => (
-                  <th key={h} className="text-left px-6 py-4 text-xs font-semibold uppercase tracking-widest text-gray-400">{h}</th>
+                  <th key={h} className="text-left px-6 py-4 text-xs font-bold uppercase tracking-widest text-gray-600">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -104,6 +105,7 @@ export default async function ProjectsPage() {
               })}
             </tbody>
           </table>
+          </div>
         )}
       </div>
     </div>
