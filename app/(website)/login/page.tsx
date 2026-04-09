@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
+import Image from 'next/image'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -49,14 +50,16 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4">
       <div className="w-full max-w-sm">
-        {/* Logo mark */}
-        <div className="flex items-center gap-2.5 mb-8">
-          <span className="w-8 h-8 rounded-lg bg-brand-green flex items-center justify-center text-black font-black text-sm">
-            JT
-          </span>
-          <span className="text-lg font-black uppercase tracking-tight text-black">
-            Media Sweden
-          </span>
+        {/* Logo */}
+        <div className="mb-8">
+          <Image
+            src="/images/jt-media-logo-black.svg"
+            alt="JT Media Sweden"
+            width={130}
+            height={130}
+            className="h-12 w-auto"
+            priority
+          />
         </div>
 
         <h1 className="text-2xl font-black text-black mb-1">Logga in</h1>

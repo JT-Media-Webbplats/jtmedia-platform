@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import SidebarNav from './_components/SidebarNav'
 import LogoutButton from './_components/LogoutButton'
 import { createClient } from '@/lib/supabase/server'
@@ -31,16 +32,16 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       {/* Sidebar — stays dark */}
       <aside className="w-60 bg-[#0a0a0a] border-r border-white/5 flex flex-col shrink-0 sticky top-0 h-screen">
         {/* Logo */}
-        <div className="px-5 py-5 border-b border-white/5">
-          <div className="flex items-center gap-2.5">
-            <span className="w-7 h-7 rounded-lg bg-brand-green flex items-center justify-center text-black font-black text-xs shrink-0">
-              JT
-            </span>
-            <div>
-              <p className="text-xs font-bold text-white leading-none">Media Sweden</p>
-              <p className="text-[10px] text-white/30 mt-0.5">Admin Portal</p>
-            </div>
-          </div>
+        <div className="px-5 py-4 border-b border-white/5">
+          <Image
+            src="/images/jt-media-logo-white.svg"
+            alt="JT Media Sweden"
+            width={130}
+            height={130}
+            className="h-10 w-auto"
+            priority
+          />
+          <p className="text-[10px] text-white/30 mt-1.5">Admin Portal</p>
         </div>
 
         {/* Nav — client component for active state */}

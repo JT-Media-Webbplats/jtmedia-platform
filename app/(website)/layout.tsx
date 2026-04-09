@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'JT Media Sweden — Din externa marknadsavdelning',
@@ -32,13 +33,15 @@ export default function WebsiteLayout({
       <header className="sticky top-0 z-50 border-b border-black/8 bg-white/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2.5 group">
-            <span className="w-7 h-7 rounded-lg bg-brand-green flex items-center justify-center text-black font-black text-xs">
-              JT
-            </span>
-            <span className="text-lg font-black tracking-tight text-black uppercase">
-              Media Sweden
-            </span>
+          <a href="/" className="flex items-center">
+            <Image
+              src="/images/jt-media-logo-black.svg"
+              alt="JT Media Sweden"
+              width={130}
+              height={130}
+              className="h-10 w-auto"
+              priority
+            />
           </a>
 
           {/* Nav */}
@@ -71,11 +74,14 @@ export default function WebsiteLayout({
         <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Col 1 — Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <span className="w-7 h-7 rounded-lg bg-brand-green flex items-center justify-center text-black font-black text-xs shrink-0">
-                JT
-              </span>
-              <span className="text-lg font-black uppercase tracking-tight">Media Sweden</span>
+            <div className="mb-4">
+              <Image
+                src="/images/jt-media-logo-white.svg"
+                alt="JT Media Sweden"
+                width={130}
+                height={130}
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-white/40 text-sm leading-relaxed mb-6">
               Din externa marknadsavdelning — till en bråkdel av kostnaden.
