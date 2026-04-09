@@ -21,7 +21,7 @@ const statusLabel: Record<string, string> = {
   completed: 'Avslutad', cancelled: 'Avbruten',
 }
 const intervalLabel: Record<string, string> = {
-  monthly: 'Månadsvis', quarterly: 'Kvartalsvis', yearly: 'Årsvis',
+  monthly: 'Månadsvis', quarterly: 'Kvartalsvis', 'semi-annual': 'Halvårsvis', yearly: 'Årsvis',
 }
 
 export default async function CustomerDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -57,10 +57,11 @@ export default async function CustomerDetailPage({ params }: { params: Promise<{
     const amt = Number(b.amount)
     const interval = (b as BillingSchedule & { billing_interval?: string }).billing_interval
     switch (interval) {
-      case 'monthly':   return sum + amt
-      case 'quarterly': return sum + amt / 3
-      case 'yearly':    return sum + amt / 12
-      default:          return sum + amt
+      case 'monthly':     return sum + amt
+      case 'quarterly':   return sum + amt / 3
+      case 'semi-annual': return sum + amt / 6
+      case 'yearly':      return sum + amt / 12
+      default:            return sum + amt
     }
   }, 0)
 

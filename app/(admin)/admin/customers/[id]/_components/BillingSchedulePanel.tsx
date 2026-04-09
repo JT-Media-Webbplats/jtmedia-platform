@@ -11,9 +11,10 @@ interface Props {
 }
 
 const intervalOptions = [
-  { value: 'monthly',   label: 'Månadsvis' },
-  { value: 'quarterly', label: 'Kvartalsvis' },
-  { value: 'yearly',    label: 'Årsvis' },
+  { value: 'monthly',     label: 'Månadsvis' },
+  { value: 'quarterly',   label: 'Kvartalsvis' },
+  { value: 'semi-annual', label: 'Halvårsvis' },
+  { value: 'yearly',      label: 'Årsvis' },
 ]
 
 const inputCls = 'w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 focus:outline-none transition'
@@ -98,6 +99,12 @@ function EditRow({ schedule, customerId, onDone }: { schedule: BillingSchedule; 
           <input name="amount" type="number" min="0" step="0.01" defaultValue={schedule.amount} className={inputCls} />
         </div>
         <div>
+          <label className={labelCls}>Intervall</label>
+          <select name="billing_interval" defaultValue={schedule.billing_interval} className={inputCls}>
+            {intervalOptions.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+          </select>
+        </div>
+        <div>
           <label className={labelCls}>Faktureringsdag</label>
           <input name="billing_day" type="number" min="1" max="28" defaultValue={schedule.billing_day} className={inputCls} />
         </div>
@@ -153,15 +160,15 @@ export default function BillingSchedulePanel({ customerId, schedules }: Props) {
               <EditRow schedule={s} customerId={customerId} onDone={() => setEditingId(null)} />
             </div>
           ) : (
-            <div key={s.id} className="py-3.5 flex items-center justify-between gap-4 group">
+            <div key={s.id} className="py-3.5 flex items-center justify-between gap-4">
               <div className="min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">{s.notes ?? '—'}</p>
                 <p className="text-xs text-gray-500 mt-0.5">
-                  {Number(s.amount).toLocaleString('sv-SE')} kr · {s.next_billing_date}
+                  {Number(s.amount).toLocaleString('sv-SE')} kr · {intervalOptions.find(o => o.value === s.billing_interval)?.label ?? s.billing_interval} · {s.next_billing_date}
                   {!s.is_active && <span className="ml-2 text-yellow-600 font-semibold">Pausad</span>}
                 </p>
               </div>
-              <div className="flex items-center gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex items-center gap-1 shrink-0">
                 <button
                   type="button"
                   onClick={() => setEditingId(s.id)}

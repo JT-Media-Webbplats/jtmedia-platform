@@ -1,7 +1,7 @@
 export type Role = 'admin' | 'customer'
 export type CustomerStatus = 'active' | 'paused' | 'inactive'
 export type ProjectStatus = 'active' | 'completed' | 'paused' | 'cancelled'
-export type BillingInterval = 'monthly' | 'quarterly' | 'yearly'
+export type BillingInterval = 'monthly' | 'quarterly' | 'semi-annual' | 'yearly'
 
 export interface Profile {
   id: string

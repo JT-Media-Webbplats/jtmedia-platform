@@ -7,9 +7,10 @@ import type { BillingInterval } from '@/lib/supabase/types'
 function advanceDate(dateStr: string, interval: BillingInterval): string {
   const d = new Date(dateStr)
   switch (interval) {
-    case 'monthly':   d.setMonth(d.getMonth() + 1); break
-    case 'quarterly': d.setMonth(d.getMonth() + 3); break
-    case 'yearly':    d.setFullYear(d.getFullYear() + 1); break
+    case 'monthly':     d.setMonth(d.getMonth() + 1); break
+    case 'quarterly':   d.setMonth(d.getMonth() + 3); break
+    case 'semi-annual': d.setMonth(d.getMonth() + 6); break
+    case 'yearly':      d.setFullYear(d.getFullYear() + 1); break
   }
   return d.toISOString().split('T')[0]
 }
@@ -67,6 +68,7 @@ export async function createBillingSchedule(formData: FormData) {
   if (error) return { error: error.message }
 
   revalidatePath('/admin/billing')
+  revalidatePath(`/admin/customers/${payload.customer_id}`)
   return { success: true }
 }
 
@@ -85,6 +87,7 @@ export async function updateBillingSchedule(id: string, customerId: string, form
   const payload = {
     notes:             (formData.get('notes') as string) || null,
     amount:            Number(formData.get('amount')),
+    billing_interval:  formData.get('billing_interval') as string || 'monthly',
     billing_day:       Number(formData.get('billing_day')) || 1,
     next_billing_date: formData.get('next_billing_date') as string,
     is_active:         formData.get('is_active') === 'true',
