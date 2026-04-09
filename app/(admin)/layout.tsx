@@ -1,63 +1,60 @@
 import type { Metadata } from 'next'
+import SidebarNav from './_components/SidebarNav'
+import LogoutButton from './_components/LogoutButton'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
-  title: 'Admin',
-  description: 'JT Media internal admin portal',
+  title: { default: 'Admin', template: '%s — JT Media Admin' },
   robots: { index: false, follow: false },
 }
 
-const navItems = [
-  { label: 'Dashboard', href: '/admin', icon: '▪' },
-  { label: 'Kunder', href: '/admin/customers', icon: '▪' },
-  { label: 'Projekt', href: '/admin/projects', icon: '▪' },
-  { label: 'Användare', href: '/admin/users', icon: '▪' },
-  { label: 'Inställningar', href: '/admin/settings', icon: '▪' },
-]
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+  if (!user) redirect('/login')
+
+  // Role guard — non-admins go to customer portal
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role, full_name, email')
+    .eq('id', user.id)
+    .single()
+
+  if (profile && profile.role !== 'admin') redirect('/customer')
+
+  const displayName = profile?.full_name ?? profile?.email ?? user.email ?? 'Admin'
+
   return (
     <div className="min-h-screen flex bg-[#0a0a0a] text-gray-100">
       {/* Sidebar */}
-      <aside className="w-60 border-r border-white/5 flex flex-col shrink-0">
+      <aside className="w-60 border-r border-white/5 flex flex-col shrink-0 sticky top-0 h-screen">
         {/* Logo */}
-        <div className="px-6 py-6 border-b border-white/5">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-green mb-0.5">
-            JT Media
-          </p>
-          <p className="text-xs text-white/30">Admin Portal</p>
+        <div className="px-5 py-5 border-b border-white/5">
+          <div className="flex items-center gap-2.5">
+            <span className="w-7 h-7 rounded-lg bg-brand-green flex items-center justify-center text-black font-black text-xs shrink-0">
+              JT
+            </span>
+            <div>
+              <p className="text-xs font-bold text-white leading-none">Media Sweden</p>
+              <p className="text-[10px] text-white/30 mt-0.5">Admin Portal</p>
+            </div>
+          </div>
         </div>
 
-        {/* Nav */}
-        <nav className="flex-1 px-3 py-4 flex flex-col gap-0.5">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/50 hover:text-white hover:bg-white/5 transition-all"
-            >
-              <span className="text-brand-green text-[8px]">{item.icon}</span>
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {/* Nav — client component for active state */}
+        <SidebarNav />
 
-        {/* Footer */}
-        <div className="px-6 py-5 border-t border-white/5">
-          <a
-            href="/api/auth/signout"
-            className="text-xs text-white/30 hover:text-white/60 transition-colors"
-          >
-            Logga ut
-          </a>
+        {/* User + logout */}
+        <div className="px-5 py-4 border-t border-white/5 space-y-2">
+          <p className="text-xs text-white/40 truncate">{displayName}</p>
+          <LogoutButton />
         </div>
       </aside>
 
-      {/* Main */}
-      <main className="flex-1 overflow-auto">{children}</main>
+      {/* Main content */}
+      <main className="flex-1 overflow-auto min-w-0">{children}</main>
     </div>
   )
 }
