@@ -61,3 +61,5 @@ Migration file at `supabase/migrations/20260409000000_initial_schema.sql`. Table
 ### Content language
 
 All user-facing copy is in Swedish.
+
+# Jakob joined the project 2026-04-17
