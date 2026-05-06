@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Search, ShoppingBag, RefreshCw, MapPin } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
@@ -23,22 +24,22 @@ const cities = [
 
 const adServices = [
   {
-    icon: '🔍',
+    Icon: Search,
     title: 'Sökannonsering',
     desc: 'Syns direkt när potentiella kunder söker efter er produkt eller tjänst. Vi optimerar budgivning och text för maximal relevans och lägsta möjliga kostnad per klick.',
   },
   {
-    icon: '🛍️',
+    Icon: ShoppingBag,
     title: 'Shoppingannonser',
     desc: 'Visa era produkter med bild, pris och recensioner direkt i sökresultaten. Perfekt för e-handelsföretag som vill öka försäljningen.',
   },
   {
-    icon: '🔄',
+    Icon: RefreshCw,
     title: 'Remarketing',
     desc: 'Nå tillbaka besökare som inte konverterade. Smarta remarketingkampanjer påminner potentiella kunder och driver dem tillbaka till er sida.',
   },
   {
-    icon: '📍',
+    Icon: MapPin,
     title: 'Lokala kampanjer',
     desc: 'Nå kunder i ert lokalområde när de söker efter lokala tjänster. Google Local Campaigns och Maps-annonser som driver besök och samtal.',
   },
@@ -48,7 +49,7 @@ const whyUs = [
   'Certifierade Google Ads-specialister',
   'Daglig optimering av kampanjer',
   'Transparenta rapporter utan krångel',
-  'Ingen inlåsning — ni äger era kampanjer',
+  'Ingen inlåsning, ni äger era kampanjer',
   'Månadsvis resultatgenomgång',
   'Kostnadsfri startanalys',
 ]
@@ -107,7 +108,9 @@ export default function GoogleAdsPage() {
             {adServices.map((s, i) => (
               <ScrollReveal key={s.title} delay={i * 70}>
                 <div className="bg-[#F8F8F8] rounded-3xl p-8 h-full">
-                  <div className="text-4xl mb-5">{s.icon}</div>
+                  <div className="w-14 h-14 rounded-2xl bg-brand-green/12 flex items-center justify-center mb-5">
+                    <s.Icon className="w-6 h-6 text-brand-green-dark" />
+                  </div>
                   <h3 className="font-playfair font-black text-xl text-black mb-3">{s.title}</h3>
                   <p className="text-black/55 leading-relaxed">{s.desc}</p>
                 </div>

@@ -1,34 +1,35 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Eye, BarChart3, Handshake, Rocket } from 'lucide-react'
 import ScrollReveal from '../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Om oss — JT Media Sweden | Ljungby',
+  title: 'Om oss, JT Media Sweden | Ljungby',
   description:
-    'Vi är Theo och Jakob — grundarna av JT Media Sweden i Ljungby. Lär känna teamet bakom er externa marknadsavdelning.',
+    'Vi är Theo och Jakob, grundarna av JT Media Sweden i Ljungby. Lär känna teamet bakom er externa marknadsavdelning.',
 }
 
 const values = [
   {
-    icon: '🔍',
+    Icon: Eye,
     title: 'Transparens',
-    desc: 'Ni ser alltid vad vi gör, varför vi gör det och vad det ger. Inga dolda avgifter, ingen bullshit — bara tydlig kommunikation.',
+    desc: 'Ni ser alltid vad vi gör, varför vi gör det och vad det ger. Inga dolda avgifter, ingen bullshit, bara tydlig kommunikation.',
   },
   {
-    icon: '📊',
+    Icon: BarChart3,
     title: 'Resultatfokus',
-    desc: 'Vi mäter allt och optimerar kontinuerligt. Om något inte fungerar säger vi det — och vi hittar något som fungerar bättre.',
+    desc: 'Vi mäter allt och optimerar kontinuerligt. Om något inte fungerar säger vi det, och vi hittar något som fungerar bättre.',
   },
   {
-    icon: '🤝',
+    Icon: Handshake,
     title: 'Personlig service',
     desc: 'Ni pratar alltid med grundarna, inte med en account manager. Liten byrå, personlig kontakt och genuint engagemang i ert resultat.',
   },
   {
-    icon: '🚀',
+    Icon: Rocket,
     title: 'Teknikfirst',
-    desc: 'Vi omfamnar ny teknologi — AI, automation och moderna plattformar — för att ge er ett digitalt försprång mot konkurrenterna.',
+    desc: 'Vi omfamnar ny teknologi, AI, automation och moderna plattformar, för att ge er ett digitalt försprång mot konkurrenterna.',
   },
 ]
 
@@ -57,7 +58,7 @@ export default function OmOssPage() {
                 En liten byrå med stor kapacitet och ett genuint engagemang för att hjälpa svenska företag att växa digitalt.
               </p>
               <p className="text-black/50 leading-relaxed mb-10">
-                Vi är passion-drivna digitalister baserade i Ljungby. Vi tror att alla företag — oavsett storlek och plats — förtjänar en digital partner som bryr sig om deras resultat lika mycket som de gör det själva.
+                Vi är passion-drivna digitalister baserade i Ljungby. Vi tror att alla företag, oavsett storlek och plats, förtjänar en digital partner som bryr sig om deras resultat lika mycket som de gör det själva.
               </p>
               <Link
                 href="/kontakt"
@@ -71,7 +72,7 @@ export default function OmOssPage() {
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
                   src="/images/team/theo-jakob-team.webp"
-                  alt="Theo och Jakob — JT Media Sweden"
+                  alt="Theo och Jakob, JT Media Sweden"
                   fill
                   className="object-cover"
                   priority
@@ -105,13 +106,13 @@ export default function OmOssPage() {
               </h2>
               <div className="space-y-4 text-black/60 leading-relaxed">
                 <p>
-                  JT Media grundades i Ljungby av Theo Brandt och Jakob Jolheden — med en enkel tanke: att lokala och regionala svenska företag förtjänar tillgång till same digital kompetens som stora storstad-bolag, men till en rimlig kostnad.
+                  JT Media grundades i Ljungby av Theo Brandt och Jakob Jolheden, med en enkel tanke: att lokala och regionala svenska företag förtjänar tillgång till same digital kompetens som stora storstad-bolag, men till en rimlig kostnad.
                 </p>
                 <p>
-                  Vi började med hemsidor. Sedan lade vi till SEO, sociala medier och grafisk design. Sen kom AI-projekten — och en insikt om att vi kan erbjuda något unikt: ett litet team som rör sig snabbt, arbetar med de senaste verktygen och alltid levererar personlig service.
+                  Vi började med hemsidor. Sedan lade vi till SEO, sociala medier och grafisk design. Sen kom AI-projekten, och en insikt om att vi kan erbjuda något unikt: ett litet team som rör sig snabbt, arbetar med de senaste verktygen och alltid levererar personlig service.
                 </p>
                 <p>
-                  Idag hjälper vi 50+ företag i södra Sverige och fortsätter växa — alltid med Ljungby som bas och hela Sverige som marknad.
+                  Idag hjälper vi 50+ företag i södra Sverige och fortsätter växa, alltid med Ljungby som bas och hela Sverige som marknad.
                 </p>
               </div>
             </ScrollReveal>
@@ -128,7 +129,7 @@ export default function OmOssPage() {
                 Möt teamet
               </h2>
               <p className="text-black/55 text-lg max-w-xl mx-auto">
-                Grundarna bakom JT Media — alltid tillgängliga, alltid engagerade.
+                Grundarna bakom JT Media, alltid tillgängliga, alltid engagerade.
               </p>
             </div>
           </ScrollReveal>
@@ -148,7 +149,7 @@ export default function OmOssPage() {
                   <h3 className="font-playfair font-black text-2xl text-black mb-1">Theo Brandt</h3>
                   <p className="text-brand-green font-semibold text-sm mb-4">Grundare & Webb</p>
                   <p className="text-black/55 text-sm leading-relaxed mb-5">
-                    Theo driver det tekniska arbetet — från webbutveckling och AI-projekt till plattformsbygge. Med ett öga för design och ett huvud för kod ser han till att allt vi levererar är snabbt, stabilt och byggt för framtiden.
+                    Theo driver det tekniska arbetet, från webbutveckling och AI-projekt till plattformsbygge. Med ett öga för design och ett huvud för kod ser han till att allt vi levererar är snabbt, stabilt och byggt för framtiden.
                   </p>
                   <a
                     href="tel:+46767680202"
@@ -178,7 +179,7 @@ export default function OmOssPage() {
                   <h3 className="font-playfair font-black text-2xl text-black mb-1">Jakob Jolheden</h3>
                   <p className="text-brand-green font-semibold text-sm mb-4">Grundare & Digital strategi</p>
                   <p className="text-black/55 text-sm leading-relaxed mb-5">
-                    Jakob är strategen som ser helhetsbilden. Han leder arbetet med SEO, Google Ads, sociala medier och digital marknadsstrategi — och ser till att varje insats är kopplad till mätbara affärsmål.
+                    Jakob är strategen som ser helhetsbilden. Han leder arbetet med SEO, Google Ads, sociala medier och digital marknadsstrategi, och ser till att varje insats är kopplad till mätbara affärsmål.
                   </p>
                   <a
                     href="tel:+46736980131"
@@ -205,7 +206,7 @@ export default function OmOssPage() {
                 Vad som gör oss annorlunda
               </h2>
               <p className="text-black/55 text-lg max-w-xl mx-auto">
-                Det handlar inte om storlek — det handlar om engagemang, kompetens och att faktiskt bry sig om era resultat.
+                Det handlar inte om storlek, det handlar om engagemang, kompetens och att faktiskt bry sig om era resultat.
               </p>
             </div>
           </ScrollReveal>
@@ -213,7 +214,9 @@ export default function OmOssPage() {
             {values.map((v, i) => (
               <ScrollReveal key={v.title} delay={i * 70}>
                 <div className="bg-[#F8F8F8] rounded-3xl p-7 flex gap-5">
-                  <div className="text-3xl shrink-0">{v.icon}</div>
+                  <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center shrink-0">
+                    <v.Icon className="w-5 h-5 text-brand-green-dark" />
+                  </div>
                   <div>
                     <h3 className="font-playfair font-black text-lg text-black mb-2">{v.title}</h3>
                     <p className="text-black/55 text-sm leading-relaxed">{v.desc}</p>
@@ -249,7 +252,7 @@ export default function OmOssPage() {
               Jobba med oss
             </h2>
             <p className="text-black/55 text-lg mb-10">
-              Nyfiken på vad vi kan göra för er? Boka ett kostnadsfritt samtal — inga förpliktelser, inga säljtricks.
+              Nyfiken på vad vi kan göra för er? Boka ett kostnadsfritt samtal, inga förpliktelser, inga säljtricks.
             </p>
             <Link
               href="/kontakt"

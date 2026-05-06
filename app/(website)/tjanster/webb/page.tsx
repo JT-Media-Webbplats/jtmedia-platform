@@ -1,41 +1,42 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Smartphone, Search, Pencil, Zap, Cloud, Wrench, Trophy, BarChart3, Rocket, Lock } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
   title: 'Webb & Hemsidor i Ljungby | JT Media Sweden',
   description:
-    'Professionella hemsidor som rankar högt och konverterar besökare till kunder. Responsiv design, snabb laddning, CMS och support — allt ingår.',
+    'Professionella hemsidor som rankar högt och konverterar besökare till kunder. Responsiv design, snabb laddning, CMS och support, allt ingår.',
 }
 
 const included = [
   {
-    icon: '📱',
+    Icon: Smartphone,
     title: 'Responsiv design',
-    desc: 'Perfekt på alla skärmstorlekar — mobil, surfplatta och dator. Google belönar mobilanpassade sidor.',
+    desc: 'Perfekt på alla skärmstorlekar, mobil, surfplatta och dator. Google belönar mobilanpassade sidor.',
   },
   {
-    icon: '🔍',
+    Icon: Search,
     title: 'SEO-redo',
     desc: 'Teknisk SEO är inbyggd från grunden. Rätt struktur, metataggar och laddningstider som sökmotorer gillar.',
   },
   {
-    icon: '✏️',
+    Icon: Pencil,
     title: 'Enkelt CMS',
-    desc: 'Uppdatera texter, bilder och sidor själv utan teknisk kunskap — eller låt oss sköta det åt er.',
+    desc: 'Uppdatera texter, bilder och sidor själv utan teknisk kunskap, eller låt oss sköta det åt er.',
   },
   {
-    icon: '⚡',
+    Icon: Zap,
     title: 'Snabb laddning',
     desc: 'Optimerade bilder, minimal kod och modern infrastruktur ger laddningstider under 2 sekunder.',
   },
   {
-    icon: '☁️',
+    Icon: Cloud,
     title: 'Hosting & domän',
-    desc: 'Vi hjälper till med allt kring domän, e-post och hosting — ni behöver inte tänka på det tekniska.',
+    desc: 'Vi hjälper till med allt kring domän, e-post och hosting, ni behöver inte tänka på det tekniska.',
   },
   {
-    icon: '🛠️',
+    Icon: Wrench,
     title: 'Support & underhåll',
     desc: 'Vi är alltid tillgängliga för justeringar, uppdateringar och support när ni behöver oss.',
   },
@@ -79,7 +80,7 @@ export default function WebbPage() {
                 Vi bygger hemsidor som säljer
               </h1>
               <p className="text-xl text-black/55 leading-relaxed mb-10">
-                Modern, snabb och konverterande. En hemsida från JT Media är inte bara snygg — den är byggd för att ranka högt på Google och göra besökare till kunder.
+                Modern, snabb och konverterande. En hemsida från JT Media är inte bara snygg, den är byggd för att ranka högt på Google och göra besökare till kunder.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -110,7 +111,7 @@ export default function WebbPage() {
                 Vad ingår?
               </h2>
               <p className="text-black/55 text-lg max-w-xl mx-auto">
-                Allt ni behöver för en professionell webbnärvaro — inget dolt, inga tillval.
+                Allt ni behöver för en professionell webbnärvaro, inget dolt, inga tillval.
               </p>
             </div>
           </ScrollReveal>
@@ -118,7 +119,9 @@ export default function WebbPage() {
             {included.map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 60}>
                 <div className="bg-[#F8F8F8] rounded-3xl p-7 h-full">
-                  <div className="text-3xl mb-4">{item.icon}</div>
+                  <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
+                    <item.Icon className="w-5 h-5 text-brand-green-dark" />
+                  </div>
                   <h3 className="font-playfair font-black text-lg text-black mb-2">
                     {item.title}
                   </h3>
@@ -139,7 +142,7 @@ export default function WebbPage() {
                 Vår process
               </h2>
               <p className="text-black/55 text-lg max-w-xl mx-auto">
-                Från idé till lansering — transparent och effektivt.
+                Från idé till lansering, transparent och effektivt.
               </p>
             </div>
           </ScrollReveal>
@@ -202,14 +205,16 @@ export default function WebbPage() {
                 </h3>
                 <ul className="space-y-5">
                   {[
-                    { icon: '🏆', text: 'Lokal byrå med personlig service — ni pratar alltid med grundarna' },
-                    { icon: '📊', text: 'Hemsidor byggda för att konvertera, inte bara se bra ut' },
-                    { icon: '🚀', text: 'Snabb leverans — de flesta projekt klara på 3–6 veckor' },
-                    { icon: '🔒', text: 'Ingen inlåsning — ni äger alltid er hemsida och data' },
+                    { Icon: Trophy, text: 'Lokal byrå med personlig service, ni pratar alltid med grundarna' },
+                    { Icon: BarChart3, text: 'Hemsidor byggda för att konvertera, inte bara se bra ut' },
+                    { Icon: Rocket, text: 'Snabb leverans, de flesta projekt klara på 3-6 veckor' },
+                    { Icon: Lock, text: 'Ingen inlåsning, ni äger alltid er hemsida och data' },
                   ].map((item) => (
                     <li key={item.text} className="flex items-start gap-4">
-                      <span className="text-2xl shrink-0">{item.icon}</span>
-                      <span className="text-white/70 text-sm leading-relaxed">{item.text}</span>
+                      <div className="w-10 h-10 rounded-xl bg-brand-green/20 flex items-center justify-center shrink-0">
+                        <item.Icon className="w-5 h-5 text-brand-green" />
+                      </div>
+                      <span className="text-white/70 text-sm leading-relaxed pt-2">{item.text}</span>
                     </li>
                   ))}
                 </ul>

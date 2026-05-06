@@ -3,7 +3,7 @@ import Image from 'next/image'
 import ContactForm from './_components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Kontakt | JT Media Sweden — Ljungby',
+  title: 'Kontakt | JT Media Sweden, Ljungby',
   description:
     'Kontakta JT Media Sweden för ett kostnadsfritt samtal. Vi hjälper er med webb, SEO, AI och digital marknadsföring. Svarar samma dag.',
 }
@@ -48,7 +48,7 @@ export default function KontaktPage() {
             Kontakt
           </span>
           <h1 className="font-playfair font-black text-5xl md:text-6xl text-black mb-4 leading-tight">
-            Kontakta oss — vi svarar snabbt
+            Kontakta oss, vi svarar snabbt
           </h1>
           <p className="text-xl text-black/55 max-w-xl mx-auto">
             Fyll i formuläret nedan eller ring oss direkt. Vi återkommer samma dag.

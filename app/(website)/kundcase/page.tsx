@@ -4,9 +4,9 @@ import Link from 'next/link'
 import ScrollReveal from '../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Kundcase — Resultat vi är stolta över | JT Media Sweden',
+  title: 'Kundcase, Resultat vi är stolta över | JT Media Sweden',
   description:
-    'Se hur vi har hjälpt svenska företag att växa digitalt. Riktiga resultat från riktiga kunder — webb, AI, SEO, Google Ads och sociala medier.',
+    'Se hur vi har hjälpt svenska företag att växa digitalt. Riktiga resultat från riktiga kunder, webb, AI, SEO, Google Ads och sociala medier.',
 }
 
 const cases = [
@@ -16,7 +16,7 @@ const cases = [
     image: '/images/cases/AMS-AI-chat.webp',
     tags: ['AI', 'Chatbot', 'Automation'],
     description:
-      'En AI-chatbot tränad på tekniska manualer ger servicetekniker omedelbara svar i fält — dygnet runt.',
+      'En AI-chatbot tränad på tekniska manualer ger servicetekniker omedelbara svar i fält, dygnet runt.',
     site: 'amssweden.com',
   },
   {
@@ -34,7 +34,7 @@ const cases = [
     image: '/images/cases/Ljungby-fiber.webp',
     tags: ['Webb', 'E-handel'],
     description:
-      'Ny hemsida med integrerat beställningssystem för fiber — 80% av alla beställningar sker nu online.',
+      'Ny hemsida med integrerat beställningssystem för fiber, 80% av alla beställningar sker nu online.',
     site: 'ljungbyfiber.se',
   },
   {

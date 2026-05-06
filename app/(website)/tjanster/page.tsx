@@ -1,70 +1,64 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Globe, Bot, TrendingUp, Target, Smartphone, Zap, Palette } from 'lucide-react'
 import ScrollReveal from '../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Tjänster — Webb, SEO, AI & Design | JT Media Sweden',
+  title: 'Tjänster, Webb, SEO, AI & Design | JT Media Sweden',
   description:
     'Alla digitala tjänster under ett tak. Webb, AI-lösningar, SEO, Google Ads, sociala medier, grafisk design och Digital Boost.',
 }
 
 const services = [
   {
-    icon: '🌐',
+    Icon: Globe,
     title: 'Webb & Hemsidor',
     description:
       'Snabba, konverterande hemsidor byggda för att ranka högt och sälja. Från enkla presentationssidor till komplexa webapplikationer med CMS och e-handel.',
     href: '/tjanster/webb',
-    color: 'bg-blue-50',
   },
   {
-    icon: '🤖',
+    Icon: Bot,
     title: 'AI-lösningar',
     description:
-      'Chatbots, automatiserade arbetsflöden och skräddarsydda AI-verktyg som arbetar åt er dygnet runt — och sparar tid, pengar och resurser.',
+      'Chatbots, automatiserade arbetsflöden och skräddarsydda AI-verktyg som arbetar åt er dygnet runt, och sparar tid, pengar och resurser.',
     href: '/tjanster/ai',
-    color: 'bg-purple-50',
   },
   {
-    icon: '📈',
+    Icon: TrendingUp,
     title: 'SEO',
     description:
       'Teknisk SEO, innehållsstrategi och lokal sökmotoroptimering som driver rätt trafik till er hemsida och konverterar besökare till kunder.',
     href: '/tjanster/seo',
-    color: 'bg-green-50',
   },
   {
-    icon: '🎯',
+    Icon: Target,
     title: 'Google Ads',
     description:
-      'Sökannonsering, shoppingannonser och remarketing som ger resultat från dag ett. Vi hanterar allt — från strategi till daglig optimering.',
+      'Sökannonsering, shoppingannonser och remarketing som ger resultat från dag ett. Vi hanterar allt, från strategi till daglig optimering.',
     href: '/tjanster/google-ads',
-    color: 'bg-yellow-50',
   },
   {
-    icon: '📱',
+    Icon: Smartphone,
     title: 'Sociala medier',
     description:
       'Strategi, content och hantering av Instagram, Facebook, LinkedIn och TikTok. Vi skapar engagemang som bygger ert varumärke och driver leads.',
     href: '/tjanster/sociala-medier',
-    color: 'bg-pink-50',
   },
   {
-    icon: '⚡',
+    Icon: Zap,
     title: 'Digital Boost',
     description:
-      'Allt ni behöver i ett paket — webb, SEO, sociala medier och design. Perfekt för företag som vill ta ett stort kliv digitalt utan att tänka på vad som behövs.',
+      'Allt ni behöver i ett paket, webb, SEO, sociala medier och design. Perfekt för företag som vill ta ett stort kliv digitalt utan att tänka på vad som behövs.',
     href: '/tjanster/digital-boost',
-    color: 'bg-orange-50',
   },
   {
-    icon: '🎨',
+    Icon: Palette,
     title: 'Grafisk design',
     description:
-      'Logotyper, varumärkesprofiler, trycksaker och digitalt material som kommunicerar vem ni är — och varför ni är det bästa valet för era kunder.',
+      'Logotyper, varumärkesprofiler, trycksaker och digitalt material som kommunicerar vem ni är, och varför ni är det bästa valet för era kunder.',
     href: '/tjanster/grafisk-design',
-    color: 'bg-red-50',
   },
 ]
 
@@ -82,7 +76,7 @@ export default function TjansterPage() {
               Våra tjänster
             </h1>
             <p className="text-xl text-black/55 max-w-2xl mx-auto leading-relaxed">
-              Vi erbjuder allt ni behöver för att växa digitalt — under ett tak, med ett team som bryr sig om ert resultat.
+              Vi erbjuder allt ni behöver för att växa digitalt, under ett tak, med ett team som bryr sig om ert resultat.
             </p>
           </ScrollReveal>
         </div>
@@ -98,8 +92,8 @@ export default function TjansterPage() {
                   href={s.href}
                   className="group block bg-white rounded-3xl border border-black/6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-8 h-full"
                 >
-                  <div className={`w-14 h-14 rounded-2xl ${s.color} flex items-center justify-center text-2xl mb-6`}>
-                    {s.icon}
+                  <div className="w-14 h-14 rounded-2xl bg-brand-green/12 flex items-center justify-center mb-6">
+                    <s.Icon className="w-6 h-6 text-brand-green-dark" />
                   </div>
                   <h2 className="font-playfair font-black text-xl text-black mb-3">
                     {s.title}
@@ -136,7 +130,7 @@ export default function TjansterPage() {
                 Allt under ett tak
               </h2>
               <p className="text-black/60 text-lg leading-relaxed mb-6">
-                Istället för att samordna flera leverantörer får ni ett team som hanterar allt — från strategi till genomförande. Det sparar tid, pengar och huvudvärk.
+                Istället för att samordna flera leverantörer får ni ett team som hanterar allt, från strategi till genomförande. Det sparar tid, pengar och huvudvärk.
               </p>
               <p className="text-black/60 leading-relaxed mb-8">
                 Vi är en liten byrå med stor kapacitet. Varje kund får direkt tillgång till grundarna och ett personligt engagemang som stora byråer sällan kan erbjuda.
@@ -162,7 +156,7 @@ export default function TjansterPage() {
                 Digital närvaro som ger resultat
               </h2>
               <p className="text-black/60 text-lg leading-relaxed mb-6">
-                Oavsett om ni behöver en ny hemsida, bättre synlighet på Google eller mer engagerade följare på sociala medier — vi vet vad som fungerar och levererar mätbara resultat.
+                Oavsett om ni behöver en ny hemsida, bättre synlighet på Google eller mer engagerade följare på sociala medier, vi vet vad som fungerar och levererar mätbara resultat.
               </p>
               <ul className="space-y-3 mb-8">
                 {[

@@ -2,6 +2,7 @@ import {
   Globe,
   Bot,
   TrendingUp,
+  Target,
   Share2,
   Palette,
   DollarSign,
@@ -15,19 +16,20 @@ import {
   Phone,
   CheckCircle,
 } from 'lucide-react'
+import Link from 'next/link'
 import ScrollReveal from './_components/ScrollReveal'
 
 const clients = [
-  'Lagans GK',
-  'LBY Tech',
-  'Ljungby Fiber',
-  'Smefast',
-  'Molico',
-  'Hårds Transport',
-  'AMS Sweden',
-  'Opido',
-  'Ljungby Schakt',
-  'Pekuma',
+  { name: 'Lagans GK', logo: '/images/clients/lagans-gk.webp' },
+  { name: 'LBY Tech', logo: '/images/clients/lby-tech.webp' },
+  { name: 'Ljungby Fiber', logo: '/images/clients/ljungby-fiber.webp' },
+  { name: 'Smefast', logo: '/images/clients/smefast.webp' },
+  { name: 'Molico', logo: '/images/clients/molico.webp' },
+  { name: 'Hårds Transport', logo: '/images/clients/hards-transport.webp' },
+  { name: 'AMS Sweden', logo: '/images/clients/ams-sweden.webp' },
+  { name: 'Opido', logo: '/images/clients/opido.webp' },
+  { name: 'Ljungby Schakt', logo: '/images/clients/ljungby-schakt.webp', sizeClass: 'h-8 sm:h-10' },
+  { name: 'Pekuma', logo: '/images/clients/pekuma.webp' },
 ]
 
 const services = [
@@ -35,26 +37,37 @@ const services = [
     title: 'Webb & Hemsidor',
     desc: 'Snabba, konverterande hemsidor byggda för att ranka högt och sälja. Från landningssidor till komplexa webapplikationer.',
     Icon: Globe,
+    href: '/tjanster/webb',
   },
   {
     title: 'AI-lösningar',
     desc: 'Chatbots, automatiserade arbetsflöden och skräddarsydda AI-verktyg som sparar tid och ökar kapaciteten.',
     Icon: Bot,
+    href: '/tjanster/ai',
   },
   {
     title: 'SEO & Digital Boost',
     desc: 'Syns när det gäller. Teknisk SEO, innehållsstrategi och lokal sökmotoroptimering som driver rätt trafik.',
     Icon: TrendingUp,
+    href: '/tjanster/seo',
   },
   {
     title: 'Sociala medier',
     desc: 'Strategi, content och hantering som bygger följarskara och skapar engagemang på Instagram, Facebook och LinkedIn.',
     Icon: Share2,
+    href: '/tjanster/sociala-medier',
   },
   {
     title: 'Grafisk design',
     desc: 'Logotyper, varumärkesprofiler, trycksaker och digitalt material som kommunicerar vem ni är och varför ni är bäst.',
     Icon: Palette,
+    href: '/tjanster/grafisk-design',
+  },
+  {
+    title: 'Google Ads',
+    desc: 'Sökannonsering, shoppingannonser och remarketing som ger resultat från dag ett. Vi sköter strategi, budgivning och daglig optimering.',
+    Icon: Target,
+    href: '/tjanster/google-ads',
   },
 ]
 
@@ -97,7 +110,7 @@ const whyPoints = [
   },
   {
     title: 'Hela teamet, direkt',
-    desc: 'Webbdesigner, SEO-specialist, copywriter och strateg — allt ingår.',
+    desc: 'Webbdesigner, SEO-specialist, copywriter och strateg, allt ingår.',
     Icon: Users,
   },
   {
@@ -113,9 +126,9 @@ const whyPoints = [
 ]
 
 const workExamples = [
-  { client: 'Lagans GK', type: 'Hemsida', bg: 'from-green-100 to-green-50' },
+  { client: 'Lagans GK', type: 'Hemsida', bg: 'from-green-100 to-green-50', image: '/images/clients/lagans-gk-mockup.webp' },
   { client: 'AMS Sweden', type: 'AI Chatbot', bg: 'from-blue-100 to-blue-50' },
-  { client: 'Opido', type: 'SEO', bg: 'from-purple-100 to-purple-50' },
+  { client: 'Molico', type: 'Webbshop', bg: 'from-purple-100 to-purple-50' },
   { client: 'LBY Tech', type: 'Hemsida', bg: 'from-amber-100 to-amber-50' },
   { client: 'Ljungby Fiber', type: 'Digital strategi', bg: 'from-teal-100 to-teal-50' },
   { client: 'Smefast', type: 'Grafisk design', bg: 'from-rose-100 to-rose-50' },
@@ -125,7 +138,7 @@ export default function HomePage() {
   return (
     <>
       {/* ═══════════════════════════════════════════════
-          HERO — White, bright, bold
+          HERO, White, bright, bold
       ═══════════════════════════════════════════════ */}
       <section className="bg-white overflow-hidden">
         <div
@@ -138,17 +151,10 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
           <div>
-            <div className="inline-flex items-center gap-2 bg-brand-green/15 border border-brand-green/30 rounded-full px-4 py-1.5 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse shrink-0" />
-              <span className="font-bakerie text-black/70 text-sm tracking-wide">
-                Ljungby, Sverige
-              </span>
-            </div>
-
-            <h1 className="text-5xl sm:text-6xl xl:text-[4.25rem] font-black leading-[1.02] tracking-tight text-black">
-              Din externa
-              <br />
+            <h1 className="font-black leading-[1.02] tracking-tight text-black">
+              <span className="block text-5xl sm:text-6xl xl:text-[4.25rem]">Din externa</span>
               <span
+                className="block text-[2.5rem] sm:text-[3.25rem] xl:text-[3.5rem] mt-2"
                 style={{
                   background: 'linear-gradient(135deg, #5fa832 0%, #A8D570 60%)',
                   WebkitBackgroundClip: 'text',
@@ -156,13 +162,13 @@ export default function HomePage() {
                   backgroundClip: 'text',
                 }}
               >
-                marknads&shy;avdelning.
+                marknadsavdelning.
               </span>
             </h1>
 
             <p className="mt-6 text-lg text-black/50 leading-relaxed max-w-lg font-normal">
-              Till en bråkdel av kostnaden. JT Media Sweden levererar
-              webb, AI, SEO och design — allt under ett tak.
+              Till en bråkdel av kostnaden. JT Media levererar
+              webb, AI, SEO och design, allt under ett tak.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-3">
@@ -171,7 +177,7 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 text-black px-7 py-3.5 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-all shadow-lg animate-glow"
                 style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
               >
-                Boka gratis möte
+                Boka möte
               </a>
               <a
                 href="#tjanster"
@@ -181,24 +187,9 @@ export default function HomePage() {
               </a>
             </div>
 
-            <div className="mt-12 flex items-center gap-3">
-              <div className="flex -space-x-2">
-                {['LG', 'LF', 'AS'].map((init) => (
-                  <div
-                    key={init}
-                    className="w-8 h-8 rounded-full bg-brand-green border-2 border-white flex items-center justify-center text-black text-[10px] font-black"
-                  >
-                    {init}
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm text-black/45">
-                Betrodda av <span className="text-black font-semibold">10+ företag</span> i Sverige
-              </p>
-            </div>
           </div>
 
-          {/* Right — mock analytics card */}
+          {/* Right, mock analytics card */}
           <div className="hidden lg:flex justify-center items-center">
             <div className="relative animate-float" style={{ transform: 'rotate(2deg)' }}>
               <div className="bg-white rounded-2xl p-5 w-80 shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-black/6">
@@ -272,7 +263,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          CLIENTS — Light gray, marquee with edge fade
+          CLIENTS, Light gray, marquee with edge fade
       ═══════════════════════════════════════════════ */}
       <section className="bg-[#F8F8F8] border-y border-black/5 py-10">
         <ScrollReveal className="mb-6 text-center">
@@ -282,14 +273,14 @@ export default function HomePage() {
         </ScrollReveal>
         <div className="overflow-hidden marquee-fade">
           <div className="flex">
-            <div className="flex shrink-0 animate-marquee gap-14 items-center pr-14">
+            <div className="flex shrink-0 animate-marquee gap-16 items-center pr-16">
               {[...clients, ...clients].map((c, i) => (
-                <span
+                <img
                   key={i}
-                  className="text-sm font-black text-black/25 hover:text-brand-green-dark transition-colors whitespace-nowrap uppercase tracking-widest cursor-default"
-                >
-                  {c}
-                </span>
+                  src={c.logo}
+                  alt={c.name}
+                  className={`${c.sizeClass ?? 'h-12 sm:h-14'} w-auto object-contain shrink-0`}
+                />
               ))}
             </div>
           </div>
@@ -297,7 +288,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          SERVICES — White + dot pattern, Lucide icons
+          SERVICES, White + dot pattern, Lucide icons
       ═══════════════════════════════════════════════ */}
       <section id="tjanster" className="bg-white py-28 relative dot-pattern-light">
         <div className="relative max-w-7xl mx-auto px-6">
@@ -317,8 +308,11 @@ export default function HomePage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => (
-              <ScrollReveal key={s.title} delay={i * 80}>
-                <div className="group relative h-full bg-white border border-black/8 rounded-2xl p-8 hover:border-brand-green hover:shadow-[0_16px_48px_rgba(168,213,112,0.22)] hover:scale-[1.02] transition-all duration-300 cursor-default overflow-hidden">
+              <ScrollReveal key={s.title} delay={i * 80} className="h-full">
+                <Link
+                  href={s.href}
+                  className="group relative h-full block bg-white border border-black/8 rounded-2xl p-8 hover:border-brand-green hover:shadow-[0_16px_48px_rgba(168,213,112,0.22)] hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+                >
                   {/* Left accent bar */}
                   <div className="absolute left-0 top-6 bottom-6 w-[3px] bg-brand-green rounded-r-full scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center" />
 
@@ -330,7 +324,7 @@ export default function HomePage() {
                   <div className="mt-6 flex items-center gap-1.5 text-xs font-bold text-brand-green-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     Läs mer <ArrowRight className="w-3.5 h-3.5" />
                   </div>
-                </div>
+                </Link>
               </ScrollReveal>
             ))}
           </div>
@@ -338,7 +332,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          WHY JT MEDIA — Black + dot pattern, Lucide icons
+          WHY JT MEDIA, Black + dot pattern, Lucide icons
       ═══════════════════════════════════════════════ */}
       <section id="om-oss" className="bg-black text-white py-28 relative overflow-hidden">
         {/* Dot pattern overlay */}
@@ -349,13 +343,13 @@ export default function HomePage() {
             <p className="font-bakerie text-brand-green text-base mb-4 tracking-wide">
               Varför JT Media
             </p>
-            <h2 className="text-4xl sm:text-5xl font-black leading-tight mb-6">
-              En hel marknads&shy;avdelning.{' '}
-              <span className="text-brand-green">En fast kostnad.</span>
+            <h2 className="font-black leading-tight mb-6">
+              <span className="block text-3xl sm:text-4xl">En hel marknadsavdelning.</span>
+              <span className="block text-3xl sm:text-4xl text-brand-green mt-2">En fast kostnad.</span>
             </h2>
             <p className="text-white/60 leading-relaxed mb-8 text-lg">
               Att anställa ett fullt marknadsföringsteam kostar hundratusentals kronor per år.
-              Med JT Media får du samma kapacitet — utan overhead.
+              Med JT Media får du samma kapacitet, utan overhead.
             </p>
             <a
               href="#kontakt"
@@ -368,8 +362,8 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {whyPoints.map((p, i) => (
-              <ScrollReveal key={p.title} delay={i * 100}>
-                <div className="bg-white/8 backdrop-blur-sm border border-white/15 rounded-2xl p-6 hover:border-brand-green/50 hover:bg-white/12 transition-all duration-300">
+              <ScrollReveal key={p.title} delay={i * 100} className="h-full">
+                <div className="h-full bg-white/8 backdrop-blur-sm border border-white/15 rounded-2xl p-6 hover:border-brand-green/50 hover:bg-white/12 transition-all duration-300">
                   <div className="w-10 h-10 rounded-xl bg-brand-green/20 flex items-center justify-center mb-4">
                     <p.Icon className="w-5 h-5 text-brand-green" />
                   </div>
@@ -383,7 +377,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          AI & NEW CAPABILITIES — Light green gradient
+          AI & NEW CAPABILITIES, Light green gradient
       ═══════════════════════════════════════════════ */}
       <section id="ai" className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #ffffff 0%, #f0fbe5 50%, #e6f7d4 100%)' }}>
         <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-green/20 blur-3xl" />
@@ -480,7 +474,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          WORK EXAMPLES — Placeholder grid
+          WORK EXAMPLES, Placeholder grid
       ═══════════════════════════════════════════════ */}
       <section className="bg-[#F8F8F8] py-28 border-t border-black/5">
         <div className="max-w-7xl mx-auto px-6">
@@ -507,16 +501,23 @@ export default function HomePage() {
             {workExamples.map((ex, i) => (
               <ScrollReveal key={ex.client} delay={i * 70}>
                 <div className="group rounded-2xl overflow-hidden border border-black/6 bg-white hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                  {/* Placeholder image area */}
                   <div
-                    className={`aspect-[16/10] bg-gradient-to-br ${ex.bg} flex items-center justify-center relative`}
+                    className={`aspect-[16/10] bg-gradient-to-br ${ex.bg} flex items-center justify-center relative overflow-hidden`}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center shadow-sm">
-                        <Globe className="w-5 h-5 text-black/30" />
+                    {ex.image ? (
+                      <img
+                        src={ex.image}
+                        alt={ex.client}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center shadow-sm">
+                          <Globe className="w-5 h-5 text-black/30" />
+                        </div>
                       </div>
-                    </div>
-                    <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm text-xs font-bold text-black/60 px-2.5 py-1 rounded-full">
+                    )}
+                    <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm text-xs font-bold text-black/60 px-2.5 py-1 rounded-full z-10">
                       {ex.type}
                     </div>
                   </div>
@@ -551,7 +552,7 @@ export default function HomePage() {
             </h2>
             <p className="text-black/45 mb-10 leading-relaxed text-lg">
               Testa din hemsidas SEO-hälsa, hastighet och synlighet gratis.
-              Få en rapport direkt — inga kortuppgifter krävs.
+              Få en rapport direkt, inga kortuppgifter krävs.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
@@ -571,7 +572,7 @@ export default function HomePage() {
               </button>
             </div>
             <p className="mt-4 text-xs text-black/30 font-bakerie tracking-wide">
-              Kommer snart — anmäl dig för tidig tillgång
+              Kommer snart, anmäl dig för tidig tillgång
             </p>
           </ScrollReveal>
         </div>
@@ -620,7 +621,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          CTA — Dark bg, atmospheric green glow (not flat green)
+          CTA, Dark bg, atmospheric green glow (not flat green)
       ═══════════════════════════════════════════════ */}
       <section id="kontakt" className="py-32 bg-[#060606] relative overflow-hidden">
         {/* Atmospheric green glow blobs */}
@@ -668,7 +669,7 @@ export default function HomePage() {
 
             <p className="text-white/45 text-xl mb-12 leading-relaxed max-w-xl mx-auto">
               Boka ett gratis strategimöte. Vi lyssnar, analyserar och berättar
-              exakt vad vi kan göra för er — utan förpliktelser.
+              exakt vad vi kan göra för er, utan förpliktelser.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">

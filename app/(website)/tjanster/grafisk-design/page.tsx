@@ -1,44 +1,45 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Pencil, BookOpen, Printer, Monitor, Package, Library } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Grafisk Design — Logotyp & Varumärke | JT Media Sweden',
+  title: 'Grafisk Design, Logotyp & Varumärke | JT Media Sweden',
   description:
     'Professionell grafisk design i Ljungby. Logotyper, varumärkesprofiler, trycksaker och digitalt material som kommunicerar ert varumärke med kraft.',
 }
 
 const designServices = [
   {
-    icon: '✏️',
+    Icon: Pencil,
     title: 'Logotyp & identitet',
     desc: 'En logotyp som sticker ut och håller länge. Vi tar fram koncept som speglar er verksamhet, era värderingar och er målgrupp.',
   },
   {
-    icon: '📖',
+    Icon: BookOpen,
     title: 'Varumärkesprofil',
-    desc: 'Komplett visuell identitet — färgpalett, typografi, bildstil och grafiska riktlinjer som säkerställer konsekvens i all kommunikation.',
+    desc: 'Komplett visuell identitet, färgpalett, typografi, bildstil och grafiska riktlinjer som säkerställer konsekvens i all kommunikation.',
   },
   {
-    icon: '🖨️',
+    Icon: Printer,
     title: 'Trycksaker',
     desc: 'Visitkort, broschyrer, affischer, kataloger och rollups som ser professionella ut och lämnar ett bestående intryck.',
   },
   {
-    icon: '💻',
+    Icon: Monitor,
     title: 'Digitalt material',
-    desc: 'Mallar för sociala medier, banners, presentationer och nyhetsbrev — designade för att matcha er visuella identitet.',
+    desc: 'Mallar för sociala medier, banners, presentationer och nyhetsbrev, designade för att matcha er visuella identitet.',
   },
   {
-    icon: '📦',
+    Icon: Package,
     title: 'Förpackningsdesign',
     desc: 'Förpackningar och etiketter som sticker ut i butikshyllan och förmedlar ert varumärkes kvalitet och personlighet.',
   },
   {
-    icon: '📚',
+    Icon: Library,
     title: 'Kataloger & lookbooks',
-    desc: 'Produktkataloger och lookbooks i print och digitalt format — stilrena och säljande material för er verksamhet.',
+    desc: 'Produktkataloger och lookbooks i print och digitalt format, stilrena och säljande material för er verksamhet.',
   },
 ]
 
@@ -57,7 +58,7 @@ export default function GrafiskDesignPage() {
                 Design som kommunicerar vem ni är
               </h1>
               <p className="text-xl text-black/55 leading-relaxed mb-10">
-                En stark visuell identitet är inte en lyx — det är en investering. Vi skapar design som bygger förtroende, sticker ut bland konkurrenterna och gör att potentiella kunder väljer just er.
+                En stark visuell identitet är inte en lyx, det är en investering. Vi skapar design som bygger förtroende, sticker ut bland konkurrenterna och gör att potentiella kunder väljer just er.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -98,7 +99,7 @@ export default function GrafiskDesignPage() {
                 Vad vi designar
               </h2>
               <p className="text-black/55 text-lg max-w-xl mx-auto">
-                Från logotyp till komplett varumärkesprofil — vi designar allt ert företag behöver.
+                Från logotyp till komplett varumärkesprofil, vi designar allt ert företag behöver.
               </p>
             </div>
           </ScrollReveal>
@@ -106,7 +107,9 @@ export default function GrafiskDesignPage() {
             {designServices.map((s, i) => (
               <ScrollReveal key={s.title} delay={i * 60}>
                 <div className="bg-[#F8F8F8] rounded-3xl p-7 h-full">
-                  <div className="text-3xl mb-4">{s.icon}</div>
+                  <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
+                    <s.Icon className="w-5 h-5 text-brand-green-dark" />
+                  </div>
                   <h3 className="font-playfair font-black text-lg text-black mb-2">{s.title}</h3>
                   <p className="text-black/55 text-sm leading-relaxed">{s.desc}</p>
                 </div>
@@ -125,16 +128,16 @@ export default function GrafiskDesignPage() {
                 Så arbetar vi
               </h2>
               <p className="text-black/55 text-lg max-w-xl mx-auto">
-                Designprocessen är strukturerad och transparent — ni är alltid involverade.
+                Designprocessen är strukturerad och transparent, ni är alltid involverade.
               </p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
               { num: '01', title: 'Briefing', desc: 'Vi lär känna er verksamhet, era konkurrenter, er målgrupp och vad ni vill kommunicera.' },
-              { num: '02', title: 'Koncept', desc: 'Vi tar fram 2–3 designkoncept och presenterar dem med motiveringar — ni väljer väg.' },
+              { num: '02', title: 'Koncept', desc: 'Vi tar fram 2-3 designkoncept och presenterar dem med motiveringar, ni väljer väg.' },
               { num: '03', title: 'Förfining', desc: 'Valda konceptet förfinas utifrån er feedback tills det är perfekt.' },
-              { num: '04', title: 'Leverans', desc: 'Ni får alla filer i rätt format för print och digitalt — redo att använda direkt.' },
+              { num: '04', title: 'Leverans', desc: 'Ni får alla filer i rätt format för print och digitalt, redo att använda direkt.' },
             ].map((step, i) => (
               <ScrollReveal key={step.num} delay={i * 80}>
                 <div className="bg-white rounded-3xl p-7 h-full border border-black/6 shadow-sm">
@@ -159,10 +162,10 @@ export default function GrafiskDesignPage() {
                     Kundcase
                   </span>
                   <h2 className="font-playfair font-black text-3xl md:text-4xl text-white mb-4">
-                    Molico — Komplett designsystem
+                    Molico, Komplett designsystem
                   </h2>
                   <p className="text-white/60 leading-relaxed mb-6">
-                    Molico behövde en komplett digital transformation. Vi skapade ett sammanhängande designsystem — webbshop, produktkataloger, grafisk profil och sociala medier-mallar — som resulterade i fördubblad onlineförsäljning.
+                    Molico behövde en komplett digital transformation. Vi skapade ett sammanhängande designsystem, webbshop, produktkataloger, grafisk profil och sociala medier-mallar, som resulterade i fördubblad onlineförsäljning.
                   </p>
                   <ul className="space-y-2 mb-8">
                     {['Ny logotyp och varumärkesprofil', 'Produktkataloger i print och digitalt', 'Mallar för sociala medier', 'Webbshop i ny design'].map((r) => (

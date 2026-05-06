@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Settings, PenTool, MapPin, Link2 } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
@@ -23,22 +24,22 @@ const cities = [
 
 const seoServices = [
   {
-    icon: '⚙️',
+    Icon: Settings,
     title: 'Teknisk SEO',
     desc: 'Hastighet, mobilanpassning, strukturerad data och crawlbarhet. Vi ser till att Google kan läsa och indexera er sida optimalt.',
   },
   {
-    icon: '✍️',
+    Icon: PenTool,
     title: 'Innehållsstrategi',
     desc: 'Rätt sökord, rätt innehåll och rätt struktur. Vi researchar vad era potentiella kunder söker efter och skapar innehåll som rankar.',
   },
   {
-    icon: '📍',
+    Icon: MapPin,
     title: 'Lokal SEO',
     desc: 'Syns i Google Maps och lokala sökningar. Optimering av Google Business Profile och lokal länkbyggnad för fler lokala kunder.',
   },
   {
-    icon: '🔗',
+    Icon: Link2,
     title: 'Länkbyggnad',
     desc: 'Kvalitetslänkar från relevanta svenska sajter ökar er domänauktoritet och förbättrar rankingen för konkurrenskraftiga sökord.',
   },
@@ -56,10 +57,10 @@ export default function SEOPage() {
                 SEO
               </span>
               <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
-                Syns på Google — mer trafik, fler kunder
+                Syns på Google, mer trafik, fler kunder
               </h1>
               <p className="text-xl text-black/55 leading-relaxed mb-10">
-                93% av alla köpbeslut börjar med en sökning på Google. Vi ser till att era potentiella kunder hittar er — och ingen annan — när de söker efter det ni erbjuder.
+                93% av alla köpbeslut börjar med en sökning på Google. Vi ser till att era potentiella kunder hittar er, och ingen annan, när de söker efter det ni erbjuder.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -98,7 +99,9 @@ export default function SEOPage() {
             {seoServices.map((s, i) => (
               <ScrollReveal key={s.title} delay={i * 70}>
                 <div className="bg-[#F8F8F8] rounded-3xl p-8 h-full">
-                  <div className="text-4xl mb-5">{s.icon}</div>
+                  <div className="w-14 h-14 rounded-2xl bg-brand-green/12 flex items-center justify-center mb-5">
+                    <s.Icon className="w-6 h-6 text-brand-green-dark" />
+                  </div>
                   <h3 className="font-playfair font-black text-xl text-black mb-3">{s.title}</h3>
                   <p className="text-black/55 leading-relaxed">{s.desc}</p>
                 </div>
@@ -117,7 +120,7 @@ export default function SEOPage() {
                 Vad ni kan förvänta er
               </h2>
               <p className="text-white/50 text-lg max-w-xl mx-auto">
-                Typiska resultat efter 3–6 månaders SEO-arbete.
+                Typiska resultat efter 3-6 månaders SEO-arbete.
               </p>
             </div>
           </ScrollReveal>
@@ -125,7 +128,7 @@ export default function SEOPage() {
             {[
               { value: '+120%', label: 'Organisk trafik' },
               { value: 'Top 3', label: 'Lokala sökord' },
-              { value: '3–6 mån', label: 'Till synliga resultat' },
+              { value: '3-6 mån', label: 'Till synliga resultat' },
               { value: '100%', label: 'Rapporttransparens' },
             ].map((s, i) => (
               <ScrollReveal key={s.label} delay={i * 70}>
@@ -148,7 +151,7 @@ export default function SEOPage() {
                 Hur mår er hemsida just nu?
               </h2>
               <p className="text-black/55 text-lg mb-8 max-w-xl mx-auto">
-                Analysera er hemsidas prestanda, SEO och tillgänglighet på 30 sekunder — helt gratis.
+                Analysera er hemsidas prestanda, SEO och tillgänglighet på 30 sekunder, helt gratis.
               </p>
               <Link
                 href="/seo-test"
@@ -171,7 +174,7 @@ export default function SEOPage() {
                 SEO i hela södra Sverige
               </h2>
               <p className="text-black/55 max-w-xl mx-auto">
-                Vi hjälper företag att synas lokalt — oavsett var ni finns.
+                Vi hjälper företag att synas lokalt, oavsett var ni finns.
               </p>
             </div>
           </ScrollReveal>
