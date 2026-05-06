@@ -9,12 +9,9 @@ import {
   Users,
   Zap,
   Rocket,
-  Sparkles,
   ArrowRight,
-  MapPin,
   Mail,
   Phone,
-  CheckCircle,
 } from 'lucide-react'
 import Link from 'next/link'
 import ScrollReveal from './_components/ScrollReveal'
@@ -95,13 +92,6 @@ const aiCapabilities = [
   },
 ]
 
-const stats = [
-  { value: '10+', label: 'Aktiva kunder' },
-  { value: '50+', label: 'Projekt levererade' },
-  { value: '3×', label: 'Snittökning i trafik' },
-  { value: '100%', label: 'Nöjdhetsgrad' },
-]
-
 const whyPoints = [
   {
     title: 'En fast månadskostnad',
@@ -127,11 +117,11 @@ const whyPoints = [
 
 const workExamples = [
   { client: 'Lagans GK', type: 'Hemsida', bg: 'from-green-100 to-green-50', image: '/images/clients/lagans-gk-mockup.webp' },
-  { client: 'AMS Sweden', type: 'AI Chatbot', bg: 'from-blue-100 to-blue-50' },
-  { client: 'Molico', type: 'Webbshop', bg: 'from-purple-100 to-purple-50' },
-  { client: 'LBY Tech', type: 'Hemsida', bg: 'from-amber-100 to-amber-50' },
-  { client: 'Ljungby Fiber', type: 'Digital strategi', bg: 'from-teal-100 to-teal-50' },
-  { client: 'Smefast', type: 'Grafisk design', bg: 'from-rose-100 to-rose-50' },
+  { client: 'AMS Sweden', type: 'AI Chatbot', bg: 'from-blue-100 to-blue-50', image: '/images/clients/ams_sweden_mockup.webp' },
+  { client: 'Molico', type: 'Webbshop', bg: 'from-purple-100 to-purple-50', image: '/images/clients/molico_mockup.webp' },
+  { client: 'LBY Tech', type: 'Hemsida', bg: 'from-amber-100 to-amber-50', image: '/images/clients/lby_tech_mockup.webp' },
+  { client: 'Ljungby Fiber', type: 'Digital strategi', bg: 'from-teal-100 to-teal-50', image: '/images/clients/ljungby_fiber_mockup.webp' },
+  { client: 'Smefast', type: 'Grafisk design', bg: 'from-rose-100 to-rose-50', image: '/images/clients/smefast_mockup.webp' },
 ]
 
 export default function HomePage() {
@@ -186,78 +176,26 @@ export default function HomePage() {
                 Se tjänster <ArrowRight className="w-4 h-4" />
               </a>
             </div>
-
           </div>
 
-          {/* Right, mock analytics card */}
-          <div className="hidden lg:flex justify-center items-center">
-            <div className="relative animate-float" style={{ transform: 'rotate(2deg)' }}>
-              <div className="bg-white rounded-2xl p-5 w-80 shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-black/6">
-                <div className="flex items-center justify-between mb-5">
-                  <div>
-                    <p className="text-xs text-black/35 mb-0.5">Månadsöversikt</p>
-                    <p className="text-sm font-bold text-black">Digital tillväxt</p>
-                  </div>
-                  <span className="flex items-center gap-1.5 text-[#3a8a00] text-xs font-semibold bg-brand-green/20 px-2.5 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse" />
-                    Live
-                  </span>
-                </div>
-
-                <div
-                  className="rounded-xl p-4 mb-4"
-                  style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
-                >
-                  <p className="text-black/60 text-xs mb-1 font-medium">Organisk trafik</p>
-                  <div className="flex items-end justify-between">
-                    <p className="text-3xl font-black text-black">+127%</p>
-                    <svg viewBox="0 0 40 24" className="w-16 h-8">
-                      <polyline points="0,22 8,16 16,18 24,10 32,12 40,2" fill="none" stroke="rgba(0,0,0,0.25)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <polyline points="0,22 8,16 16,18 24,10 32,12 40,2" fill="none" stroke="rgba(0,0,0,0.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  {[
-                    { label: 'Besökare/mån', value: '2 847' },
-                    { label: 'Konvertering', value: '4.8%' },
-                  ].map((m) => (
-                    <div key={m.label} className="bg-black/4 rounded-xl p-3">
-                      <p className="text-black/35 text-[10px] mb-1">{m.label}</p>
-                      <p className="text-black font-bold text-lg">{m.value}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-2.5">
-                  <p className="text-[10px] text-black/25 uppercase tracking-widest font-semibold">
-                    Senaste leads
-                  </p>
-                  {[
-                    { name: 'Lagans GK', time: 'Just nu' },
-                    { name: 'LBY Tech', time: '3 min' },
-                    { name: 'Ljungby Fiber', time: '11 min' },
-                  ].map((item) => (
-                    <div key={item.name} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-green" />
-                        <span className="text-xs text-black/60">{item.name}</span>
-                      </div>
-                      <span className="text-[10px] text-black/25">{item.time}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div
-                className="absolute -bottom-5 -left-6 bg-white rounded-xl px-4 py-2.5 flex items-center gap-2 animate-float-slow"
-                style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.12)', transform: 'rotate(-2deg)' }}
+          {/* Right, three quick-link buttons */}
+          <div className="hidden lg:flex flex-col gap-3 w-64 justify-self-center">
+            {[
+              { title: 'AI-lösningar', href: '/tjanster/ai' },
+              { title: 'Webb & Hemsidor', href: '/tjanster/webb' },
+              { title: 'Digital Boost', href: '/tjanster/digital-boost' },
+            ].map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group flex items-center justify-between bg-white border border-black/8 rounded-xl px-5 py-4 hover:border-brand-green hover:shadow-[0_8px_24px_rgba(168,213,112,0.2)] hover:-translate-y-0.5 transition-all duration-300"
               >
-                <CheckCircle className="w-3.5 h-3.5 text-brand-green shrink-0" />
-                <p className="text-xs font-bold text-black">SEO-ranking ↑ 14 plats</p>
-              </div>
-            </div>
+                <span className="font-bold text-black text-sm">{item.title}</span>
+                <span className="w-7 h-7 rounded-lg bg-black/5 group-hover:bg-brand-green flex items-center justify-center transition-colors duration-300">
+                  <ArrowRight className="w-3.5 h-3.5 text-black/40 group-hover:text-black transition-colors duration-300" />
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -293,16 +231,13 @@ export default function HomePage() {
       <section id="tjanster" className="bg-white py-28 relative dot-pattern-light">
         <div className="relative max-w-7xl mx-auto px-6">
           <ScrollReveal>
-            <div className="max-w-xl mb-16">
+            <div className="mb-16">
               <p className="font-bakerie text-brand-green-dark text-base mb-3 tracking-wide">
                 Vad vi gör
               </p>
-              <h2 className="text-4xl sm:text-5xl font-black text-black leading-tight">
-                Allt en marknads&shy;avdelning behöver.
+              <h2 className="text-4xl sm:text-5xl font-black text-black leading-tight sm:whitespace-nowrap">
+                Allt en marknadsavdelning behöver.
               </h2>
-              <p className="mt-4 text-black/45 leading-relaxed text-lg">
-                Fem kärnkompetenser. Ett tight team. Inga mellanhänder.
-              </p>
             </div>
           </ScrollReveal>
 
@@ -386,15 +321,6 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <div
-                className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-6 border"
-                style={{ background: 'rgba(168,213,112,0.2)', borderColor: 'rgba(168,213,112,0.4)' }}
-              >
-                <Sparkles className="w-4 h-4 text-brand-green-dark" />
-                <span className="font-bakerie text-brand-green-dark text-sm tracking-wide">
-                  Nästa generation
-                </span>
-              </div>
               <h2 className="text-4xl sm:text-5xl font-black text-black leading-tight mb-5">
                 Vi är mer än en webbyrå.
               </h2>
@@ -435,36 +361,6 @@ export default function HomePage() {
                   </h3>
                   <p className={`text-sm leading-relaxed ${cap.featured ? 'text-black/60' : 'text-black/50'}`}>
                     {cap.desc}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════
-          STATS
-      ═══════════════════════════════════════════════ */}
-      <section className="bg-white py-24 border-t border-black/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
-            <p className="text-center font-bakerie text-black/30 text-base mb-14 tracking-wide">
-              Resultat i siffror
-            </p>
-          </ScrollReveal>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((s, i) => (
-              <ScrollReveal key={s.label} delay={i * 80}>
-                <div className="text-center group">
-                  <p
-                    className="text-6xl sm:text-7xl font-black tracking-tight mb-3 transition-colors group-hover:text-brand-green-dark"
-                    style={{ color: i % 2 === 0 ? '#000000' : '#5fa832' }}
-                  >
-                    {s.value}
-                  </p>
-                  <p className="text-sm text-black/40 font-medium uppercase tracking-wider">
-                    {s.label}
                   </p>
                 </div>
               </ScrollReveal>
@@ -517,7 +413,7 @@ export default function HomePage() {
                         </div>
                       </div>
                     )}
-                    <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm text-xs font-bold text-black/60 px-2.5 py-1 rounded-full z-10">
+                    <div className="absolute top-3 right-3 bg-brand-green text-xs font-bold text-black px-2.5 py-1 rounded-full z-10">
                       {ex.type}
                     </div>
                   </div>
@@ -544,9 +440,6 @@ export default function HomePage() {
       <section id="seo-tester" className="bg-white py-28 border-t border-black/5">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <ScrollReveal>
-            <p className="font-bakerie text-brand-green-dark text-base mb-4 tracking-wide">
-              Gratis verktyg
-            </p>
             <h2 className="text-4xl sm:text-5xl font-black text-black leading-tight mb-5">
               Hur mår din hemsida?
             </h2>
@@ -585,9 +478,6 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="text-center mb-14">
-              <p className="font-bakerie text-brand-green-dark text-base mb-3 tracking-wide">
-                Teamet
-              </p>
               <h2 className="text-4xl font-black text-black">Personerna bakom.</h2>
             </div>
           </ScrollReveal>
@@ -621,37 +511,11 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          CTA, Dark bg, atmospheric green glow (not flat green)
+          CTA, Dark bg
       ═══════════════════════════════════════════════ */}
       <section id="kontakt" className="py-32 bg-[#060606] relative overflow-hidden">
-        {/* Atmospheric green glow blobs */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse 70% 50% at 50% 60%, rgba(168,213,112,0.18) 0%, transparent 70%)',
-          }}
-        />
-        <div
-          className="pointer-events-none absolute -top-20 left-1/4 w-[400px] h-[400px] rounded-full blur-[120px]"
-          style={{ background: 'rgba(168,213,112,0.1)' }}
-        />
-        <div
-          className="pointer-events-none absolute -bottom-20 right-1/4 w-[300px] h-[300px] rounded-full blur-[100px]"
-          style={{ background: 'rgba(168,213,112,0.08)' }}
-        />
-
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <ScrollReveal>
-            <div
-              className="inline-flex items-center gap-2 border rounded-full px-4 py-1.5 mb-8"
-              style={{ background: 'rgba(168,213,112,0.1)', borderColor: 'rgba(168,213,112,0.25)' }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse" />
-              <span className="font-bakerie text-brand-green text-sm tracking-wide">
-                Redo att börja?
-              </span>
-            </div>
-
             <h2 className="text-5xl sm:text-6xl font-black text-white leading-tight mb-6">
               Låt oss växa
               <br />
@@ -672,14 +536,14 @@ export default function HomePage() {
               exakt vad vi kan göra för er, utan förpliktelser.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:info@jtmediasweden.com"
                 className="inline-flex items-center justify-center gap-2 text-black px-9 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-all shadow-[0_8px_32px_rgba(168,213,112,0.4)] animate-glow"
                 style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
               >
                 <Mail className="w-4 h-4" />
-                info@jtmediasweden.com
+                Mejla oss
               </a>
               <a
                 href="tel:+46767680202"
@@ -688,18 +552,6 @@ export default function HomePage() {
                 <Phone className="w-4 h-4" />
                 Ring Theo
               </a>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-white/30 font-medium">
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5" />
-                Stationsgatan 2, 341 60 Ljungby
-              </span>
-              <span className="hidden sm:block text-white/15">·</span>
-              <span className="inline-flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5" />
-                info@jtmediasweden.com
-              </span>
             </div>
           </ScrollReveal>
         </div>
