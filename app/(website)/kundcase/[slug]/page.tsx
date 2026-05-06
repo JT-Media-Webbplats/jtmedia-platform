@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import ScrollReveal from '../../_components/ScrollReveal'
@@ -108,9 +109,9 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const c = cases[params.slug as keyof typeof cases]
-  if (!c) return { title: 'Kundcase | JT Media Sweden' }
+  if (!c) return { title: 'Kundcase | JT Media AB' }
   return {
-    title: `${c.client}, Kundcase | JT Media Sweden`,
+    title: `${c.client}, Kundcase | JT Media AB`,
     description: c.tagline,
   }
 }
@@ -129,14 +130,14 @@ const tagColors: Record<string, string> = {
 
 export default function KundcaseSlugPage({ params }: { params: { slug: string } }) {
   const c = cases[params.slug as keyof typeof cases]
-  if (!c) return null
+  if (!c) notFound()
 
   return (
     <div className="bg-white">
       {/* Hero */}
       <section className="bg-[#F8F8F8] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="fade-up">
             <Link
               href="/kundcase"
               className="inline-flex items-center gap-2 text-sm text-black/45 hover:text-black transition-colors mb-8"
@@ -158,7 +159,7 @@ export default function KundcaseSlugPage({ params }: { params: { slug: string } 
             </h1>
             <p className="text-xl text-black/55 mb-8">{c.tagline}</p>
           </ScrollReveal>
-          <ScrollReveal delay={100}>
+          <ScrollReveal variant="fade-up" delay={150}>
             <div className="relative rounded-3xl overflow-hidden aspect-[16/7]">
               <Image
                 src={c.image}
@@ -176,7 +177,7 @@ export default function KundcaseSlugPage({ params }: { params: { slug: string } 
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-6">
           {/* Challenge */}
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="mb-16">
               <div className="inline-flex items-center gap-2 font-bakerie text-sm bg-black text-white px-4 py-1.5 rounded-full mb-6">
                 Utmaningen
@@ -188,7 +189,7 @@ export default function KundcaseSlugPage({ params }: { params: { slug: string } 
           </ScrollReveal>
 
           {/* Solution */}
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <div className="mb-16">
               <div
                 className="inline-flex items-center gap-2 font-bakerie text-sm text-black px-4 py-1.5 rounded-full mb-6"
@@ -203,31 +204,33 @@ export default function KundcaseSlugPage({ params }: { params: { slug: string } 
           </ScrollReveal>
 
           {/* Results */}
-          <ScrollReveal>
+          <ScrollReveal variant="blur-in">
             <div className="mb-16">
               <div className="inline-flex items-center gap-2 font-bakerie text-sm bg-brand-green/15 text-black px-4 py-1.5 rounded-full mb-6">
                 Resultat
               </div>
               <ul className="space-y-4">
-                {c.results.map((r) => (
-                  <li key={r} className="flex items-start gap-4 bg-[#F8F8F8] rounded-2xl p-5">
-                    <div
-                      className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                      style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
-                    >
-                      <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-black/75 leading-relaxed">{r}</span>
-                  </li>
+                {c.results.map((r, i) => (
+                  <ScrollReveal key={r} delay={i * 80} variant="blur-in">
+                    <li className="flex items-start gap-4 bg-[#F8F8F8] rounded-2xl p-5">
+                      <div
+                        className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                        style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
+                      >
+                        <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-black/75 leading-relaxed">{r}</span>
+                    </li>
+                  </ScrollReveal>
                 ))}
               </ul>
             </div>
           </ScrollReveal>
 
           {/* Live link */}
-          <ScrollReveal>
+          <ScrollReveal variant="slide-left">
             <div className="flex items-center gap-4 p-6 bg-[#F8F8F8] rounded-2xl">
               <div>
                 <p className="text-sm text-black/40 mb-1">Se live</p>
@@ -248,7 +251,7 @@ export default function KundcaseSlugPage({ params }: { params: { slug: string } 
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="fade-up-soft">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Vill du ha liknande resultat?
             </h2>

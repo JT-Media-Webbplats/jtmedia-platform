@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const baseUrl = 'https://jtmediasweden.com'
+const baseUrl = 'https://jtmedia.se'
 
 const cities = [
   'ljungby',

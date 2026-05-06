@@ -4,7 +4,7 @@ import { Smartphone, Search, Pencil, Zap, Cloud, Wrench, Trophy, BarChart3, Rock
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Webb & Hemsidor i Ljungby | JT Media Sweden',
+  title: 'Webb & Hemsidor',
   description:
     'Professionella hemsidor som rankar högt och konverterar besökare till kunder. Responsiv design, snabb laddning, CMS och support, allt ingår.',
 }
@@ -72,16 +72,20 @@ export default function WebbPage() {
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <ScrollReveal>
+            <ScrollReveal variant="fade-up">
               <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
                 Webb & Hemsidor
               </span>
               <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
                 Vi bygger hemsidor som säljer
               </h1>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={150}>
               <p className="text-xl text-black/55 leading-relaxed mb-10">
                 Modern, snabb och konverterande. En hemsida från JT Media är inte bara snygg, den är byggd för att ranka högt på Google och göra besökare till kunder.
               </p>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={300}>
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/kontakt"
@@ -105,7 +109,7 @@ export default function WebbPage() {
       {/* What's included */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Vad ingår?
@@ -117,7 +121,7 @@ export default function WebbPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {included.map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 60}>
+              <ScrollReveal key={item.title} delay={i * 80} variant="slide-right">
                 <div className="bg-[#F8F8F8] rounded-3xl p-7 h-full">
                   <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
                     <item.Icon className="w-5 h-5 text-brand-green-dark" />
@@ -136,7 +140,7 @@ export default function WebbPage() {
       {/* Process */}
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Vår process
@@ -148,7 +152,7 @@ export default function WebbPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
-              <ScrollReveal key={step.number} delay={i * 80}>
+              <ScrollReveal key={step.number} delay={i * 80} variant="scale-in">
                 <div className="bg-white rounded-3xl p-7 h-full border border-black/6 shadow-sm">
                   <div className="font-bakerie text-4xl text-brand-green mb-4">{step.number}</div>
                   <h3 className="font-playfair font-black text-lg text-black mb-3">
@@ -166,7 +170,7 @@ export default function WebbPage() {
       <section className="py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
+            <ScrollReveal variant="blur-in">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-6">
                 Vad kostar det?
               </h2>
@@ -198,7 +202,7 @@ export default function WebbPage() {
                 Kontakta för offert →
               </Link>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal variant="blur-in" delay={100}>
               <div className="bg-black rounded-3xl p-10 text-white">
                 <h3 className="font-playfair font-black text-2xl mb-6">
                   Varför välja JT Media?
@@ -227,7 +231,7 @@ export default function WebbPage() {
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-left">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Redo att ta nästa steg?
             </h2>

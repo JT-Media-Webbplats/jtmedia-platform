@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /customer/
+Disallow: /login
+Disallow: /api/
 
-Sitemap: https://jtmediasweden.com/sitemap.xml
+Sitemap: https://jtmedia.se/sitemap.xml

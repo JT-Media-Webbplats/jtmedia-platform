@@ -42,7 +42,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center shrink-0">
           <Image
             src="/images/jt-media-logo-black.svg"
-            alt="JT Media Sweden"
+            alt="JT Media AB"
             width={130}
             height={130}
             className="h-10 w-auto"

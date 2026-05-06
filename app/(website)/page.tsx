@@ -14,6 +14,7 @@ import {
   Phone,
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import ScrollReveal from './_components/ScrollReveal'
 
 const clients = [
@@ -25,7 +26,7 @@ const clients = [
   { name: 'Hårds Transport', logo: '/images/clients/hards-transport.webp' },
   { name: 'AMS Sweden', logo: '/images/clients/ams-sweden.webp' },
   { name: 'Opido', logo: '/images/clients/opido.webp' },
-  { name: 'Ljungby Schakt', logo: '/images/clients/ljungby-schakt.webp', sizeClass: 'h-8 sm:h-10' },
+  { name: 'Ljungby Schakt', logo: '/images/clients/ljungby-schakt.webp', sizeClass: 'h-6 sm:h-7' },
   { name: 'Pekuma', logo: '/images/clients/pekuma.webp' },
 ]
 
@@ -116,12 +117,12 @@ const whyPoints = [
 ]
 
 const workExamples = [
-  { client: 'Lagans GK', type: 'Hemsida', bg: 'from-green-100 to-green-50', image: '/images/clients/lagans-gk-mockup.webp' },
-  { client: 'AMS Sweden', type: 'AI Chatbot', bg: 'from-blue-100 to-blue-50', image: '/images/clients/ams_sweden_mockup.webp' },
-  { client: 'Molico', type: 'Webbshop', bg: 'from-purple-100 to-purple-50', image: '/images/clients/molico_mockup.webp' },
-  { client: 'LBY Tech', type: 'Hemsida', bg: 'from-amber-100 to-amber-50', image: '/images/clients/lby_tech_mockup.webp' },
-  { client: 'Ljungby Fiber', type: 'Digital strategi', bg: 'from-teal-100 to-teal-50', image: '/images/clients/ljungby_fiber_mockup.webp' },
-  { client: 'Smefast', type: 'Grafisk design', bg: 'from-rose-100 to-rose-50', image: '/images/clients/smefast_mockup.webp' },
+  { client: 'Lagans GK', type: 'Hemsida', bg: 'from-green-100 to-green-50', image: '/images/clients/lagans-gk-mockup.webp', href: '/kundcase' },
+  { client: 'AMS Sweden', type: 'AI Chatbot', bg: 'from-blue-100 to-blue-50', image: '/images/clients/ams_sweden_mockup.webp', href: '/kundcase/ams-sweden' },
+  { client: 'Molico', type: 'Webbshop', bg: 'from-purple-100 to-purple-50', image: '/images/clients/molico_mockup.webp', href: '/kundcase/molico' },
+  { client: 'LBY Tech', type: 'Hemsida', bg: 'from-amber-100 to-amber-50', image: '/images/clients/lby_tech_mockup.webp', href: '/kundcase' },
+  { client: 'Ljungby Fiber', type: 'Digital strategi', bg: 'from-teal-100 to-teal-50', image: '/images/clients/ljungby_fiber_mockup.webp', href: '/kundcase/ljungby-fiber' },
+  { client: 'Smefast', type: 'Grafisk design', bg: 'from-rose-100 to-rose-50', image: '/images/clients/smefast_mockup.webp', href: '/kundcase/smefast' },
 ]
 
 export default function HomePage() {
@@ -138,44 +139,51 @@ export default function HomePage() {
           }}
         />
 
+        {/* Animation: fade-up (hero, staggered) */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
           <div>
-            <h1 className="font-black leading-[1.02] tracking-tight text-black">
-              <span className="block text-5xl sm:text-6xl xl:text-[4.25rem]">Din externa</span>
-              <span
-                className="block text-[2.5rem] sm:text-[3.25rem] xl:text-[3.5rem] mt-2"
-                style={{
-                  background: 'linear-gradient(135deg, #5fa832 0%, #A8D570 60%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                marknadsavdelning.
-              </span>
-            </h1>
+            <ScrollReveal variant="fade-up">
+              <h1 className="font-black leading-[1.02] tracking-tight text-black">
+                <span className="block text-5xl sm:text-6xl xl:text-[4.25rem]">Din externa</span>
+                <span
+                  className="block text-[2.5rem] sm:text-[3.25rem] xl:text-[3.5rem] mt-2"
+                  style={{
+                    background: 'linear-gradient(135deg, #5fa832 0%, #A8D570 60%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  marknadsavdelning.
+                </span>
+              </h1>
+            </ScrollReveal>
 
-            <p className="mt-6 text-lg text-black/50 leading-relaxed max-w-lg font-normal">
-              Till en bråkdel av kostnaden. JT Media levererar
-              webb, AI, SEO och design, allt under ett tak.
-            </p>
+            <ScrollReveal variant="fade-up" delay={150}>
+              <p className="mt-6 text-lg text-black/50 leading-relaxed max-w-lg font-normal">
+                Till en bråkdel av kostnaden. JT Media levererar
+                webb, AI, SEO och design, allt under ett tak.
+              </p>
+            </ScrollReveal>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a
-                href="#kontakt"
-                className="inline-flex items-center gap-2 text-black px-7 py-3.5 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-all shadow-lg animate-glow"
-                style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
-              >
-                Boka möte
-              </a>
-              <a
-                href="#tjanster"
-                className="inline-flex items-center gap-2 border-2 border-black/10 text-black/70 px-7 py-3.5 rounded-xl font-medium text-sm hover:border-brand-green hover:text-black transition-all"
-              >
-                Se tjänster <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
+            <ScrollReveal variant="fade-up" delay={300}>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <a
+                  href="#kontakt"
+                  className="inline-flex items-center gap-2 text-black px-7 py-3.5 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-all shadow-lg animate-glow"
+                  style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
+                >
+                  Boka möte
+                </a>
+                <a
+                  href="#tjanster"
+                  className="inline-flex items-center gap-2 border-2 border-black/10 text-black/70 px-7 py-3.5 rounded-xl font-medium text-sm hover:border-brand-green hover:text-black transition-all"
+                >
+                  Se tjänster <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Right, three quick-link buttons */}
@@ -184,17 +192,18 @@ export default function HomePage() {
               { title: 'AI-lösningar', href: '/tjanster/ai' },
               { title: 'Webb & Hemsidor', href: '/tjanster/webb' },
               { title: 'Digital Boost', href: '/tjanster/digital-boost' },
-            ].map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="group flex items-center justify-between bg-white border border-black/8 rounded-xl px-5 py-4 hover:border-brand-green hover:shadow-[0_8px_24px_rgba(168,213,112,0.2)] hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <span className="font-bold text-black text-sm">{item.title}</span>
-                <span className="w-7 h-7 rounded-lg bg-black/5 group-hover:bg-brand-green flex items-center justify-center transition-colors duration-300">
-                  <ArrowRight className="w-3.5 h-3.5 text-black/40 group-hover:text-black transition-colors duration-300" />
-                </span>
-              </Link>
+            ].map((item, i) => (
+              <ScrollReveal key={item.title} variant="fade-up" delay={450 + i * 100}>
+                <Link
+                  href={item.href}
+                  className="group flex items-center justify-between bg-white border border-black/8 rounded-xl px-5 py-4 hover:border-brand-green hover:shadow-[0_8px_24px_rgba(168,213,112,0.2)] hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <span className="font-bold text-black text-sm">{item.title}</span>
+                  <span className="w-7 h-7 rounded-lg bg-black/5 group-hover:bg-brand-green flex items-center justify-center transition-colors duration-300">
+                    <ArrowRight className="w-3.5 h-3.5 text-black/40 group-hover:text-black transition-colors duration-300" />
+                  </span>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -203,10 +212,11 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           CLIENTS, Light gray, marquee with edge fade
       ═══════════════════════════════════════════════ */}
+      {/* Animation: fade-up (default) */}
       <section className="bg-[#F8F8F8] border-y border-black/5 py-10">
-        <ScrollReveal className="mb-6 text-center">
+        <ScrollReveal className="mb-12 text-center" variant="fade-up">
           <p className="font-bakerie text-black/40 text-base tracking-wide">
-            Betrodda av
+            Några av våra kunder
           </p>
         </ScrollReveal>
         <div className="overflow-hidden marquee-fade">
@@ -216,8 +226,10 @@ export default function HomePage() {
                 <img
                   key={i}
                   src={c.logo}
-                  alt={c.name}
-                  className={`${c.sizeClass ?? 'h-12 sm:h-14'} w-auto object-contain shrink-0`}
+                  alt={`${c.name} – kund hos JT Media AB`}
+                  loading="lazy"
+                  decoding="async"
+                  className={`${c.sizeClass ?? 'h-8 sm:h-10'} w-auto object-contain shrink-0`}
                 />
               ))}
             </div>
@@ -228,9 +240,10 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           SERVICES, White + dot pattern, Lucide icons
       ═══════════════════════════════════════════════ */}
+      {/* Animation: slide-right */}
       <section id="tjanster" className="bg-white py-28 relative dot-pattern-light">
         <div className="relative max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="mb-16">
               <p className="font-bakerie text-brand-green-dark text-base mb-3 tracking-wide">
                 Vad vi gör
@@ -243,7 +256,7 @@ export default function HomePage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => (
-              <ScrollReveal key={s.title} delay={i * 80} className="h-full">
+              <ScrollReveal key={s.title} delay={i * 80} className="h-full" variant="slide-right">
                 <Link
                   href={s.href}
                   className="group relative h-full block bg-white border border-black/8 rounded-2xl p-8 hover:border-brand-green hover:shadow-[0_16px_48px_rgba(168,213,112,0.22)] hover:scale-[1.02] transition-all duration-300 overflow-hidden"
@@ -269,12 +282,13 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           WHY JT MEDIA, Black + dot pattern, Lucide icons
       ═══════════════════════════════════════════════ */}
+      {/* Animation: scale-in */}
       <section id="om-oss" className="bg-black text-white py-28 relative overflow-hidden">
         {/* Dot pattern overlay */}
         <div className="absolute inset-0 dot-pattern pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <p className="font-bakerie text-brand-green text-base mb-4 tracking-wide">
               Varför JT Media
             </p>
@@ -297,7 +311,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {whyPoints.map((p, i) => (
-              <ScrollReveal key={p.title} delay={i * 100} className="h-full">
+              <ScrollReveal key={p.title} delay={i * 100} className="h-full" variant="scale-in">
                 <div className="h-full bg-white/8 backdrop-blur-sm border border-white/15 rounded-2xl p-6 hover:border-brand-green/50 hover:bg-white/12 transition-all duration-300">
                   <div className="w-10 h-10 rounded-xl bg-brand-green/20 flex items-center justify-center mb-4">
                     <p.Icon className="w-5 h-5 text-brand-green" />
@@ -314,12 +328,13 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           AI & NEW CAPABILITIES, Light green gradient
       ═══════════════════════════════════════════════ */}
+      {/* Animation: blur-in */}
       <section id="ai" className="py-28 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #ffffff 0%, #f0fbe5 50%, #e6f7d4 100%)' }}>
         <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-green/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-brand-green/15 blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="blur-in">
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-black text-black leading-tight mb-5">
                 Vi är mer än en webbyrå.
@@ -333,7 +348,7 @@ export default function HomePage() {
 
           <div className="grid sm:grid-cols-3 gap-5">
             {aiCapabilities.map((cap, i) => (
-              <ScrollReveal key={cap.title} delay={i * 100}>
+              <ScrollReveal key={cap.title} delay={i * 100} variant="blur-in">
                 <div
                   className={`h-full rounded-2xl p-8 border-2 transition-all hover:-translate-y-1 hover:scale-[1.01] duration-300 ${
                     cap.featured
@@ -372,9 +387,10 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           WORK EXAMPLES, Placeholder grid
       ═══════════════════════════════════════════════ */}
+      {/* Animation: slide-left */}
       <section className="bg-[#F8F8F8] py-28 border-t border-black/5">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-left">
             <div className="flex items-end justify-between mb-12">
               <div>
                 <p className="font-bakerie text-brand-green-dark text-base mb-3 tracking-wide">
@@ -384,27 +400,32 @@ export default function HomePage() {
                   Projekt vi är stolta över.
                 </h2>
               </div>
-              <a
-                href="#kontakt"
+              <Link
+                href="/kundcase"
                 className="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-black/50 hover:text-black transition-colors"
               >
                 Se alla <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </ScrollReveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {workExamples.map((ex, i) => (
-              <ScrollReveal key={ex.client} delay={i * 70}>
-                <div className="group rounded-2xl overflow-hidden border border-black/6 bg-white hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+              <ScrollReveal key={ex.client} delay={i * 70} variant="slide-left">
+                <Link
+                  href={ex.href}
+                  className="group block rounded-2xl overflow-hidden border border-black/6 bg-white hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                >
                   <div
                     className={`aspect-[16/10] bg-gradient-to-br ${ex.bg} flex items-center justify-center relative overflow-hidden`}
                   >
                     {ex.image ? (
-                      <img
+                      <Image
                         src={ex.image}
-                        alt={ex.client}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        alt={`${ex.client} – ${ex.type} av JT Media`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -427,7 +448,7 @@ export default function HomePage() {
                       <ArrowRight className="w-4 h-4 text-black/30 group-hover:text-black transition-colors duration-300" />
                     </div>
                   </div>
-                </div>
+                </Link>
               </ScrollReveal>
             ))}
           </div>
@@ -437,9 +458,10 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           SEO TESTER
       ═══════════════════════════════════════════════ */}
+      {/* Animation: fade-up-soft */}
       <section id="seo-tester" className="bg-white py-28 border-t border-black/5">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="fade-up-soft">
             <h2 className="text-4xl sm:text-5xl font-black text-black leading-tight mb-5">
               Hur mår din hemsida?
             </h2>
@@ -474,9 +496,10 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           TEAM
       ═══════════════════════════════════════════════ */}
+      {/* Animation: slide-right (team) */}
       <section className="bg-[#F8F8F8] py-24 border-t border-black/5">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="text-center mb-14">
               <h2 className="text-4xl font-black text-black">Personerna bakom.</h2>
             </div>
@@ -486,7 +509,7 @@ export default function HomePage() {
               { name: 'Theo', phone: '076-768 02 02', tel: '+46767680202', role: 'Strategi & Webb' },
               { name: 'Jakob', phone: '073-698 01 31', tel: '+46736980131', role: 'Design & Content' },
             ].map((p, i) => (
-              <ScrollReveal key={p.name} delay={i * 120}>
+              <ScrollReveal key={p.name} delay={i * 120} variant="slide-right">
                 <div className="group bg-white border border-black/6 rounded-2xl p-8 hover:border-brand-green hover:shadow-[0_12px_40px_rgba(168,213,112,0.2)] hover:-translate-y-1 transition-all duration-300">
                   <div
                     className="w-14 h-14 rounded-2xl flex items-center justify-center text-white text-2xl font-black mb-5 group-hover:scale-110 transition-transform duration-300"
@@ -513,9 +536,10 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           CTA, Dark bg
       ═══════════════════════════════════════════════ */}
+      {/* Animation: scale-in (CTA) */}
       <section id="kontakt" className="py-32 bg-[#060606] relative overflow-hidden">
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <h2 className="text-5xl sm:text-6xl font-black text-white leading-tight mb-6">
               Låt oss växa
               <br />

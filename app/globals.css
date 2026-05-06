@@ -73,14 +73,67 @@
   }
 
   /* ── Scroll-reveal (driven by JS IntersectionObserver in ScrollReveal.tsx) ── */
+  /* Transition rules must be on BOTH states so the spec persists across the class swap */
+
+  /* Default: fade-up */
+  .reveal-hidden,
+  .reveal-visible {
+    transition: opacity 0.65s ease, transform 0.65s ease, filter 0.65s ease;
+  }
   .reveal-hidden {
     opacity: 0;
     transform: translateY(28px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
   }
   .reveal-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0);
+  }
+
+  /* Variant: fade-up-soft (gentler, longer ease) */
+  .reveal-fade-up-soft.reveal-hidden,
+  .reveal-fade-up-soft.reveal-visible {
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-fade-up-soft.reveal-hidden {
+    transform: translateY(14px);
+  }
+
+  /* Variant: slide-right (enters from left) */
+  .reveal-slide-right.reveal-hidden,
+  .reveal-slide-right.reveal-visible {
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-slide-right.reveal-hidden {
+    transform: translateX(-40px);
+  }
+
+  /* Variant: slide-left (enters from right) */
+  .reveal-slide-left.reveal-hidden,
+  .reveal-slide-left.reveal-visible {
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-slide-left.reveal-hidden {
+    transform: translateX(40px);
+  }
+
+  /* Variant: scale-in (subtle zoom-in with fade) */
+  .reveal-scale-in.reveal-hidden,
+  .reveal-scale-in.reveal-visible {
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-scale-in.reveal-hidden {
+    transform: scale(0.92);
+  }
+
+  /* Variant: blur-in (defocus → focus + fade) */
+  .reveal-blur-in.reveal-hidden,
+  .reveal-blur-in.reveal-visible {
+    transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-blur-in.reveal-hidden {
+    filter: blur(10px);
+    transform: translateY(10px);
   }
 
   /* ── Glow pulse for green CTA ── */

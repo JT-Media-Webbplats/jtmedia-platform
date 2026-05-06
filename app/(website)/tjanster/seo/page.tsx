@@ -4,7 +4,7 @@ import { Settings, PenTool, MapPin, Link2 } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'SEO-tjänster i Sverige | JT Media Sweden',
+  title: 'SEO-tjänster i Sverige | JT Media AB',
   description:
     'Syns på Google och få fler kunder med professionell SEO. Teknisk SEO, lokal SEO, innehållsstrategi och länkbyggnad för svenska företag.',
 }
@@ -52,16 +52,20 @@ export default function SEOPage() {
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <ScrollReveal>
+            <ScrollReveal variant="fade-up">
               <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
                 SEO
               </span>
               <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
                 Syns på Google, mer trafik, fler kunder
               </h1>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={150}>
               <p className="text-xl text-black/55 leading-relaxed mb-10">
                 93% av alla köpbeslut börjar med en sökning på Google. Vi ser till att era potentiella kunder hittar er, och ingen annan, när de söker efter det ni erbjuder.
               </p>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={300}>
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/seo-test"
@@ -85,7 +89,7 @@ export default function SEOPage() {
       {/* What we do */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Hur vi jobbar med SEO
@@ -97,7 +101,7 @@ export default function SEOPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {seoServices.map((s, i) => (
-              <ScrollReveal key={s.title} delay={i * 70}>
+              <ScrollReveal key={s.title} delay={i * 80} variant="slide-right">
                 <div className="bg-[#F8F8F8] rounded-3xl p-8 h-full">
                   <div className="w-14 h-14 rounded-2xl bg-brand-green/12 flex items-center justify-center mb-5">
                     <s.Icon className="w-6 h-6 text-brand-green-dark" />
@@ -114,7 +118,7 @@ export default function SEOPage() {
       {/* Results */}
       <section className="bg-black py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-4">
                 Vad ni kan förvänta er
@@ -131,7 +135,7 @@ export default function SEOPage() {
               { value: '3-6 mån', label: 'Till synliga resultat' },
               { value: '100%', label: 'Rapporttransparens' },
             ].map((s, i) => (
-              <ScrollReveal key={s.label} delay={i * 70}>
+              <ScrollReveal key={s.label} delay={i * 80} variant="scale-in">
                 <div className="text-center">
                   <div className="font-playfair font-black text-5xl text-brand-green mb-2">{s.value}</div>
                   <div className="text-white/50 text-sm">{s.label}</div>
@@ -145,7 +149,7 @@ export default function SEOPage() {
       {/* SEO Test CTA */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="blur-in">
             <div className="bg-[#F8F8F8] rounded-3xl p-10 md:p-16 text-center">
               <h2 className="font-playfair font-black text-3xl md:text-4xl text-black mb-4">
                 Hur mår er hemsida just nu?
@@ -168,7 +172,7 @@ export default function SEOPage() {
       {/* City links */}
       <section className="bg-[#F8F8F8] py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-left">
             <div className="text-center mb-12">
               <h2 className="font-playfair font-black text-3xl md:text-4xl text-black mb-4">
                 SEO i hela södra Sverige
@@ -179,14 +183,15 @@ export default function SEOPage() {
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {cities.map((city) => (
-              <Link
-                key={city.slug}
-                href={`/seo/${city.slug}`}
-                className="bg-white rounded-2xl border border-black/6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all p-4 text-center text-sm font-semibold text-black/70 hover:text-black"
-              >
-                SEO {city.name}
-              </Link>
+            {cities.map((city, i) => (
+              <ScrollReveal key={city.slug} delay={i * 60} variant="slide-left">
+                <Link
+                  href={`/seo/${city.slug}`}
+                  className="bg-white rounded-2xl border border-black/6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all p-4 text-center text-sm font-semibold text-black/70 hover:text-black block"
+                >
+                  SEO {city.name}
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -195,7 +200,7 @@ export default function SEOPage() {
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="fade-up-soft">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Låt oss ta er till toppen av Google
             </h2>

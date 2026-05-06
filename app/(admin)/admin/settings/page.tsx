@@ -37,7 +37,7 @@ export default async function SettingsPage() {
           <div className="space-y-4">
             <div>
               <label className={labelCls}>Företagsnamn</label>
-              <input defaultValue="JT Media Sweden AB" className={inputCls} readOnly />
+              <input defaultValue="JT Media AB" className={inputCls} readOnly />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>

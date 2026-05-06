@@ -4,7 +4,7 @@ import { Globe, TrendingUp, Smartphone, Palette, BarChart3, Handshake, Lightbulb
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Digital Boost, Fullständigt Digitalpaket | JT Media Sweden',
+  title: 'Digital Boost, Fullständigt Digitalpaket | JT Media AB',
   description:
     'Digital Boost är allt ni behöver för att växa digitalt, webb, SEO, sociala medier och design i ett samlat paket. Perfekt för företag som vill ta ett stort kliv digitalt.',
 }
@@ -63,16 +63,20 @@ export default function DigitalBoostPage() {
       {/* Hero */}
       <section className="py-20 md:py-28" style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}>
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="fade-up">
             <span className="inline-block font-bakerie text-sm bg-black/10 text-black px-4 py-1.5 rounded-full mb-6">
               Digital Boost
             </span>
             <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
               Allt du behöver för att växa digitalt
             </h1>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={150}>
             <p className="text-xl text-black/65 leading-relaxed mb-10 max-w-2xl mx-auto">
               Digital Boost är ett komplett paket som tar er från noll till en stark digital närvaro, ny hemsida, SEO, sociala medier och grafisk design, allt koordinerat av oss.
             </p>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={300}>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/kontakt"
@@ -94,7 +98,7 @@ export default function DigitalBoostPage() {
       {/* What's included */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Vad ingår i Digital Boost?
@@ -106,7 +110,7 @@ export default function DigitalBoostPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {included.map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 60}>
+              <ScrollReveal key={item.title} delay={i * 80} variant="slide-right">
                 <div className="bg-[#F8F8F8] rounded-3xl p-7 h-full">
                   <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
                     <item.Icon className="w-5 h-5 text-brand-green-dark" />
@@ -123,7 +127,7 @@ export default function DigitalBoostPage() {
       {/* Who it's for */}
       <section className="bg-[#F8F8F8] py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 För vem är Digital Boost?
@@ -135,7 +139,7 @@ export default function DigitalBoostPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {forWho.map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 80}>
+              <ScrollReveal key={item.title} delay={i * 80} variant="scale-in">
                 <div className="bg-white rounded-3xl p-8 h-full border border-black/6 shadow-sm text-center">
                   <h3 className="font-playfair font-black text-xl text-black mb-3">{item.title}</h3>
                   <p className="text-black/55 leading-relaxed">{item.desc}</p>
@@ -150,7 +154,7 @@ export default function DigitalBoostPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
+            <ScrollReveal variant="blur-in">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-6">
                 Hur fungerar det i praktiken?
               </h2>
@@ -180,7 +184,7 @@ export default function DigitalBoostPage() {
                 Boka startmöte →
               </Link>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal variant="blur-in" delay={100}>
               <div className="bg-black rounded-3xl p-10 text-white">
                 <div className="w-14 h-14 rounded-2xl bg-brand-green/20 flex items-center justify-center mb-6">
                   <Lightbulb className="w-6 h-6 text-brand-green" />
@@ -206,7 +210,7 @@ export default function DigitalBoostPage() {
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-left">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Ta ett stort kliv digitalt, idag
             </h2>

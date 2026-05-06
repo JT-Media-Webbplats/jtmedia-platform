@@ -35,7 +35,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="px-5 py-4 border-b border-white/5">
           <Image
             src="/images/jt-media-logo-white.svg"
-            alt="JT Media Sweden"
+            alt="JT Media AB"
             width={130}
             height={130}
             className="h-10 w-auto"

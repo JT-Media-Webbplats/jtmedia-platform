@@ -5,7 +5,7 @@ import { Pencil, BookOpen, Printer, Monitor, Package, Library } from 'lucide-rea
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Grafisk Design, Logotyp & Varumärke | JT Media Sweden',
+  title: 'Grafisk Design, Logotyp & Varumärke | JT Media AB',
   description:
     'Professionell grafisk design i Ljungby. Logotyper, varumärkesprofiler, trycksaker och digitalt material som kommunicerar ert varumärke med kraft.',
 }
@@ -50,33 +50,39 @@ export default function GrafiskDesignPage() {
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
-              <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
-                Grafisk design
-              </span>
-              <h1 className="font-playfair font-black text-5xl md:text-6xl text-black mb-6 leading-tight">
-                Design som kommunicerar vem ni är
-              </h1>
-              <p className="text-xl text-black/55 leading-relaxed mb-10">
-                En stark visuell identitet är inte en lyx, det är en investering. Vi skapar design som bygger förtroende, sticker ut bland konkurrenterna och gör att potentiella kunder väljer just er.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/kontakt"
-                  className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black"
-                  style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
-                >
-                  Berätta om ert projekt →
-                </Link>
-                <Link
-                  href="/kundcase"
-                  className="inline-flex items-center font-semibold py-3.5 px-7 rounded-full border-2 border-black text-black hover:bg-black hover:text-white transition-colors"
-                >
-                  Se kundcase
-                </Link>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <div>
+              <ScrollReveal variant="fade-up">
+                <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
+                  Grafisk design
+                </span>
+                <h1 className="font-playfair font-black text-5xl md:text-6xl text-black mb-6 leading-tight">
+                  Design som kommunicerar vem ni är
+                </h1>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-up" delay={150}>
+                <p className="text-xl text-black/55 leading-relaxed mb-10">
+                  En stark visuell identitet är inte en lyx, det är en investering. Vi skapar design som bygger förtroende, sticker ut bland konkurrenterna och gör att potentiella kunder väljer just er.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-up" delay={300}>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    href="/kontakt"
+                    className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black"
+                    style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
+                  >
+                    Berätta om ert projekt →
+                  </Link>
+                  <Link
+                    href="/kundcase"
+                    className="inline-flex items-center font-semibold py-3.5 px-7 rounded-full border-2 border-black text-black hover:bg-black hover:text-white transition-colors"
+                  >
+                    Se kundcase
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
+            <ScrollReveal variant="fade-up" delay={450}>
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
                   src="/images/grafisk-design.webp"
@@ -93,7 +99,7 @@ export default function GrafiskDesignPage() {
       {/* Services */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Vad vi designar
@@ -105,7 +111,7 @@ export default function GrafiskDesignPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {designServices.map((s, i) => (
-              <ScrollReveal key={s.title} delay={i * 60}>
+              <ScrollReveal key={s.title} delay={i * 80} variant="slide-right">
                 <div className="bg-[#F8F8F8] rounded-3xl p-7 h-full">
                   <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
                     <s.Icon className="w-5 h-5 text-brand-green-dark" />
@@ -122,7 +128,7 @@ export default function GrafiskDesignPage() {
       {/* Process */}
       <section className="bg-[#F8F8F8] py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Så arbetar vi
@@ -139,7 +145,7 @@ export default function GrafiskDesignPage() {
               { num: '03', title: 'Förfining', desc: 'Valda konceptet förfinas utifrån er feedback tills det är perfekt.' },
               { num: '04', title: 'Leverans', desc: 'Ni får alla filer i rätt format för print och digitalt, redo att använda direkt.' },
             ].map((step, i) => (
-              <ScrollReveal key={step.num} delay={i * 80}>
+              <ScrollReveal key={step.num} delay={i * 80} variant="scale-in">
                 <div className="bg-white rounded-3xl p-7 h-full border border-black/6 shadow-sm">
                   <div className="font-bakerie text-4xl text-brand-green mb-4">{step.num}</div>
                   <h3 className="font-playfair font-black text-lg text-black mb-2">{step.title}</h3>
@@ -154,7 +160,7 @@ export default function GrafiskDesignPage() {
       {/* Molico case highlight */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="blur-in">
             <div className="bg-black rounded-3xl p-10 md:p-16">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 <div>
@@ -200,7 +206,7 @@ export default function GrafiskDesignPage() {
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-left">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Dags att uppgradera ert varumärke?
             </h2>
