@@ -54,7 +54,7 @@ export default function LoginPage() {
         <div className="mb-8">
           <Image
             src="/images/jt-media-logo-black.svg"
-            alt="JT Media Sweden"
+            alt="JT Media AB"
             width={130}
             height={130}
             className="h-12 w-auto"

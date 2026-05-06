@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Villkor | JT Media Sweden',
+  title: 'Villkor | JT Media AB',
   description:
-    'Allmänna villkor för JT Media Sweden AB. Läs om betalning, immateriella rättigheter, ansvarsbegränsning och kontakt.',
+    'Allmänna villkor för JT Media AB. Läs om betalning, immateriella rättigheter, ansvarsbegränsning och kontakt.',
 }
 
 export default function VillkorPage() {
@@ -21,7 +21,7 @@ export default function VillkorPage() {
               <h2 className="font-playfair font-black text-2xl text-black mb-4">1. Allmänna villkor</h2>
               <div className="space-y-4 text-black/65 leading-relaxed">
                 <p>
-                  Dessa allmänna villkor gäller för alla tjänster och uppdrag som utförs av JT Media Sweden AB (org.nr: [registrerat], Stationsgatan 2, 341 60 Ljungby), nedan kallat "JT Media" eller "vi".
+                  Dessa allmänna villkor gäller för alla tjänster och uppdrag som utförs av JT Media AB (org.nr: [registrerat], Stationsgatan 2, 341 60 Ljungby), nedan kallat "JT Media" eller "vi".
                 </p>
                 <p>
                   Genom att anlita JT Media för ett uppdrag godkänner kunden dessa villkor. Avvikelser från dessa villkor kräver skriftlig överenskommelse.
@@ -146,7 +146,7 @@ export default function VillkorPage() {
                   Frågor om dessa villkor besvaras av:
                 </p>
                 <div className="bg-[#F8F8F8] rounded-2xl p-6 not-prose">
-                  <p className="font-semibold text-black">JT Media Sweden AB</p>
+                  <p className="font-semibold text-black">JT Media AB</p>
                   <p className="text-black/65 text-sm mt-1">Stationsgatan 2, 341 60 Ljungby</p>
                   <a href="mailto:info@jtmediasweden.com" className="text-black/65 text-sm hover:text-black transition-colors">
                     info@jtmediasweden.com

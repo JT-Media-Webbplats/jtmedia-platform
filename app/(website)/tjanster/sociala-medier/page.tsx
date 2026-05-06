@@ -5,7 +5,7 @@ import { Camera, Users, Briefcase, Music, Map, PenTool, Calendar, MessageCircle,
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Sociala medier, Strategi & Content | JT Media Sweden',
+  title: 'Sociala medier, Strategi & Content | JT Media AB',
   description:
     'Professionell hantering av Instagram, Facebook, LinkedIn och TikTok. Vi skapar innehåll, hanterar era konton och bygger er närvaro på sociala medier.',
 }
@@ -49,33 +49,39 @@ export default function SocialaMedierPage() {
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
-              <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
-                Sociala medier
-              </span>
-              <h1 className="font-playfair font-black text-5xl md:text-6xl text-black mb-6 leading-tight">
-                Bygg er digitala närvaro, vi sköter innehållet
-              </h1>
-              <p className="text-xl text-black/55 leading-relaxed mb-10">
-                Sociala medier som engagerar, bygger varumärke och driver leads. Vi tar hand om allt, från strategi till dagligt handhavande, så att ni kan fokusera på verksamheten.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/kontakt"
-                  className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black"
-                  style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
-                >
-                  Kom igång →
-                </Link>
-                <Link
-                  href="/kundcase"
-                  className="inline-flex items-center font-semibold py-3.5 px-7 rounded-full border-2 border-black text-black hover:bg-black hover:text-white transition-colors"
-                >
-                  Se kundcase
-                </Link>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <div>
+              <ScrollReveal variant="fade-up">
+                <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
+                  Sociala medier
+                </span>
+                <h1 className="font-playfair font-black text-5xl md:text-6xl text-black mb-6 leading-tight">
+                  Bygg er digitala närvaro, vi sköter innehållet
+                </h1>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-up" delay={150}>
+                <p className="text-xl text-black/55 leading-relaxed mb-10">
+                  Sociala medier som engagerar, bygger varumärke och driver leads. Vi tar hand om allt, från strategi till dagligt handhavande, så att ni kan fokusera på verksamheten.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-up" delay={300}>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    href="/kontakt"
+                    className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black"
+                    style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
+                  >
+                    Kom igång →
+                  </Link>
+                  <Link
+                    href="/kundcase"
+                    className="inline-flex items-center font-semibold py-3.5 px-7 rounded-full border-2 border-black text-black hover:bg-black hover:text-white transition-colors"
+                  >
+                    Se kundcase
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
+            <ScrollReveal variant="fade-up" delay={450}>
               <div className="relative rounded-3xl overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0 lg:ml-auto">
                 <Image
                   src="/images/sociala-medier-telefonbild.webp"
@@ -92,7 +98,7 @@ export default function SocialaMedierPage() {
       {/* Platforms */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Plattformar vi hanterar
@@ -104,7 +110,7 @@ export default function SocialaMedierPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {platforms.map((p, i) => (
-              <ScrollReveal key={p.name} delay={i * 70}>
+              <ScrollReveal key={p.name} delay={i * 80} variant="slide-right">
                 <div className="bg-[#F8F8F8] rounded-3xl p-8 flex gap-5 h-full">
                   <div className="w-14 h-14 rounded-2xl bg-brand-green/12 flex items-center justify-center shrink-0">
                     <p.Icon className="w-6 h-6 text-brand-green-dark" />
@@ -123,7 +129,7 @@ export default function SocialaMedierPage() {
       {/* What's included */}
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Vad ingår?
@@ -135,7 +141,7 @@ export default function SocialaMedierPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whatsIncluded.map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 60}>
+              <ScrollReveal key={item.title} delay={i * 80} variant="scale-in">
                 <div className="bg-white rounded-3xl p-7 h-full border border-black/6 shadow-sm">
                   <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
                     <item.Icon className="w-5 h-5 text-brand-green-dark" />
@@ -159,7 +165,7 @@ export default function SocialaMedierPage() {
               { value: '30+', label: 'Inlägg per mån', sub: 'Beroende på paket' },
               { value: '100%', label: 'Ert varumärke', sub: 'Vi pratar som ni' },
             ].map((s, i) => (
-              <ScrollReveal key={s.label} delay={i * 70}>
+              <ScrollReveal key={s.label} delay={i * 80} variant="blur-in">
                 <div className="text-center bg-[#F8F8F8] rounded-3xl p-7">
                   <div className="font-playfair font-black text-4xl text-black mb-1">{s.value}</div>
                   <div className="text-black font-semibold text-sm mb-1">{s.label}</div>
@@ -174,7 +180,7 @@ export default function SocialaMedierPage() {
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-left">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Redo att växa på sociala medier?
             </h2>

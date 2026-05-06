@@ -5,9 +5,9 @@ import { Eye, BarChart3, Handshake, Rocket } from 'lucide-react'
 import ScrollReveal from '../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Om oss, JT Media Sweden | Ljungby',
+  title: 'Om oss, JT Media AB | Ljungby',
   description:
-    'Vi är Theo och Jakob, grundarna av JT Media Sweden i Ljungby. Lär känna teamet bakom er externa marknadsavdelning.',
+    'Vi är Theo och Jakob, grundarna av JT Media AB i Ljungby. Lär känna teamet bakom er externa marknadsavdelning.',
 }
 
 const values = [
@@ -47,32 +47,38 @@ export default function OmOssPage() {
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
-              <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
-                Om oss
-              </span>
-              <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
-                Vi är JT Media
-              </h1>
-              <p className="text-xl text-black/55 leading-relaxed mb-6">
-                En liten byrå med stor kapacitet och ett genuint engagemang för att hjälpa svenska företag att växa digitalt.
-              </p>
-              <p className="text-black/50 leading-relaxed mb-10">
-                Vi är passion-drivna digitalister baserade i Ljungby. Vi tror att alla företag, oavsett storlek och plats, förtjänar en digital partner som bryr sig om deras resultat lika mycket som de gör det själva.
-              </p>
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black"
-                style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
-              >
-                Jobba med oss →
-              </Link>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <div>
+              <ScrollReveal variant="fade-up">
+                <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
+                  Om oss
+                </span>
+                <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
+                  Vi är JT Media
+                </h1>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-up" delay={150}>
+                <p className="text-xl text-black/55 leading-relaxed mb-6">
+                  En liten byrå med stor kapacitet och ett genuint engagemang för att hjälpa svenska företag att växa digitalt.
+                </p>
+                <p className="text-black/50 leading-relaxed mb-10">
+                  Vi är passion-drivna digitalister baserade i Ljungby. Vi tror att alla företag, oavsett storlek och plats, förtjänar en digital partner som bryr sig om deras resultat lika mycket som de gör det själva.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-up" delay={300}>
+                <Link
+                  href="/kontakt"
+                  className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black"
+                  style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
+                >
+                  Jobba med oss →
+                </Link>
+              </ScrollReveal>
+            </div>
+            <ScrollReveal variant="fade-up" delay={450}>
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
                   src="/images/team/theo-jakob-team.webp"
-                  alt="Theo och Jakob, JT Media Sweden"
+                  alt="Theo och Jakob, JT Media AB"
                   fill
                   className="object-cover"
                   priority
@@ -87,17 +93,17 @@ export default function OmOssPage() {
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
+            <ScrollReveal variant="slide-right">
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
                   src="/images/team/theo-jakob-team-bild-2.webp"
-                  alt="JT Media Sweden team"
+                  alt="JT Media AB team"
                   fill
                   className="object-cover"
                 />
               </div>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal variant="slide-right" delay={100}>
               <span className="inline-block font-bakerie text-sm bg-black text-white px-4 py-1.5 rounded-full mb-6">
                 Vår historia
               </span>
@@ -123,7 +129,7 @@ export default function OmOssPage() {
       {/* Team */}
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Möt teamet
@@ -135,7 +141,7 @@ export default function OmOssPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Theo */}
-            <ScrollReveal delay={0}>
+            <ScrollReveal delay={0} variant="scale-in">
               <div className="bg-white rounded-3xl border border-black/6 shadow-sm overflow-hidden">
                 <div className="relative aspect-square">
                   <Image
@@ -165,7 +171,7 @@ export default function OmOssPage() {
             </ScrollReveal>
 
             {/* Jakob */}
-            <ScrollReveal delay={100}>
+            <ScrollReveal delay={100} variant="scale-in">
               <div className="bg-white rounded-3xl border border-black/6 shadow-sm overflow-hidden">
                 <div className="relative aspect-square">
                   <Image
@@ -200,7 +206,7 @@ export default function OmOssPage() {
       {/* Values */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="blur-in">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Vad som gör oss annorlunda
@@ -212,7 +218,7 @@ export default function OmOssPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {values.map((v, i) => (
-              <ScrollReveal key={v.title} delay={i * 70}>
+              <ScrollReveal key={v.title} delay={i * 80} variant="blur-in">
                 <div className="bg-[#F8F8F8] rounded-3xl p-7 flex gap-5">
                   <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center shrink-0">
                     <v.Icon className="w-5 h-5 text-brand-green-dark" />
@@ -233,7 +239,7 @@ export default function OmOssPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((s, i) => (
-              <ScrollReveal key={s.label} delay={i * 70}>
+              <ScrollReveal key={s.label} delay={i * 80} variant="slide-left">
                 <div className="text-center">
                   <div className="font-playfair font-black text-5xl text-brand-green mb-2">{s.value}</div>
                   <div className="text-white/50 text-sm">{s.label}</div>
@@ -247,7 +253,7 @@ export default function OmOssPage() {
       {/* CTA */}
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="fade-up-soft">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-6">
               Jobba med oss
             </h2>

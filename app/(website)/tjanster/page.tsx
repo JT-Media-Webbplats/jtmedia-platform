@@ -5,7 +5,7 @@ import { Globe, Bot, TrendingUp, Target, Smartphone, Zap, Palette } from 'lucide
 import ScrollReveal from '../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Tjänster, Webb, SEO, AI & Design | JT Media Sweden',
+  title: 'Tjänster, Webb, SEO, AI & Design | JT Media AB',
   description:
     'Alla digitala tjänster under ett tak. Webb, AI-lösningar, SEO, Google Ads, sociala medier, grafisk design och Digital Boost.',
 }
@@ -68,13 +68,17 @@ export default function TjansterPage() {
       {/* Hero */}
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="fade-up">
             <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
               Full-service digital byrå
             </span>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={150}>
             <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
               Våra tjänster
             </h1>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={300}>
             <p className="text-xl text-black/55 max-w-2xl mx-auto leading-relaxed">
               Vi erbjuder allt ni behöver för att växa digitalt, under ett tak, med ett team som bryr sig om ert resultat.
             </p>
@@ -87,7 +91,7 @@ export default function TjansterPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((s, i) => (
-              <ScrollReveal key={s.href} delay={i * 60}>
+              <ScrollReveal key={s.href} delay={i * 80} variant="slide-right">
                 <Link
                   href={s.href}
                   className="group block bg-white rounded-3xl border border-black/6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-8 h-full"
@@ -115,7 +119,7 @@ export default function TjansterPage() {
       <section className="bg-[#F8F8F8] py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
+            <ScrollReveal variant="scale-in">
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
                   src="/images/grafisk-design.webp"
@@ -125,7 +129,7 @@ export default function TjansterPage() {
                 />
               </div>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal variant="scale-in" delay={100}>
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-6">
                 Allt under ett tak
               </h2>
@@ -151,7 +155,7 @@ export default function TjansterPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
+            <ScrollReveal variant="blur-in">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-6">
                 Digital närvaro som ger resultat
               </h2>
@@ -178,7 +182,7 @@ export default function TjansterPage() {
                 Se våra kundcase →
               </Link>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal variant="blur-in" delay={100}>
               <div className="relative rounded-3xl overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0 lg:ml-auto">
                 <Image
                   src="/images/sociala-medier-telefonbild.webp"
@@ -195,7 +199,7 @@ export default function TjansterPage() {
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Redo att komma igång?
             </h2>

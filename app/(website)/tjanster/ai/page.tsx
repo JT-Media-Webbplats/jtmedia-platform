@@ -5,7 +5,7 @@ import { MessageCircle, Settings, Wrench, Link2 } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'AI-lösningar & Automation | JT Media Sweden',
+  title: 'AI-lösningar & Automation | JT Media AB',
   description:
     'Skräddarsydda AI-chatbots, automation och AI-verktyg som arbetar åt er dygnet runt. JT Media bygger intelligenta lösningar för svenska företag.',
 }
@@ -40,16 +40,20 @@ export default function AIPage() {
       <section className="bg-black py-20 md:py-28 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <ScrollReveal>
+            <ScrollReveal variant="fade-up">
               <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-brand-green px-4 py-1.5 rounded-full mb-6">
                 AI-lösningar
               </span>
               <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
                 AI som arbetar åt er, dygnet runt
               </h1>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={150}>
               <p className="text-xl text-white/55 leading-relaxed mb-10">
                 Sluta lägga tid på uppgifter som en AI kan göra. Vi bygger smarta lösningar som automatiserar, svarar och optimerar, medan ni fokuserar på det som verkligen kräver er.
               </p>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={300}>
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/kontakt"
@@ -73,7 +77,7 @@ export default function AIPage() {
       {/* Services */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="slide-right">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Vad kan vi bygga?
@@ -85,7 +89,7 @@ export default function AIPage() {
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {aiServices.map((s, i) => (
-              <ScrollReveal key={s.title} delay={i * 70}>
+              <ScrollReveal key={s.title} delay={i * 80} variant="slide-right">
                 <div className="bg-[#F8F8F8] rounded-3xl p-8 h-full">
                   <div className="w-14 h-14 rounded-2xl bg-brand-green/12 flex items-center justify-center mb-5">
                     <s.Icon className="w-6 h-6 text-brand-green-dark" />
@@ -103,7 +107,7 @@ export default function AIPage() {
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
+            <ScrollReveal variant="scale-in">
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
                   src="/images/cases/AMS-AI-chat.webp"
@@ -113,7 +117,7 @@ export default function AIPage() {
                 />
               </div>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal variant="scale-in" delay={100}>
               <span className="inline-block font-bakerie text-xs bg-black text-white px-3 py-1 rounded-full mb-4">
                 Kundcase
               </span>
@@ -149,7 +153,7 @@ export default function AIPage() {
       {/* Why AI section */}
       <section className="py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal>
+          <ScrollReveal variant="blur-in">
             <div className="text-center mb-16">
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-4">
                 Varför AI nu?
@@ -177,7 +181,7 @@ export default function AIPage() {
                 desc: 'Kunder som får omedelbara svar är tre gånger mer benägna att slutföra ett köp eller boka en tjänst.',
               },
             ].map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 80}>
+              <ScrollReveal key={item.title} delay={i * 80} variant="blur-in">
                 <div className="text-center bg-[#F8F8F8] rounded-3xl p-8">
                   <div className="font-playfair font-black text-5xl text-black mb-3">{item.stat}</div>
                   <h3 className="font-bold text-lg text-black mb-2">{item.title}</h3>
@@ -192,7 +196,7 @@ export default function AIPage() {
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Nyfiken på vad AI kan göra för er?
             </h2>

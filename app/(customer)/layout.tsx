@@ -18,7 +18,7 @@ export default function CustomerLayout({
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <Image
             src="/images/jt-media-logo-black.svg"
-            alt="JT Media Sweden"
+            alt="JT Media AB"
             width={130}
             height={130}
             className="h-8 w-auto"

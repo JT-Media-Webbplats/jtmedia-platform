@@ -4,7 +4,7 @@ import Link from 'next/link'
 import ScrollReveal from '../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Kundcase, Resultat vi är stolta över | JT Media Sweden',
+  title: 'Kundcase, Resultat vi är stolta över | JT Media AB',
   description:
     'Se hur vi har hjälpt svenska företag att växa digitalt. Riktiga resultat från riktiga kunder, webb, AI, SEO, Google Ads och sociala medier.',
 }
@@ -13,7 +13,7 @@ const cases = [
   {
     slug: 'ams-sweden',
     client: 'AMS Sweden',
-    image: '/images/cases/AMS-AI-chat.webp',
+    image: '/images/clients/ams_sweden_mockup.webp',
     tags: ['AI', 'Chatbot', 'Automation'],
     description:
       'En AI-chatbot tränad på tekniska manualer ger servicetekniker omedelbara svar i fält, dygnet runt.',
@@ -22,7 +22,7 @@ const cases = [
   {
     slug: 'hards-transport',
     client: 'Hårds Transport',
-    image: '/images/cases/hards-transport.webp',
+    image: '/images/clients/hards_transport_mockup.webp',
     tags: ['Webb', 'Sociala medier'],
     description:
       'Från ingen digital närvaro alls till en professionell hemsida och aktiv närvaro på sociala medier.',
@@ -31,7 +31,7 @@ const cases = [
   {
     slug: 'ljungby-fiber',
     client: 'Ljungby Fiber',
-    image: '/images/cases/Ljungby-fiber.webp',
+    image: '/images/clients/ljungby_fiber_mockup.webp',
     tags: ['Webb', 'E-handel'],
     description:
       'Ny hemsida med integrerat beställningssystem för fiber, 80% av alla beställningar sker nu online.',
@@ -40,7 +40,7 @@ const cases = [
   {
     slug: 'molico',
     client: 'Molico',
-    image: '/images/cases/molico-webbshop.webp',
+    image: '/images/clients/molico_mockup.webp',
     tags: ['Webb', 'Design', 'SEO', 'Sociala medier'],
     description:
       'Komplett digital transformation: webbshop, grafisk design, produktkataloger, sociala medier och SEO.',
@@ -49,7 +49,7 @@ const cases = [
   {
     slug: 'pekuma',
     client: 'Pekuma',
-    image: '/images/cases/Pekuma.webp',
+    image: '/images/clients/pekuma_mockup.webp',
     tags: ['Webb'],
     description:
       'Ren och professionell hemsida som etablerar Pekumas digitala närvaro och ökar lokal synlighet.',
@@ -58,7 +58,7 @@ const cases = [
   {
     slug: 'smefast',
     client: 'Smefast',
-    image: '/images/cases/Smefast-interaktiv-karta.webp',
+    image: '/images/clients/smefast_mockup.webp',
     tags: ['Webb', 'Google Ads', 'Design'],
     description:
       'Hemsida med unik interaktiv lägenhetskartor, Google Ads och sociala medier som driver fler bostadsaffärer.',
@@ -84,13 +84,15 @@ export default function KundcasePage() {
       {/* Hero */}
       <section className="bg-[#F8F8F8] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="fade-up">
             <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
               Kundcase
             </span>
             <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
               Resultat vi är stolta över
             </h1>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={150}>
             <p className="text-xl text-black/55 max-w-2xl mx-auto leading-relaxed">
               Vi mäter vår framgång i era resultat. Här är ett urval av projekt vi är extra stolta över.
             </p>
@@ -103,7 +105,7 @@ export default function KundcasePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cases.map((c, i) => (
-              <ScrollReveal key={c.slug} delay={i * 70}>
+              <ScrollReveal key={c.slug} delay={i * 80} variant="slide-right">
                 <Link
                   href={`/kundcase/${c.slug}`}
                   className="group block bg-white rounded-3xl border border-black/6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
@@ -150,7 +152,7 @@ export default function KundcasePage() {
       {/* CTA */}
       <section className="bg-black py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <ScrollReveal>
+          <ScrollReveal variant="scale-in">
             <h2 className="font-playfair font-black text-4xl md:text-5xl text-white mb-6">
               Vill du ha liknande resultat?
             </h2>
