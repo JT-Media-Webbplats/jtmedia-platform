@@ -179,7 +179,7 @@ export default function SeoTestTool() {
         <div className="text-center py-16">
           <div className="inline-block w-16 h-16 border-4 border-brand-green border-t-transparent rounded-full animate-spin mb-6" />
           <h3 className="font-playfair font-black text-2xl text-black mb-2">Analyserar er hemsida...</h3>
-          <p className="text-black/50">Google PageSpeed Insights analyserar prestanda, SEO och tillgänglighet. Det tar cirka 15–30 sekunder.</p>
+          <p className="text-black/50">Google PageSpeed Insights analyserar prestanda, SEO och tillgänglighet. Det tar cirka 15-30 sekunder.</p>
         </div>
       )}
 
@@ -188,7 +188,7 @@ export default function SeoTestTool() {
         <div>
           <div className="text-center mb-8">
             <h3 className="font-playfair font-black text-3xl text-black mb-2">Här är resultatet!</h3>
-            <p className="text-black/55">Poängen är från Googles egna mätverktyg. 90+ är bra, 50–89 kan förbättras, under 50 behöver åtgärdas.</p>
+            <p className="text-black/55">Poängen är från Googles egna mätverktyg. 90+ är bra, 50-89 kan förbättras, under 50 behöver åtgärdas.</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-8">
@@ -204,15 +204,15 @@ export default function SeoTestTool() {
             <ul className="space-y-2 text-sm text-black/60">
               <li className="flex items-start gap-2">
                 <span className="text-green-500 shrink-0 mt-0.5">●</span>
-                <span><strong className="text-black">90–100:</strong> Utmärkt — er sida presterar bra på detta område</span>
+                <span><strong className="text-black">90-100:</strong> Utmärkt, er sida presterar bra på detta område</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-orange-400 shrink-0 mt-0.5">●</span>
-                <span><strong className="text-black">50–89:</strong> Kan förbättras — det finns tydliga möjligheter</span>
+                <span><strong className="text-black">50-89:</strong> Kan förbättras, det finns tydliga möjligheter</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-red-500 shrink-0 mt-0.5">●</span>
-                <span><strong className="text-black">0–49:</strong> Behöver åtgärdas — detta påverkar er synlighet och upplevelse negativt</span>
+                <span><strong className="text-black">0-49:</strong> Behöver åtgärdas, detta påverkar er synlighet och upplevelse negativt</span>
               </li>
             </ul>
           </div>
@@ -223,7 +223,7 @@ export default function SeoTestTool() {
               Vill ni förbättra er hemsida?
             </h4>
             <p className="text-white/55 text-sm mb-5">
-              Vi kan hjälpa er att förbättra alla dessa poäng — och därmed er synlighet på Google och upplevelse för besökarna.
+              Vi kan hjälpa er att förbättra alla dessa poäng, och därmed er synlighet på Google och upplevelse för besökarna.
             </p>
             <Link
               href="/kontakt"

@@ -30,7 +30,7 @@ export default function ContactForm() {
       <div className="bg-brand-green/15 border border-brand-green rounded-2xl p-8 text-center">
         <div className="text-4xl mb-4">✅</div>
         <h3 className="font-playfair font-black text-xl text-black mb-2">Tack för ditt meddelande!</h3>
-        <p className="text-black/60">Vi återkommer till dig så snart som möjligt — vanligtvis samma dag.</p>
+        <p className="text-black/60">Vi återkommer till dig så snart som möjligt, vanligtvis samma dag.</p>
         <button
           onClick={() => setStatus('idle')}
           className="mt-6 text-sm font-semibold text-black/60 hover:text-black transition-colors"

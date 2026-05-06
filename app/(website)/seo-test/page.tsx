@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Zap, Accessibility, Search, CheckCircle } from 'lucide-react'
 import SeoTestTool from './_components/SeoTestTool'
 
 export const metadata: Metadata = {
-  title: 'Gratis SEO-test — Analysera din hemsida | JT Media Sweden',
+  title: 'Gratis SEO-test, Analysera din hemsida | JT Media Sweden',
   description:
     'Testa din hemsidas prestanda, SEO och tillgänglighet gratis på 30 sekunder. Powered by Google PageSpeed Insights.',
 }
@@ -21,7 +22,7 @@ export default function SeoTestPage() {
             Testa din hemsida gratis
           </h1>
           <p className="text-xl text-black/55 max-w-2xl mx-auto leading-relaxed">
-            Få en gratis analys av din hemsidas prestanda, SEO och tillgänglighet på 30 sekunder — direkt från Googles egna mätverktyg.
+            Få en gratis analys av din hemsidas prestanda, SEO och tillgänglighet på 30 sekunder, direkt från Googles egna mätverktyg.
           </p>
         </div>
       </section>
@@ -41,34 +42,36 @@ export default function SeoTestPage() {
               Vad mäter vi?
             </h2>
             <p className="text-black/55 max-w-xl mx-auto">
-              Vi använder Google PageSpeed Insights — samma verktyg Google använder för att bedöma er hemsida.
+              Vi använder Google PageSpeed Insights, samma verktyg Google använder för att bedöma er hemsida.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: '⚡',
+                Icon: Zap,
                 title: 'Prestanda',
                 desc: 'Laddningstider, responsivitet och hur snabbt innehållet visas. Direkt kopplat till er Google-ranking.',
               },
               {
-                icon: '♿',
+                Icon: Accessibility,
                 title: 'Tillgänglighet',
-                desc: 'Om alla användare kan använda er hemsida — inklusive personer med funktionsnedsättningar.',
+                desc: 'Om alla användare kan använda er hemsida, inklusive personer med funktionsnedsättningar.',
               },
               {
-                icon: '🔍',
+                Icon: Search,
                 title: 'SEO',
                 desc: 'Tekniska SEO-faktorer som påverkar hur Google kan hitta, läsa och ranka er hemsida.',
               },
               {
-                icon: '✅',
+                Icon: CheckCircle,
                 title: 'Best Practices',
-                desc: 'Modern webbutveckling — säkerhet, HTTPS, korrekt kod och andra faktorer som påverkar trovärdighet.',
+                desc: 'Modern webbutveckling, säkerhet, HTTPS, korrekt kod och andra faktorer som påverkar trovärdighet.',
               },
             ].map((item) => (
               <div key={item.title} className="bg-white rounded-3xl p-7 border border-black/6 shadow-sm">
-                <div className="text-3xl mb-4">{item.icon}</div>
+                <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
+                  <item.Icon className="w-5 h-5 text-brand-green-dark" />
+                </div>
                 <h3 className="font-playfair font-black text-lg text-black mb-2">{item.title}</h3>
                 <p className="text-black/55 text-sm leading-relaxed">{item.desc}</p>
               </div>

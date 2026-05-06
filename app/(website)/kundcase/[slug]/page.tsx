@@ -11,12 +11,12 @@ const cases = {
     tags: ['AI', 'Chatbot', 'Automation'],
     tagline: 'AI-chatbot för servicetekniker i fält',
     challenge:
-      'AMS Sveriges servicetekniker arbetar i fält och behöver snabba, exakta svar på tekniska frågor. Tidigare var de tvungna att ringa supportavdelningen — vilket skapade långa väntetider, avbrutna arbeten och frustrerade kunder. Manualer fanns men var svåra att söka i på mobilen.',
+      'AMS Sveriges servicetekniker arbetar i fält och behöver snabba, exakta svar på tekniska frågor. Tidigare var de tvungna att ringa supportavdelningen, vilket skapade långa väntetider, avbrutna arbeten och frustrerade kunder. Manualer fanns men var svåra att söka i på mobilen.',
     solution:
-      'Vi byggde en anpassad AI-chatbot tränad på AMS Sveriges kompletta bibliotek av tekniska manualer, felkodslista och FAQ. Chatboten integrerades i ett mobilvänligt gränssnitt som teknikerna kan komma åt direkt i fält. AI:n förstår kontextuella frågor och svarar på klarspråk — inte i manualsidor.',
+      'Vi byggde en anpassad AI-chatbot tränad på AMS Sveriges kompletta bibliotek av tekniska manualer, felkodslista och FAQ. Chatboten integrerades i ett mobilvänligt gränssnitt som teknikerna kan komma åt direkt i fält. AI:n förstår kontextuella frågor och svarar på klarspråk, inte i manualsidor.',
     results: [
       '40% färre supportsamtal till kontoret',
-      'Omedelbara svar 24/7 — tekniker slipper vänta',
+      'Omedelbara svar 24/7, tekniker slipper vänta',
       'Tränad på befintliga manualer utan extra arbete för personalen',
     ],
   },
@@ -29,7 +29,7 @@ const cases = {
     challenge:
       'Hårds Transport hade ingen digital närvaro alls. Potentiella kunder och chaufförer kunde inte hitta dem online, och utan hemsida eller sociala medier gick affärsmöjligheter förlorade. Behovet var tydligt: etablera en trovärdig och professionell närvaro snabbt.',
     solution:
-      'Vi byggde en professionell hemsida som kommunicerar Hårds Transports tjänster, flottan och kontaktinformation tydligt. Parallellt satte vi upp och aktiverade Instagram och Facebook — med en innehållsstrategi som visar upp flottan, teamet och vardagen på ett sätt som attraherar både kunder och förare.',
+      'Vi byggde en professionell hemsida som kommunicerar Hårds Transports tjänster, flottan och kontaktinformation tydligt. Parallellt satte vi upp och aktiverade Instagram och Facebook, med en innehållsstrategi som visar upp flottan, teamet och vardagen på ett sätt som attraherar både kunder och förare.',
     results: [
       '3× fler leads per månad jämfört med period utan digital närvaro',
       '500+ följare på sociala medier inom sex månader',
@@ -43,7 +43,7 @@ const cases = {
     tags: ['Webb', 'E-handel'],
     tagline: 'Digitalt beställningssystem för fiberanslutning',
     challenge:
-      'Ljungby Fiber hade en föråldrad hemsida som inte stödde onlinebeställningar. Kunder som ville beställa fiber var tvungna att ringa eller besöka ett kontor — en friktion som ledde till uppgivna potentiella kunder och ökad arbetsbelastning på kundtjänst.',
+      'Ljungby Fiber hade en föråldrad hemsida som inte stödde onlinebeställningar. Kunder som ville beställa fiber var tvungna att ringa eller besöka ett kontor, en friktion som ledde till uppgivna potentiella kunder och ökad arbetsbelastning på kundtjänst.',
     solution:
       'Vi skapade en modern, snabb hemsida med ett integrerat beställningssystem för fiberanslutning. Besökare kan nu kolla täckning, välja tjänst och beställa helt online. Systemet skickar automatiska bekräftelsemejl och hanterar kommunikation med kunden fram till installation.',
     results: [
@@ -75,7 +75,7 @@ const cases = {
     tags: ['Webb'],
     tagline: 'Professionell hemsida från grunden',
     challenge:
-      'Pekuma hade ingen webbnärvaro alls. Potentiella kunder som sökte på deras namn eller tjänster online hittade ingenting — vilket underminerade trovärdigheten och ledde till missade affärsmöjligheter. Den lokala synligheten på Google var noll.',
+      'Pekuma hade ingen webbnärvaro alls. Potentiella kunder som sökte på deras namn eller tjänster online hittade ingenting, vilket underminerade trovärdigheten och ledde till missade affärsmöjligheter. Den lokala synligheten på Google var noll.',
     solution:
       'Vi skapade en ren, professionell hemsida som presenterar Pekumas tjänster, erfarenhet och kontaktinformation på ett lättnavigerat sätt. Hemsidan optimerades för lokala sökningar och registrerades på Google Business Profile för att etablera lokal SEO-närvaro direkt från start.',
     results: [
@@ -91,9 +91,9 @@ const cases = {
     tags: ['Webb', 'Google Ads', 'Design'],
     tagline: 'Interaktiv lägenhetsmarknadsföring med digital räckvidd',
     challenge:
-      'Smefast behövde marknadsföra ett bostadsprojekt och generera leads från potentiella köpare. Traditionell marknadsföring var otillräcklig — de behövde ett digitalt verktyg som engagerade besökare och hjälpte dem att visualisera och välja bland tillgängliga lägenheter.',
+      'Smefast behövde marknadsföra ett bostadsprojekt och generera leads från potentiella köpare. Traditionell marknadsföring var otillräcklig, de behövde ett digitalt verktyg som engagerade besökare och hjälpte dem att visualisera och välja bland tillgängliga lägenheter.',
     solution:
-      'Vi byggde en hemsida med ett unikt interaktivt lägenhetskartplugin — besökare kan klicka på specifika lägenheter i en 2D-planritning och direkt se storlek, pris, balkong och tillgänglighet. Vi kompletterade med Google Ads-kampanjer riktade mot bostadsköpare i regionen och social media-annonsering på Facebook och Instagram.',
+      'Vi byggde en hemsida med ett unikt interaktivt lägenhetskartplugin, besökare kan klicka på specifika lägenheter i en 2D-planritning och direkt se storlek, pris, balkong och tillgänglighet. Vi kompletterade med Google Ads-kampanjer riktade mot bostadsköpare i regionen och social media-annonsering på Facebook och Instagram.',
     results: [
       'Snabbare bostadsförsäljning jämfört med liknande projekt',
       'Markant ökning av intresseanmälningar per vecka',
@@ -110,7 +110,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const c = cases[params.slug as keyof typeof cases]
   if (!c) return { title: 'Kundcase | JT Media Sweden' }
   return {
-    title: `${c.client} — Kundcase | JT Media Sweden`,
+    title: `${c.client}, Kundcase | JT Media Sweden`,
     description: c.tagline,
   }
 }

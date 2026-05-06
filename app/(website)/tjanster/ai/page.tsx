@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { MessageCircle, Settings, Wrench, Link2 } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
@@ -11,24 +12,24 @@ export const metadata: Metadata = {
 
 const aiServices = [
   {
-    icon: '💬',
+    Icon: MessageCircle,
     title: 'AI-chatbots',
-    desc: 'Kundservice och support dygnet runt. Vi tränar en AI-assistent på er data — produkter, manualer, FAQ — som svarar snabbt och korrekt.',
+    desc: 'Kundservice och support dygnet runt. Vi tränar en AI-assistent på er data, produkter, manualer, FAQ, som svarar snabbt och korrekt.',
   },
   {
-    icon: '⚙️',
+    Icon: Settings,
     title: 'Automatiserade flöden',
     desc: 'Ta bort repetitivt arbete. Vi automatiserar processer som e-post, orderhantering, rapporter och datainsamling med moderna AI-verktyg.',
   },
   {
-    icon: '🛠️',
+    Icon: Wrench,
     title: 'Skräddarsydda AI-verktyg',
-    desc: 'Behöver ni ett specifikt verktyg? Vi bygger anpassade AI-applikationer — allt från prisoptimering till innehållsgenerering och analys.',
+    desc: 'Behöver ni ett specifikt verktyg? Vi bygger anpassade AI-applikationer, allt från prisoptimering till innehållsgenerering och analys.',
   },
   {
-    icon: '🔗',
+    Icon: Link2,
     title: 'Plattformsintegrationer',
-    desc: 'Vi kopplar ihop era befintliga system med AI — CRM, ERP, e-handel och mer. Smidiga integrationer utan krångel.',
+    desc: 'Vi kopplar ihop era befintliga system med AI, CRM, ERP, e-handel och mer. Smidiga integrationer utan krångel.',
   },
 ]
 
@@ -44,10 +45,10 @@ export default function AIPage() {
                 AI-lösningar
               </span>
               <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-                AI som arbetar åt er — dygnet runt
+                AI som arbetar åt er, dygnet runt
               </h1>
               <p className="text-xl text-white/55 leading-relaxed mb-10">
-                Sluta lägga tid på uppgifter som en AI kan göra. Vi bygger smarta lösningar som automatiserar, svarar och optimerar — medan ni fokuserar på det som verkligen kräver er.
+                Sluta lägga tid på uppgifter som en AI kan göra. Vi bygger smarta lösningar som automatiserar, svarar och optimerar, medan ni fokuserar på det som verkligen kräver er.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -78,7 +79,7 @@ export default function AIPage() {
                 Vad kan vi bygga?
               </h2>
               <p className="text-black/55 text-lg max-w-xl mx-auto">
-                AI-lösningar skräddarsydda för er verksamhet — oavsett bransch och storlek.
+                AI-lösningar skräddarsydda för er verksamhet, oavsett bransch och storlek.
               </p>
             </div>
           </ScrollReveal>
@@ -86,7 +87,9 @@ export default function AIPage() {
             {aiServices.map((s, i) => (
               <ScrollReveal key={s.title} delay={i * 70}>
                 <div className="bg-[#F8F8F8] rounded-3xl p-8 h-full">
-                  <div className="text-4xl mb-5">{s.icon}</div>
+                  <div className="w-14 h-14 rounded-2xl bg-brand-green/12 flex items-center justify-center mb-5">
+                    <s.Icon className="w-6 h-6 text-brand-green-dark" />
+                  </div>
                   <h3 className="font-playfair font-black text-xl text-black mb-3">{s.title}</h3>
                   <p className="text-black/55 leading-relaxed">{s.desc}</p>
                 </div>
@@ -115,10 +118,10 @@ export default function AIPage() {
                 Kundcase
               </span>
               <h2 className="font-playfair font-black text-3xl md:text-4xl text-black mb-4">
-                AMS Sweden — AI-chatbot för servicetekniker
+                AMS Sweden, AI-chatbot för servicetekniker
               </h2>
               <p className="text-black/60 leading-relaxed mb-6">
-                AMS Sveriges servicetekniker behövde snabba svar i fält — utan att ringa support. Vi byggde en AI-chatbot tränad på tekniska manualer och felkoder som svarar direkt, dygnet runt.
+                AMS Sveriges servicetekniker behövde snabba svar i fält, utan att ringa support. Vi byggde en AI-chatbot tränad på tekniska manualer och felkoder som svarar direkt, dygnet runt.
               </p>
               <ul className="space-y-3 mb-8">
                 {[

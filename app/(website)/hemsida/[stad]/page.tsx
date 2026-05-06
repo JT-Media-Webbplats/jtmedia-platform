@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Building2, ShoppingBag, Home } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 const cities: Record<string, { name: string; intro: string; businessDesc: string; metaDesc: string }> = {
@@ -7,7 +8,7 @@ const cities: Record<string, { name: string; intro: string; businessDesc: string
     name: 'Ljungby',
     intro: 'Ljungby är en växande stad i hjärtat av Småland med ett starkt lokalt näringsliv.',
     businessDesc:
-      'Med ett aktivt handelsliv och en rad framgångsrika lokala företag är Ljungby en stad där digital närvaro gör skillnad. Konkurrensen ökar — de företag som syns på nätet vinner kunder.',
+      'Med ett aktivt handelsliv och en rad framgångsrika lokala företag är Ljungby en stad där digital närvaro gör skillnad. Konkurrensen ökar, de företag som syns på nätet vinner kunder.',
     metaDesc: 'Professionell webbdesign i Ljungby av JT Media Sweden. Vi bygger snabba hemsidor som rankar på Google och ger fler kunder för lokala företag.',
   },
   varnamo: {
@@ -22,7 +23,7 @@ const cities: Record<string, { name: string; intro: string; businessDesc: string
     intro: 'Växjö är Kronobergs länshuvudstad med ett blomstrande universitetssamhälle och mångfacetterat näringsliv.',
     businessDesc:
       'Växjö kombinerar akademisk innovation med ett starkt lokalt näringsliv. Stadens tillväxt skapar möjligheter för företag med stark digital närvaro att nå en bred och välutbildad kundkrets.',
-    metaDesc: 'Hemsida i Växjö — JT Media Sweden skapar professionell webbdesign för Växjöföretag. Snabba, SEO-optimerade sidor som ger fler kunder.',
+    metaDesc: 'Hemsida i Växjö, JT Media Sweden skapar professionell webbdesign för Växjöföretag. Snabba, SEO-optimerade sidor som ger fler kunder.',
   },
   markaryd: {
     name: 'Markaryd',
@@ -36,13 +37,13 @@ const cities: Record<string, { name: string; intro: string; businessDesc: string
     intro: 'Halmstad är Hallands residensstad med en stor och varierad företagsbas nära kusten.',
     businessDesc:
       'Halmstads dynamiska näringsliv och starka turistsektor skapar unika möjligheter för företag med en professionell digital närvaro. Syns ni på Google när kunderna söker?',
-    metaDesc: 'Hemsida i Halmstad — JT Media Sweden bygger professionella webbsidor för Halmstadföretag. SEO-optimerade, snabba och konverterande.',
+    metaDesc: 'Hemsida i Halmstad, JT Media Sweden bygger professionella webbsidor för Halmstadföretag. SEO-optimerade, snabba och konverterande.',
   },
   helsingborg: {
     name: 'Helsingborg',
     intro: 'Helsingborg är en av Sveriges mest dynamiska städer med en starkt tillväxtorienterad ekonomi.',
     businessDesc:
-      'I Helsingborgs konkurrensutsatta affärsmiljö är en stark digital närvaro inte valfri — det är nödvändigt. Vi bygger hemsidor som gör att ni sticker ut och vinner kunder i en krävande marknad.',
+      'I Helsingborgs konkurrensutsatta affärsmiljö är en stark digital närvaro inte valfri, det är nödvändigt. Vi bygger hemsidor som gör att ni sticker ut och vinner kunder i en krävande marknad.',
     metaDesc: 'Webbdesign i Helsingborg av JT Media Sweden. Professionella hemsidor och digital marknadsföring för Helsingborgsföretag.',
   },
   jonkoping: {
@@ -54,16 +55,16 @@ const cities: Record<string, { name: string; intro: string; businessDesc: string
   },
   almhult: {
     name: 'Älmhult',
-    intro: 'Älmhult är IKEAs hemstad — en innovativ industristad med internationell närvaro.',
+    intro: 'Älmhult är IKEAs hemstad, en innovativ industristad med internationell närvaro.',
     businessDesc:
-      'Älmhultsandan — innovation, enkelhet och funktionalitet — genomsyrar det lokala näringslivet. Vi bygger hemsidor med samma filosofi: snabba, enkla att använda och byggda för att leverera resultat.',
+      'Älmhultsandan, innovation, enkelhet och funktionalitet, genomsyrar det lokala näringslivet. Vi bygger hemsidor med samma filosofi: snabba, enkla att använda och byggda för att leverera resultat.',
     metaDesc: 'Webbdesign i Älmhult av JT Media Sweden. Professionella hemsidor för lokala Älmhultsföretag som vill synas och växa digitalt.',
   },
   lagan: {
     name: 'Lagan',
     intro: 'Lagan är ett litet samhälle i Ljungby kommun med lokala företag som behöver digital närvaro.',
     businessDesc:
-      'Lagans lokala företag verkar i en miljö där personliga relationer är viktiga — men det hindrar inte att en professionell hemsida öppnar dörrar till fler kunder i regionen och online.',
+      'Lagans lokala företag verkar i en miljö där personliga relationer är viktiga, men det hindrar inte att en professionell hemsida öppnar dörrar till fler kunder i regionen och online.',
     metaDesc: 'Hemsida i Lagan av JT Media Sweden. Vi hjälper lokala Laganföretag att etablera sig digitalt med professionell webbdesign.',
   },
   lessebo: {
@@ -124,7 +125,7 @@ export default function HemsidaStadPage({ params }: { params: { stad: string } }
           <div className="max-w-3xl">
             <ScrollReveal>
               <span className="inline-block font-bakerie text-sm bg-brand-green/20 text-black px-4 py-1.5 rounded-full mb-6">
-                Webb & Hemsidor — {city.name}
+                Webb & Hemsidor, {city.name}
               </span>
               <h1 className="font-playfair font-black text-5xl md:text-6xl lg:text-7xl text-black mb-6 leading-tight">
                 Hemsida i {city.name}
@@ -170,13 +171,15 @@ export default function HemsidaStadPage({ params }: { params: { stad: string } }
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: '🏢', title: 'Företagshemsidor', desc: 'Presentationssidor med fokus på att konvertera besökare till leads och kunder.' },
-              { icon: '🛍️', title: 'Webbutiker', desc: 'E-handel med säker betalning, lagerhantering och smidig upplevelse för era kunder.' },
-              { icon: '🏠', title: 'Landningssidor', desc: 'Konverteringsfokuserade sidor för kampanjer och specifika produkter eller tjänster.' },
+              { Icon: Building2, title: 'Företagshemsidor', desc: 'Presentationssidor med fokus på att konvertera besökare till leads och kunder.' },
+              { Icon: ShoppingBag, title: 'Webbutiker', desc: 'E-handel med säker betalning, lagerhantering och smidig upplevelse för era kunder.' },
+              { Icon: Home, title: 'Landningssidor', desc: 'Konverteringsfokuserade sidor för kampanjer och specifika produkter eller tjänster.' },
             ].map((s, i) => (
               <ScrollReveal key={s.title} delay={i * 70}>
                 <div className="bg-[#F8F8F8] rounded-3xl p-7">
-                  <div className="text-3xl mb-4">{s.icon}</div>
+                  <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
+                    <s.Icon className="w-5 h-5 text-brand-green-dark" />
+                  </div>
                   <h3 className="font-playfair font-black text-lg text-black mb-2">{s.title}</h3>
                   <p className="text-black/55 text-sm leading-relaxed">{s.desc}</p>
                 </div>
@@ -224,7 +227,7 @@ export default function HemsidaStadPage({ params }: { params: { stad: string } }
               Redo för en ny hemsida i {city.name}?
             </h2>
             <p className="text-white/55 text-lg mb-10">
-              Kontakta oss för ett kostnadsfritt samtal — vi svarar samma dag.
+              Kontakta oss för ett kostnadsfritt samtal, vi svarar samma dag.
             </p>
             <Link
               href="/kontakt"

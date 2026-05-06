@@ -3,9 +3,9 @@ import Image from 'next/image'
 import Navbar from './_components/Navbar'
 
 export const metadata: Metadata = {
-  title: 'JT Media Sweden — Din externa marknadsavdelning',
+  title: 'JT Media Sweden, Din externa marknadsavdelning',
   description:
-    'JT Media Sweden hjälper svenska företag att växa med webb, AI-lösningar, SEO, sociala medier och grafisk design — till en bråkdel av kostnaden av en intern avdelning.',
+    'JT Media Sweden hjälper svenska företag att växa med webb, AI-lösningar, SEO, sociala medier och grafisk design, till en bråkdel av kostnaden av en intern avdelning.',
 }
 
 const footerServices = [
@@ -32,7 +32,7 @@ export default function WebsiteLayout({
       {/* Footer */}
       <footer className="bg-black text-white">
         <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Col 1 — Brand */}
+          {/* Col 1, Brand */}
           <div className="lg:col-span-1">
             <div className="mb-4">
               <Image
@@ -44,7 +44,7 @@ export default function WebsiteLayout({
               />
             </div>
             <p className="text-white/40 text-sm leading-relaxed mb-6">
-              Din externa marknadsavdelning — till en bråkdel av kostnaden.
+              Din externa marknadsavdelning, till en bråkdel av kostnaden.
             </p>
             {/* Social */}
             <div className="flex gap-3">
@@ -89,7 +89,7 @@ export default function WebsiteLayout({
             </div>
           </div>
 
-          {/* Col 2 — Services */}
+          {/* Col 2, Services */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
               Tjänster
@@ -108,7 +108,7 @@ export default function WebsiteLayout({
             </ul>
           </div>
 
-          {/* Col 3 — Company */}
+          {/* Col 3, Company */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
               Företaget
@@ -130,7 +130,7 @@ export default function WebsiteLayout({
             </ul>
           </div>
 
-          {/* Col 4 — Contact */}
+          {/* Col 4, Contact */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
               Kontakt
@@ -154,10 +154,10 @@ export default function WebsiteLayout({
                 <p className="text-white/30 text-xs mb-1">Team</p>
                 <div className="space-y-1">
                   <a href="tel:+46767680202" className="block text-white/60 hover:text-white transition-colors">
-                    Theo — 076-768 02 02
+                    Theo: 076-768 02 02
                   </a>
                   <a href="tel:+46736980131" className="block text-white/60 hover:text-white transition-colors">
-                    Jakob — 073-698 01 31
+                    Jakob: 073-698 01 31
                   </a>
                 </div>
               </li>

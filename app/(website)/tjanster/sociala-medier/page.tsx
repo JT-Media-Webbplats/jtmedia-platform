@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Camera, Users, Briefcase, Music, Map, PenTool, Calendar, MessageCircle, BarChart3, TrendingUp } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Sociala medier — Strategi & Content | JT Media Sweden',
+  title: 'Sociala medier, Strategi & Content | JT Media Sweden',
   description:
     'Professionell hantering av Instagram, Facebook, LinkedIn och TikTok. Vi skapar innehåll, hanterar era konton och bygger er närvaro på sociala medier.',
 }
@@ -12,33 +13,33 @@ export const metadata: Metadata = {
 const platforms = [
   {
     name: 'Instagram',
-    icon: '📷',
+    Icon: Camera,
     desc: 'Visuellt berättande som bygger varumärke och driver engagemang. Reels, stories och inlägg som din målgrupp faktiskt vill se.',
   },
   {
     name: 'Facebook',
-    icon: '👥',
+    Icon: Users,
     desc: 'Räckvidd och community-byggande för lokala och nationella märken. Organisk närvaro och betald annonsering i kombination.',
   },
   {
     name: 'LinkedIn',
-    icon: '💼',
+    Icon: Briefcase,
     desc: 'B2B-kommunikation som positionerar er som expert och skapar affärsmöjligheter. Tankeledare-content som konverterar.',
   },
   {
     name: 'TikTok',
-    icon: '🎵',
-    desc: 'Nå en yngre målgrupp med kreativt videoinnehåll. TikTok-algoritmen är mer generös med räckvidd — perfekt för varumärken som vågar.',
+    Icon: Music,
+    desc: 'Nå en yngre målgrupp med kreativt videoinnehåll. TikTok-algoritmen är mer generös med räckvidd, perfekt för varumärken som vågar.',
   },
 ]
 
 const whatsIncluded = [
-  { icon: '🗺️', title: 'Strategi', desc: 'Kanalval, målgrupp, ton och redaktionell planering anpassad för er verksamhet.' },
-  { icon: '✍️', title: 'Innehållsproduktion', desc: 'Texter, grafik, foto och video som ser professionellt ut och talar till rätt målgrupp.' },
-  { icon: '📅', title: 'Schemalagd publicering', desc: 'Vi publicerar vid optimala tider för maximal räckvidd — ni slipper tänka på det.' },
-  { icon: '💬', title: 'Engagemang', desc: 'Vi svarar på kommentarer och DMs i ert namn och bygger en aktiv community.' },
-  { icon: '📊', title: 'Månadsrapporter', desc: 'Tydliga rapporter med räckvidd, engagemang, följartillväxt och vad vi fokuserar på härnäst.' },
-  { icon: '📈', title: 'Betald annonsering', desc: 'Sponsrade inlägg och annonser för att nå utanför din befintliga följarskara (tillval).' },
+  { Icon: Map, title: 'Strategi', desc: 'Kanalval, målgrupp, ton och redaktionell planering anpassad för er verksamhet.' },
+  { Icon: PenTool, title: 'Innehållsproduktion', desc: 'Texter, grafik, foto och video som ser professionellt ut och talar till rätt målgrupp.' },
+  { Icon: Calendar, title: 'Schemalagd publicering', desc: 'Vi publicerar vid optimala tider för maximal räckvidd, ni slipper tänka på det.' },
+  { Icon: MessageCircle, title: 'Engagemang', desc: 'Vi svarar på kommentarer och DMs i ert namn och bygger en aktiv community.' },
+  { Icon: BarChart3, title: 'Månadsrapporter', desc: 'Tydliga rapporter med räckvidd, engagemang, följartillväxt och vad vi fokuserar på härnäst.' },
+  { Icon: TrendingUp, title: 'Betald annonsering', desc: 'Sponsrade inlägg och annonser för att nå utanför din befintliga följarskara (tillval).' },
 ]
 
 export default function SocialaMedierPage() {
@@ -53,10 +54,10 @@ export default function SocialaMedierPage() {
                 Sociala medier
               </span>
               <h1 className="font-playfair font-black text-5xl md:text-6xl text-black mb-6 leading-tight">
-                Bygg er digitala närvaro — vi sköter innehållet
+                Bygg er digitala närvaro, vi sköter innehållet
               </h1>
               <p className="text-xl text-black/55 leading-relaxed mb-10">
-                Sociala medier som engagerar, bygger varumärke och driver leads. Vi tar hand om allt — från strategi till dagligt handhavande — så att ni kan fokusera på verksamheten.
+                Sociala medier som engagerar, bygger varumärke och driver leads. Vi tar hand om allt, från strategi till dagligt handhavande, så att ni kan fokusera på verksamheten.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -105,7 +106,9 @@ export default function SocialaMedierPage() {
             {platforms.map((p, i) => (
               <ScrollReveal key={p.name} delay={i * 70}>
                 <div className="bg-[#F8F8F8] rounded-3xl p-8 flex gap-5 h-full">
-                  <div className="text-4xl shrink-0">{p.icon}</div>
+                  <div className="w-14 h-14 rounded-2xl bg-brand-green/12 flex items-center justify-center shrink-0">
+                    <p.Icon className="w-6 h-6 text-brand-green-dark" />
+                  </div>
                   <div>
                     <h3 className="font-playfair font-black text-xl text-black mb-2">{p.name}</h3>
                     <p className="text-black/55 leading-relaxed">{p.desc}</p>
@@ -126,7 +129,7 @@ export default function SocialaMedierPage() {
                 Vad ingår?
               </h2>
               <p className="text-black/55 text-lg max-w-xl mx-auto">
-                Ett komplett paket för er sociala mediepresens — inget ni behöver tänka på.
+                Ett komplett paket för er sociala mediepresens, inget ni behöver tänka på.
               </p>
             </div>
           </ScrollReveal>
@@ -134,7 +137,9 @@ export default function SocialaMedierPage() {
             {whatsIncluded.map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 60}>
                 <div className="bg-white rounded-3xl p-7 h-full border border-black/6 shadow-sm">
-                  <div className="text-3xl mb-4">{item.icon}</div>
+                  <div className="w-12 h-12 rounded-xl bg-brand-green/12 flex items-center justify-center mb-4">
+                    <item.Icon className="w-5 h-5 text-brand-green-dark" />
+                  </div>
                   <h3 className="font-playfair font-black text-lg text-black mb-2">{item.title}</h3>
                   <p className="text-black/55 text-sm leading-relaxed">{item.desc}</p>
                 </div>
