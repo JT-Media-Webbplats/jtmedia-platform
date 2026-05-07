@@ -8,6 +8,7 @@ import {
   FolderKanban,
   Receipt,
   Clock,
+  Inbox,
   Settings,
 } from 'lucide-react'
 
@@ -17,6 +18,7 @@ const navItems = [
   { label: 'Projekt',         href: '/admin/projects',  Icon: FolderKanban },
   { label: 'Fakturering',     href: '/admin/billing',   Icon: Receipt },
   { label: 'Tidrapportering', href: '/admin/time',      Icon: Clock },
+  { label: 'Leads',           href: '/admin/leads',     Icon: Inbox },
   { label: 'Inställningar',   href: '/admin/settings',  Icon: Settings },
 ]
 

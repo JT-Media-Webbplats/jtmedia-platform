@@ -16,16 +16,16 @@ const cases = [
     image: '/images/clients/ams_sweden_mockup.webp',
     tags: ['AI', 'Chatbot', 'Automation'],
     description:
-      'En AI-chatbot tränad på tekniska manualer ger servicetekniker omedelbara svar i fält, dygnet runt.',
+      'Egenutvecklad AI-chatbot som ger servicetekniker direkta svar ur AMS interna dokumentation, med hänvisning till källan.',
     site: 'amssweden.com',
   },
   {
     slug: 'hards-transport',
     client: 'Hårds Transport',
     image: '/images/clients/hards_transport_mockup.webp',
-    tags: ['Webb', 'Sociala medier'],
+    tags: ['Webb', 'SEO', 'Sociala medier'],
     description:
-      'Från ingen digital närvaro alls till en professionell hemsida och aktiv närvaro på sociala medier.',
+      'Ny hemsida byggd för synlighet i sökmotorer och löpande arbete med sociala medier sedan 2022.',
     site: 'hardstransport.se',
   },
   {
@@ -34,34 +34,34 @@ const cases = [
     image: '/images/clients/ljungby_fiber_mockup.webp',
     tags: ['Webb', 'E-handel'],
     description:
-      'Ny hemsida med integrerat beställningssystem för fiber, 80% av alla beställningar sker nu online.',
+      'Ny hemsida med smart beställningsflöde där kunder kan beställa fiber och tillval direkt online.',
     site: 'ljungbyfiber.se',
   },
   {
     slug: 'molico',
     client: 'Molico',
     image: '/images/clients/molico_mockup.webp',
-    tags: ['Webb', 'Design', 'SEO', 'Sociala medier'],
+    tags: ['Webb', 'SEO', 'Sociala medier', 'Google Ads'],
     description:
-      'Komplett digital transformation: webbshop, grafisk design, produktkataloger, sociala medier och SEO.',
+      'Ny webbshop med över 100 produkter och löpande arbete med SEO, sociala medier och annonsering som driver försäljningen.',
     site: 'molico.se',
   },
   {
     slug: 'pekuma',
     client: 'Pekuma',
     image: '/images/clients/pekuma_mockup.webp',
-    tags: ['Webb'],
+    tags: ['Webb', 'SEO'],
     description:
-      'Ren och professionell hemsida som etablerar Pekumas digitala närvaro och ökar lokal synlighet.',
+      'Ny hemsida uppdelad i tre tydliga delar för VA, Trafik och Speglar, med löpande SEO-arbete sedan lansering.',
     site: 'pekuma.se',
   },
   {
     slug: 'smefast',
     client: 'Smefast',
     image: '/images/clients/smefast_mockup.webp',
-    tags: ['Webb', 'Google Ads', 'Design'],
+    tags: ['Webb', 'SEO', 'Google Ads', 'Sociala medier'],
     description:
-      'Hemsida med unik interaktiv lägenhetskartor, Google Ads och sociala medier som driver fler bostadsaffärer.',
+      'Ombyggd hemsida med interaktiv lägenhetskarta, plus löpande arbete med sociala medier, SEO och Google Ads sedan 2022.',
     site: 'smefast.se',
   },
 ]
@@ -105,10 +105,10 @@ export default function KundcasePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cases.map((c, i) => (
-              <ScrollReveal key={c.slug} delay={i * 80} variant="slide-right">
+              <ScrollReveal key={c.slug} delay={i * 80} variant="slide-right" className="h-full">
                 <Link
                   href={`/kundcase/${c.slug}`}
-                  className="group block bg-white rounded-3xl border border-black/6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  className="group flex h-full flex-col bg-white rounded-3xl border border-black/6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
@@ -118,7 +118,7 @@ export default function KundcasePage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-7">
+                  <div className="p-7 flex flex-1 flex-col">
                     <div className="flex flex-wrap gap-2 mb-4">
                       {c.tags.map((tag) => (
                         <span
@@ -135,7 +135,7 @@ export default function KundcasePage() {
                     <p className="text-black/55 text-sm leading-relaxed mb-5">
                       {c.description}
                     </p>
-                    <div className="flex items-center justify-between">
+                    <div className="mt-auto flex items-center justify-between">
                       <span className="text-xs text-black/35">{c.site}</span>
                       <span className="text-sm font-semibold text-black group-hover:gap-3 transition-all flex items-center gap-1.5">
                         Läs mer →
