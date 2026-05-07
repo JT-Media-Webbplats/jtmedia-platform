@@ -7,7 +7,7 @@ import ScrollReveal from '../_components/ScrollReveal'
 export const metadata: Metadata = {
   title: 'Gratis SEO-test, Analysera din hemsida | JT Media AB',
   description:
-    'Testa din hemsidas prestanda, SEO och tillgänglighet gratis på 30 sekunder. Powered by Google PageSpeed Insights.',
+    'Testa din hemsidas prestanda, SEO och tillgänglighet gratis på 30 sekunder med vårt SEO-verktyg.',
 }
 
 export default function SeoTestPage() {
@@ -26,7 +26,7 @@ export default function SeoTestPage() {
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={150}>
             <p className="text-xl text-black/55 max-w-2xl mx-auto leading-relaxed">
-              Få en gratis analys av din hemsidas prestanda, SEO och tillgänglighet på 30 sekunder, direkt från Googles egna mätverktyg.
+              Få en gratis analys av din hemsidas prestanda, SEO och tillgänglighet på 30 sekunder.
             </p>
           </ScrollReveal>
         </div>
@@ -50,7 +50,7 @@ export default function SeoTestPage() {
                 Vad mäter vi?
               </h2>
               <p className="text-black/55 max-w-xl mx-auto">
-                Vi använder Google PageSpeed Insights, samma verktyg Google använder för att bedöma er hemsida.
+                Vi mäter samma tekniska faktorer som faktiskt påverkar er ranking på Google och upplevelsen för era besökare.
               </p>
             </div>
           </ScrollReveal>

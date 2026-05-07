@@ -71,21 +71,18 @@ const services = [
 
 const aiCapabilities = [
   {
-    tag: 'AI & Automation',
     title: 'Smarta AI-lösningar',
     desc: 'Vi bygger kundspecifika AI-chatbots, automatiserade innehållsflöden och intelligenta bokningssystem som arbetar åt er dygnet runt.',
     featured: false,
     Icon: Bot,
   },
   {
-    tag: 'Custom Platforms',
     title: 'Skräddarsydda plattformar',
     desc: 'Behöver ni mer än en hemsida? Vi utvecklar kundportaler, interna verktyg och SaaS-plattformar byggda exakt för er verksamhet.',
     featured: true,
     Icon: Rocket,
   },
   {
-    tag: 'Advanced Web Apps',
     title: 'Avancerade webbapplikationer',
     desc: 'Full-stack webapplikationer med realtidsdata, API-integrationer och skalbar infrastruktur. Tekniken som driver er nästa fas.',
     featured: false,
@@ -364,13 +361,6 @@ export default function HomePage() {
                   >
                     <cap.Icon className={`w-5 h-5 ${cap.featured ? 'text-black' : 'text-brand-green-dark'}`} />
                   </div>
-                  <span
-                    className={`text-xs font-bold uppercase tracking-widest mb-4 block ${
-                      cap.featured ? 'text-black/50' : 'text-brand-green-dark'
-                    }`}
-                  >
-                    {cap.tag}
-                  </span>
                   <h3 className={`text-xl font-black mb-4 leading-tight ${cap.featured ? 'text-black' : 'text-black'}`}>
                     {cap.title}
                   </h3>
