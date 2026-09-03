@@ -31,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tjanster/webb`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/tjanster/ai`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/tjanster/seo`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${baseUrl}/tjanster/geo`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/tjanster/google-ads`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/tjanster/sociala-medier`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/tjanster/digital-boost`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },

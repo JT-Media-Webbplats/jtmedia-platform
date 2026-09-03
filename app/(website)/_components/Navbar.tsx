@@ -8,6 +8,7 @@ const services = [
   { label: 'Webb & Hemsidor', href: '/tjanster/webb' },
   { label: 'AI-lösningar', href: '/tjanster/ai' },
   { label: 'SEO', href: '/tjanster/seo' },
+  { label: 'GEO', href: '/tjanster/geo' },
   { label: 'Google Ads', href: '/tjanster/google-ads' },
   { label: 'Sociala medier', href: '/tjanster/sociala-medier' },
   { label: 'Digital Boost', href: '/tjanster/digital-boost' },

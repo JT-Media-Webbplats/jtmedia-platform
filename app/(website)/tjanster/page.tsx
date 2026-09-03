@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Globe, Bot, TrendingUp, Target, Smartphone, Zap, Palette } from 'lucide-react'
+import { Globe, Bot, TrendingUp, Sparkles, Target, Smartphone, Zap, Palette } from 'lucide-react'
 import ScrollReveal from '../_components/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Tjänster, Webb, SEO, AI & Design | JT Media AB',
+  title: 'Tjänster, Webb, SEO, GEO, AI & Design | JT Media AB',
   description:
-    'Alla digitala tjänster under ett tak. Webb, AI-lösningar, SEO, Google Ads, sociala medier, grafisk design och Digital Boost.',
+    'Alla digitala tjänster under ett tak. Webb, AI-lösningar, SEO, GEO, Google Ads, sociala medier, grafisk design och Digital Boost.',
 }
 
 const services = [
@@ -31,6 +31,13 @@ const services = [
     description:
       'Teknisk SEO, innehållsstrategi och lokal sökmotoroptimering som driver rätt trafik till er hemsida och konverterar besökare till kunder.',
     href: '/tjanster/seo',
+  },
+  {
+    Icon: Sparkles,
+    title: 'GEO',
+    description:
+      'Generative Engine Optimization. Vi ser till att ChatGPT, Gemini, Perplexity och Googles AI Overviews rekommenderar ert företag när kunderna frågar.',
+    href: '/tjanster/geo',
   },
   {
     Icon: Target,

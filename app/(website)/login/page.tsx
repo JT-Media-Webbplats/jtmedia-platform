@@ -6,6 +6,15 @@ import { createClient } from '@/lib/supabase/client'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 
+const inputCls =
+  'w-full border-2 border-black/8 rounded-xl px-4 py-3 text-sm outline-none focus:border-brand-green transition-colors placeholder-black/25'
+
+function getRedirectTo(): string | null {
+  if (typeof window === 'undefined') return null
+  const target = new URLSearchParams(window.location.search).get('redirectTo')
+  return target && target.startsWith('/') && !target.startsWith('//') ? target : null
+}
+
 export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail]       = useState('')
@@ -20,9 +29,8 @@ export default function LoginPage() {
     setError(null)
 
     const supabase = createClient()
-
     const { data, error: authErr } = await supabase.auth.signInWithPassword({
-      email,
+      email: email.trim().toLowerCase(),
       password,
     })
 
@@ -32,25 +40,21 @@ export default function LoginPage() {
       return
     }
 
-    // Check role and redirect
     const { data: profile } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', data.user.id)
       .single()
 
+    const redirectTo = getRedirectTo()
     router.refresh()
-    if (profile?.role === 'admin') {
-      router.push('/admin')
-    } else {
-      router.push('/customer')
-    }
+    if (redirectTo) router.push(redirectTo)
+    else router.push(profile?.role === 'admin' ? '/admin' : '/customer')
   }
 
   return (
     <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4">
       <div className="w-full max-w-sm">
-        {/* Logo */}
         <div className="mb-8">
           <Image
             src="/images/jt-media-logo-black.svg"
@@ -64,7 +68,7 @@ export default function LoginPage() {
 
         <h1 className="text-2xl font-black text-black mb-1">Logga in</h1>
         <p className="text-sm text-black/45 mb-8">
-          Ange dina uppgifter för att fortsätta.
+          Logga in på kundportalen med uppgifterna du fått från oss.
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -79,8 +83,8 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               autoComplete="email"
-              placeholder="du@exempel.se"
-              className="w-full border-2 border-black/8 rounded-xl px-4 py-3 text-sm outline-none focus:border-brand-green transition-colors placeholder-black/25"
+              placeholder="du@dittforetag.se"
+              className={inputCls}
             />
           </div>
 
@@ -97,12 +101,13 @@ export default function LoginPage() {
                 required
                 autoComplete="current-password"
                 placeholder="••••••••"
-                className="w-full border-2 border-black/8 rounded-xl px-4 py-3 pr-11 text-sm outline-none focus:border-brand-green transition-colors placeholder-black/25"
+                className={`${inputCls} pr-11`}
               />
               <button
                 type="button"
                 onClick={() => setShowPw((v) => !v)}
                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-black/30 hover:text-black/60 transition-colors"
+                aria-label={showPw ? 'Dölj lösenord' : 'Visa lösenord'}
               >
                 {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -125,6 +130,12 @@ export default function LoginPage() {
             {loading ? 'Loggar in…' : 'Logga in'}
           </button>
         </form>
+
+        <p className="mt-6 text-xs text-black/40 leading-relaxed">
+          Glömt lösenordet eller saknar inloggning? Hör av dig till{' '}
+          <a href="mailto:info@jtmediasweden.com" className="underline hover:text-black">info@jtmediasweden.com</a>{' '}
+          så hjälper vi dig.
+        </p>
       </div>
     </div>
   )

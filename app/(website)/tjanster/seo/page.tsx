@@ -169,6 +169,34 @@ export default function SEOPage() {
         </div>
       </section>
 
+      {/* GEO cross link */}
+      <section className="pb-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollReveal variant="fade-up-soft">
+            <Link
+              href="/tjanster/geo"
+              className="group flex flex-col md:flex-row md:items-center justify-between gap-6 bg-black rounded-3xl p-8 md:p-10 text-white hover:shadow-[0_16px_48px_rgba(168,213,112,0.25)] transition-shadow"
+            >
+              <div>
+                <p className="font-bakerie text-brand-green text-base mb-2 tracking-wide">Nytt: GEO</p>
+                <h2 className="font-playfair font-black text-2xl md:text-3xl mb-2">
+                  Vill ni även synas i ChatGPT och AI-sökningar?
+                </h2>
+                <p className="text-white/55 max-w-xl">
+                  Generative Engine Optimization är nästa steg efter SEO. Vi ser till att AI-tjänsterna rekommenderar er.
+                </p>
+              </div>
+              <span
+                className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black shrink-0"
+                style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
+              >
+                Läs om GEO →
+              </span>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* City links */}
       <section className="bg-[#F8F8F8] py-20">
         <div className="max-w-7xl mx-auto px-6">

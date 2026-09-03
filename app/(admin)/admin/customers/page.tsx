@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import NewCustomerModal from './_components/NewCustomerModal'
-import type { Customer } from '@/lib/supabase/types'
+import type { Customer, CustomerService } from '@/lib/supabase/types'
+import { formatAmount, monthlyCost } from '@/lib/services'
 
 export const metadata: Metadata = { title: 'Kunder' }
 
@@ -20,7 +21,7 @@ export default async function CustomersPage() {
 
   const { data: customers, error } = await supabase
     .from('customers')
-    .select('*, billing_schedules(next_billing_date, is_active)')
+    .select('*, billing_schedules(next_billing_date, is_active), customer_services(status, amount, billing_interval)')
     .order('name')
 
   if (error) {
@@ -52,7 +53,7 @@ export default async function CustomersPage() {
           <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
-                {['Namn', 'Kontakt', 'Adress', 'Nästa faktura', 'Status'].map((h) => (
+                {['Namn', 'Kontakt', 'Tjänster', 'Nästa faktura', 'Status'].map((h) => (
                   <th key={h} className="text-left px-6 py-4 text-xs font-bold uppercase tracking-widest text-gray-600">
                     {h}
                   </th>
@@ -60,10 +61,15 @@ export default async function CustomersPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {customers.map((c: Customer & { billing_schedules: { next_billing_date: string; is_active: boolean }[] }) => {
+              {customers.map((c: Customer & {
+                billing_schedules: { next_billing_date: string; is_active: boolean }[]
+                customer_services: Pick<CustomerService, 'status' | 'amount' | 'billing_interval'>[]
+              }) => {
                 const nextBilling = c.billing_schedules
                   ?.filter((b) => b.is_active)
                   .sort((a, b) => a.next_billing_date.localeCompare(b.next_billing_date))[0]
+                const activeServices = (c.customer_services ?? []).filter((s) => s.status === 'active')
+                const perMonth = activeServices.reduce((sum, s) => sum + monthlyCost(s), 0)
 
                 return (
                   <tr key={c.id} className="hover:bg-gray-50 transition-colors">
@@ -77,7 +83,16 @@ export default async function CustomersPage() {
                       <p className="text-gray-700">{c.email}</p>
                       {c.phone && <p className="text-gray-400 text-xs mt-0.5">{c.phone}</p>}
                     </td>
-                    <td className="px-6 py-4 text-gray-400 text-xs">{c.address ?? '—'}</td>
+                    <td className="px-6 py-4">
+                      {activeServices.length === 0 ? (
+                        <span className="text-gray-300 text-xs">Inga</span>
+                      ) : (
+                        <>
+                          <p className="text-gray-700 text-sm">{activeServices.length} aktiva</p>
+                          {perMonth > 0 && <p className="text-gray-400 text-xs mt-0.5">{formatAmount(Math.round(perMonth))}/mån</p>}
+                        </>
+                      )}
+                    </td>
                     <td className="px-6 py-4 text-gray-500 text-xs">
                       {nextBilling?.next_billing_date ?? '—'}
                     </td>

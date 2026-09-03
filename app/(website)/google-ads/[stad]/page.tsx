@@ -101,7 +101,7 @@ const cities: Record<string, City> = {
     adsContext:
       'Lessebos nischade näringsliv skapar möjligheter för riktade Google Ads-kampanjer. Vi hittar de söktermer som dina specifika kunder använder och annonserar precis när de söker.',
     localContent:
-      'Lessebos nischade näringsliv med glasindustri och specialiserad tillverkning ger unika möjligheter för riktade Google Ads-kampanjer. Eftersom konkurrensen om nischade sökord är låg kan Lesseboföretag ofta dominera lokala sökresultat utan att betala konkurrenskraftiga klickpriser. Vi identifierar specifika söktermer som er målgrupp faktiskt använder, även de mest specialiserade, och bygger kampanjer som annonserar precis när rätt person söker. Det ger hög konvertering till en låg kostnad — exakt vad nischade företag behöver.',
+      'Lessebos nischade näringsliv med glasindustri och specialiserad tillverkning ger unika möjligheter för riktade Google Ads-kampanjer. Eftersom konkurrensen om nischade sökord är låg kan Lesseboföretag ofta dominera lokala sökresultat utan att betala konkurrenskraftiga klickpriser. Vi identifierar specifika söktermer som er målgrupp faktiskt använder, även de mest specialiserade, och bygger kampanjer som annonserar precis när rätt person söker. Det ger hög konvertering till en låg kostnad, exakt vad nischade företag behöver.',
     metaDesc: 'Google Ads i Lessebo, professionell Google-annonsering för Lessebo-företag av JT Media AB. Fler kunder från sök.',
   },
 }
