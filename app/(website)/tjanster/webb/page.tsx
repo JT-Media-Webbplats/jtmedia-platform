@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Smartphone, Search, Pencil, Zap, Cloud, Wrench, Trophy, BarChart3, Rocket, Lock } from 'lucide-react'
+import { Smartphone, Search, Pencil, Zap, Cloud, Wrench, Trophy, BarChart3, Rocket, Lock, Clock } from 'lucide-react'
 import ScrollReveal from '../../_components/ScrollReveal'
 
 export const metadata: Metadata = {
@@ -92,7 +92,7 @@ export default function WebbPage() {
                   className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black"
                   style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
                 >
-                  Få en offert →
+                  Offert inom 24 timmar →
                 </Link>
                 <Link
                   href="/kundcase"
@@ -166,27 +166,35 @@ export default function WebbPage() {
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* Offert inom 24 timmar */}
       <section className="py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <ScrollReveal variant="blur-in">
+              <p className="font-bakerie text-brand-green-dark text-base mb-3 tracking-wide">
+                Snabbt svar, tydlig offert
+              </p>
               <h2 className="font-playfair font-black text-4xl md:text-5xl text-black mb-6">
-                Vad kostar det?
+                Offert inom 24 timmar
               </h2>
               <p className="text-black/60 text-lg leading-relaxed mb-6">
-                Prissättningen beror på projektets omfattning, funktioner och eventuellt behov av CMS eller e-handel. Vi ger alltid en tydlig offert utan dolda kostnader.
+                Varje hemsida är unik, därför ger vi aldrig ett pris i blindo. Berätta kort om er verksamhet och vad ni vill uppnå, så återkommer vi med en skräddarsydd offert inom 24 timmar från er förfrågan.
               </p>
-              <div className="bg-[#F8F8F8] rounded-3xl p-7 mb-8">
-                <div className="text-3xl font-black text-black mb-2">Från 8 000 kr</div>
-                <div className="text-black/50 text-sm">Enkel presentationssida med upp till 5 sidor</div>
+              <div className="bg-[#F8F8F8] rounded-3xl p-7 mb-8 flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-brand-green/15 flex items-center justify-center shrink-0">
+                  <Clock className="w-7 h-7 text-brand-green-dark" />
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-black mb-1">Svar inom 24 timmar</div>
+                  <div className="text-black/50 text-sm">Fast pris, tydligt innehåll och en tidplan ni kan lita på.</div>
+                </div>
               </div>
               <ul className="space-y-3 mb-8">
                 {[
-                  'Webshop och e-handel: offert efter behov',
-                  'Löpande underhåll: från 990 kr/mån',
-                  'Inga dolda kostnader',
-                  'Kostnadsfri konsultation',
+                  'Skräddarsydd offert utifrån era behov',
+                  'Fast pris, inga dolda kostnader',
+                  'Kostnadsfri konsultation innan ni bestämmer er',
+                  'Ni äger alltid er hemsida och all data',
                 ].map((p) => (
                   <li key={p} className="flex items-start gap-3 text-black/65 text-sm">
                     <span className="text-brand-green mt-0.5 shrink-0">✓</span>
@@ -199,7 +207,7 @@ export default function WebbPage() {
                 className="inline-flex items-center font-bold py-3.5 px-7 rounded-full text-black"
                 style={{ background: 'linear-gradient(135deg, #A8D570 0%, #7dc435 100%)' }}
               >
-                Kontakta för offert →
+                Begär offert →
               </Link>
             </ScrollReveal>
             <ScrollReveal variant="blur-in" delay={100}>
@@ -236,7 +244,7 @@ export default function WebbPage() {
               Redo att ta nästa steg?
             </h2>
             <p className="text-white/55 text-lg mb-10">
-              Boka ett kostnadsfritt samtal och låt oss prata om er nya hemsida.
+              Skicka en förfrågan idag så har ni en offert inom 24 timmar.
             </p>
             <Link
               href="/kontakt"

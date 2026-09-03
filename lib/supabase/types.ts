@@ -2,6 +2,21 @@ export type Role = 'admin' | 'customer'
 export type CustomerStatus = 'active' | 'paused' | 'inactive'
 export type ProjectStatus = 'active' | 'completed' | 'paused' | 'cancelled'
 export type BillingInterval = 'monthly' | 'quarterly' | 'semi-annual' | 'yearly'
+export type ServiceInterval = BillingInterval | 'one_time'
+export type ServiceStatus = 'active' | 'paused' | 'ended'
+export type ServiceType =
+  | 'website'
+  | 'hosting'
+  | 'domain'
+  | 'email'
+  | 'maintenance'
+  | 'seo'
+  | 'geo'
+  | 'google_ads'
+  | 'social'
+  | 'ai'
+  | 'design'
+  | 'other'
 
 export interface Profile {
   id: string
@@ -92,4 +107,22 @@ export interface BillingSchedule {
   updated_at: string
   customer?: Pick<Customer, 'id' | 'name'>
   package?: Pick<Package, 'id' | 'name'>
+}
+
+export interface CustomerService {
+  id: string
+  customer_id: string
+  name: string
+  type: ServiceType
+  domain: string | null
+  description: string | null
+  status: ServiceStatus
+  billing_interval: ServiceInterval | null
+  amount: number | null
+  currency: string
+  started_at: string
+  renews_at: string | null
+  ended_at: string | null
+  created_at: string
+  updated_at: string
 }

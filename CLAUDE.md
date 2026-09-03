@@ -16,11 +16,13 @@ No test runner is configured. There are no test files in this repo.
 
 ## Environment
 
-Two env vars are required — create a `.env.local`:
+Create a `.env.local` (see `.env.local.example`):
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=   # server-only; needed to create customer logins from /admin and for scripts
+NEXT_PUBLIC_SITE_URL=        # optional, shown in admin when handing over login details
 ```
 
 ## Architecture
@@ -41,10 +43,11 @@ Auth protection is enforced in `middleware.ts` — unauthenticated requests to `
 
 - `lib/supabase/client.ts` — browser client (`createBrowserClient`). Use in `'use client'` components.
 - `lib/supabase/server.ts` — server client (`createServerClient`). Use in Server Components, Route Handlers, and Server Actions. It is `async` because it awaits `cookies()`.
+- `lib/supabase/admin.ts` — service-role client (bypasses RLS, manages auth users). Server-only, needs `SUPABASE_SERVICE_ROLE_KEY`. Only used by `app/actions/portal-access.ts` and scripts.
 
 ### Server Actions
 
-All server actions live in `app/actions/`. They use `'use server'` at the top and call `await createClient()` from the server lib. Pattern: return `{ success: boolean, error?: string }`. Existing actions: `auth.ts`, `billing.ts`, `contact.ts`, `customers.ts`, `projects.ts`, `seo-test.ts`, `time.ts`.
+All server actions live in `app/actions/`. They use `'use server'` at the top and call `await createClient()` from the server lib. Pattern: return `{ success: boolean, error?: string }`. Existing actions: `auth.ts`, `billing.ts`, `contact.ts`, `customers.ts`, `portal-access.ts` (create/reset/delete customer logins, uses the service-role client), `projects.ts`, `seo-test.ts`, `services.ts` (customer services CRUD), `time.ts`.
 
 ### Styling
 
@@ -60,13 +63,14 @@ All server actions live in `app/actions/`. They use `'use server'` at the top an
 - Cards: `rounded-2xl border border-black/6 shadow-sm`
 - Alternating backgrounds: white → `bg-[#F8F8F8]` → `bg-black` (dark sections)
 - All user-facing copy is in **Swedish**
+- **No prices on the website.** Service pages push "offert inom 24 timmar" instead of amounts.
 
 ### Website route structure
 
 ```
 /                          → Startsida (homepage)
 /tjanster                  → Tjänsteöversikt
-/tjanster/[webb|ai|seo|google-ads|sociala-medier|digital-boost|grafisk-design]
+/tjanster/[webb|ai|seo|geo|google-ads|sociala-medier|digital-boost|grafisk-design]
 /hemsida/[stad]            → Hemsida + stad (10 cities, static generated)
 /seo/[stad]                → SEO + stad (10 cities, static generated)
 /google-ads/[stad]         → Google Ads + stad (10 cities, static generated)
@@ -76,7 +80,7 @@ All server actions live in `app/actions/`. They use `'use server'` at the top an
 /kontakt                   → Kontakt (form → Supabase contact_submissions)
 /seo-test                  → Gratis SEO-test (PageSpeed Insights + lead capture)
 /villkor                   → Villkor
-/login                     → Login form
+/login                     → Login form (e-mail + password, redirects to /admin or /customer by role)
 ```
 
 **Cities** (used as slug values): `ljungby`, `varnamo`, `vaxjo`, `markaryd`, `halmstad`, `helsingborg`, `jonkoping`, `almhult`, `lagan`, `lessebo`. City display names with Swedish characters are mapped inside each `[stad]/page.tsx`.
@@ -91,11 +95,17 @@ Dynamic pages use `generateStaticParams` and `generateMetadata`. All city/case d
 
 ### Admin portal
 
-All admin pages are under `app/(admin)/admin/` and use **mock/hardcoded data** (no live Supabase queries in admin pages yet). Sidebar: `app/(admin)/_components/SidebarNav.tsx`. Pages: dashboard, customers, projects, billing, time, settings. Customer and project detail pages have edit forms that do call real server actions.
+All admin pages are under `app/(admin)/admin/`. Sidebar: `app/(admin)/_components/SidebarNav.tsx`. Pages: dashboard, customers, projects, billing, time, leads, settings. The customer detail page (`admin/customers/[id]`) queries Supabase and has panels for editing the customer, billing schedules, **customer services** (what the customer sees in the portal: type, domain, price, billing interval, renewal date) and **portal access** (create an e-mail + password login for the customer, reset the password, delete the login). Customers are created from `admin/customers` ("Ny kund") and deleted from the edit form on the detail page.
+
+### Customer portal
+
+`app/(customer)/customer/page.tsx` is a server component that reads the logged-in user's `profiles.customer_id` and shows the customer's `customer_services` (grouped active/ended, upcoming renewals, a "Vad ni betalar" cost table with monthly/yearly totals), `projects`, and a contact card. Customers log in at `/login` with e-mail + password created by an admin. New auth users get a `profiles` row via the `handle_new_user` trigger, auto-linked to a `customers` row with the same e-mail; admin can override the link. Service labels and cost helpers (`yearlyCost`, `monthlyCost`, `formatAmount`) live in `lib/services.ts`.
+
+**First accounts**: `npx tsx scripts/seed-portal-accounts.ts` creates the admin login and a test customer login for Hårds Transport (needs `SUPABASE_SERVICE_ROLE_KEY`). Safe to re-run.
 
 ### Database schema
 
-Migrations in `supabase/migrations/`. Tables: `customers`, `packages`, `customer_packages`, `projects`, `time_entries`, `billing_schedules`, `profiles`, `contact_submissions`, `seo_test_leads`. All have RLS enabled. The migration has not been applied to a live Supabase project yet — most admin pages still use hardcoded mock data.
+Migrations in `supabase/migrations/`. Tables: `customers`, `packages`, `customer_packages`, `projects`, `time_entries`, `billing_schedules`, `profiles`, `contact_submissions`, `seo_test_leads`, `customer_services`. All have RLS enabled (admins via `is_admin()`, customers read their own rows through `profiles.customer_id`).
 
 ### Images
 

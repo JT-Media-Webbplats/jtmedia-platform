@@ -116,7 +116,7 @@ function buildFaqs(cityName: string): FAQ[] {
     },
     {
       q: `Vad kostar en hemsida för ett företag i ${cityName}?`,
-      a: `Priset beror helt på omfattningen — antal sidor, designkomplexitet, funktioner som bokningssystem eller e-handel. Vi tar fram en fast offert baserat på era exakta behov, så det blir inga oförutsedda kostnader. Många företag i ${cityName} börjar med en bra grundsida som sedan kan byggas ut över tid.`,
+      a: `Priset beror helt på omfattningen, antal sidor, designkomplexitet och funktioner som bokningssystem eller e-handel. Vi tar fram en fast offert baserat på era exakta behov inom 24 timmar från er förfrågan, så det blir inga oförutsedda kostnader. Många företag i ${cityName} börjar med en bra grundsida som sedan kan byggas ut över tid.`,
     },
     {
       q: 'Vilken teknik bygger ni på?',

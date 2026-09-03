@@ -44,8 +44,8 @@ const services = [
     href: '/tjanster/ai',
   },
   {
-    title: 'SEO & Digital Boost',
-    desc: 'Syns när det gäller. Teknisk SEO, innehållsstrategi och lokal sökmotoroptimering som driver rätt trafik.',
+    title: 'SEO & GEO',
+    desc: 'Syns när det gäller. Teknisk SEO, lokal sökmotoroptimering och GEO som gör att ni hittas både på Google och i AI-sökningar.',
     Icon: TrendingUp,
     href: '/tjanster/seo',
   },
@@ -128,7 +128,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           HERO, White, bright, bold
       ═══════════════════════════════════════════════ */}
-      <section className="bg-white overflow-hidden">
+      <section className="relative bg-white overflow-hidden">
         <div
           className="pointer-events-none absolute top-0 right-0 w-[600px] h-[500px] opacity-25"
           style={{
@@ -139,12 +139,12 @@ export default function HomePage() {
         {/* Animation: fade-up (hero, staggered) */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
-          <div>
+          <div className="min-w-0">
             <ScrollReveal variant="fade-up">
               <h1 className="font-black leading-[1.02] tracking-tight text-black">
                 <span className="block text-5xl sm:text-6xl xl:text-[4.25rem]">Din externa</span>
                 <span
-                  className="block text-[2.5rem] sm:text-[3.25rem] xl:text-[3.5rem] mt-2"
+                  className="block text-[2rem] sm:text-[3.25rem] xl:text-[3.5rem] mt-2"
                   style={{
                     background: 'linear-gradient(135deg, #5fa832 0%, #A8D570 60%)',
                     WebkitBackgroundClip: 'text',
@@ -159,8 +159,8 @@ export default function HomePage() {
 
             <ScrollReveal variant="fade-up" delay={150}>
               <p className="mt-6 text-lg text-black/50 leading-relaxed max-w-lg font-normal">
-                Till en bråkdel av kostnaden. JT Media levererar
-                webb, AI, SEO och design, allt under ett tak.
+                Till en bråkdel av kostnaden. Vi är Theo och Jakob, och vi levererar
+                webb, AI, SEO och design från Ljungby, allt under ett tak.
               </p>
             </ScrollReveal>
 
@@ -181,27 +181,69 @@ export default function HomePage() {
                 </a>
               </div>
             </ScrollReveal>
+
+            <ScrollReveal variant="fade-up" delay={450}>
+              <div className="mt-8 flex flex-wrap items-center gap-2">
+                <span className="text-xs text-black/35 mr-1">Populärt just nu:</span>
+                {[
+                  { title: 'AI-lösningar', href: '/tjanster/ai' },
+                  { title: 'Webb & Hemsidor', href: '/tjanster/webb' },
+                  { title: 'GEO', href: '/tjanster/geo' },
+                ].map((item) => (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className="group inline-flex items-center gap-1.5 bg-white border border-black/8 rounded-full px-3.5 py-1.5 text-xs font-bold text-black/70 hover:border-brand-green hover:text-black transition-colors"
+                  >
+                    {item.title}
+                    <ArrowRight className="w-3 h-3 text-black/30 group-hover:text-brand-green-dark transition-colors" />
+                  </Link>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
 
-          {/* Right, three quick-link buttons */}
-          <div className="hidden lg:flex flex-col gap-3 w-64 justify-self-center">
-            {[
-              { title: 'AI-lösningar', href: '/tjanster/ai' },
-              { title: 'Webb & Hemsidor', href: '/tjanster/webb' },
-              { title: 'Digital Boost', href: '/tjanster/digital-boost' },
-            ].map((item, i) => (
-              <ScrollReveal key={item.title} variant="fade-up" delay={450 + i * 100}>
-                <Link
-                  href={item.href}
-                  className="group flex items-center justify-between bg-white border border-black/8 rounded-xl px-5 py-4 hover:border-brand-green hover:shadow-[0_8px_24px_rgba(168,213,112,0.2)] hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  <span className="font-bold text-black text-sm">{item.title}</span>
-                  <span className="w-7 h-7 rounded-lg bg-black/5 group-hover:bg-brand-green flex items-center justify-center transition-colors duration-300">
-                    <ArrowRight className="w-3.5 h-3.5 text-black/40 group-hover:text-black transition-colors duration-300" />
+          {/* Right, team photo that slides in from the right */}
+          <div className="relative min-w-0 mt-4 lg:mt-0 lg:justify-self-end w-full max-w-xl">
+            <ScrollReveal variant="slide-left" delay={200}>
+              <div className="relative pb-8 pl-2 lg:pl-0">
+                {/* Soft green glow behind the photo */}
+                <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-brand-green/25 blur-3xl" />
+
+                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.18)] rotate-[1.5deg] hover:rotate-0 transition-transform duration-700 ease-out">
+                  <Image
+                    src="/images/team/theo-jakob-team-bild-2.webp"
+                    alt="Theo Brandt och Jakob Jolheden, grundare av JT Media AB"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 576px, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                  <span className="absolute top-5 left-5 font-bakerie text-sm bg-white/90 backdrop-blur text-black px-3.5 py-1.5 rounded-full">
+                    Hej från Ljungby
                   </span>
-                </Link>
-              </ScrollReveal>
-            ))}
+                </div>
+
+                {/* Personal badge, same feel as contact page */}
+                <div className="absolute bottom-0 left-4 lg:-left-8 bg-white rounded-2xl shadow-xl border border-black/6 px-5 py-4 flex items-center gap-4">
+                  <div className="flex -space-x-3 shrink-0">
+                    {[
+                      { src: '/images/team/theo.webp', alt: 'Theo Brandt' },
+                      { src: '/images/team/jakob.webp', alt: 'Jakob Jolheden' },
+                    ].map((person) => (
+                      <div key={person.alt} className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-white">
+                        <Image src={person.src} alt={person.alt} fill sizes="44px" className="object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <p className="font-bold text-black text-sm leading-tight">Theo & Jakob</p>
+                    <p className="text-xs text-black/50 mt-0.5">Grundare. Ni pratar alltid direkt med oss.</p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

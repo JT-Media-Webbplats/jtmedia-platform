@@ -5,7 +5,9 @@ import { createClient } from '@/lib/supabase/server'
 import { ArrowLeft } from 'lucide-react'
 import CustomerEditForm from './_components/CustomerEditForm'
 import BillingSchedulePanel from './_components/BillingSchedulePanel'
-import type { BillingSchedule } from '@/lib/supabase/types'
+import ServicesPanel from './_components/ServicesPanel'
+import PortalAccessPanel from './_components/PortalAccessPanel'
+import type { BillingSchedule, CustomerService } from '@/lib/supabase/types'
 
 export const metadata: Metadata = { title: 'Redigera kund' }
 
@@ -33,6 +35,8 @@ export default async function CustomerDetailPage({ params }: { params: Promise<{
     { data: projects },
     { data: billing },
     { data: timeEntries },
+    { data: services },
+    { data: portalProfiles },
   ] = await Promise.all([
     supabase.from('customers').select('*').eq('id', id).single(),
     supabase.from('projects')
@@ -48,6 +52,15 @@ export default async function CustomerDetailPage({ params }: { params: Promise<{
       .eq('projects.customer_id', id)
       .order('logged_on', { ascending: false })
       .limit(20),
+    supabase.from('customer_services')
+      .select('*')
+      .eq('customer_id', id)
+      .order('status')
+      .order('name'),
+    supabase.from('profiles')
+      .select('id, email, full_name')
+      .eq('customer_id', id)
+      .eq('role', 'customer'),
   ])
 
   if (!customer) notFound()
@@ -145,6 +158,23 @@ export default async function CustomerDetailPage({ params }: { params: Promise<{
             customerId={id}
             schedules={(billing ?? []) as BillingSchedule[]}
           />
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-6 mt-6">
+        {/* Services shown in the customer portal */}
+        <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Tjänster (kundportalen)</h2>
+            <span className="text-xs text-gray-400">{(services ?? []).filter((s) => s.status !== 'ended').length} aktiva</span>
+          </div>
+          <ServicesPanel customerId={id} services={(services ?? []) as CustomerService[]} />
+        </div>
+
+        {/* Portal login */}
+        <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6">
+          <h2 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-4">Inloggning till kundportalen</h2>
+          <PortalAccessPanel customerId={id} customerEmail={customer.email} customerName={customer.name} profiles={portalProfiles ?? []} />
         </div>
       </div>
 

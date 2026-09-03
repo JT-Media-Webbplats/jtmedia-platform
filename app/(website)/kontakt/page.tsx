@@ -55,7 +55,7 @@ export default function KontaktPage() {
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={150}>
             <p className="text-xl text-black/55 max-w-xl mx-auto">
-              Fyll i formuläret nedan eller ring oss direkt. Vi återkommer samma dag.
+              Fyll i formuläret nedan eller ring oss direkt. Vi återkommer samma dag, och vill ni ha en offert får ni den inom 24 timmar.
             </p>
           </ScrollReveal>
         </div>
