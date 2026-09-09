@@ -23,15 +23,20 @@ export async function createProject(formData: FormData) {
   if (error) return { error: error.message }
 
   revalidatePath('/admin/projects')
+  revalidatePath('/admin/pipeline')
   return { success: true }
 }
 
 export async function updateProjectStatus(id: string, status: string) {
   const supabase = await createClient()
-  const { error } = await supabase.from('projects').update({ status }).eq('id', id)
+  const patch: Record<string, unknown> = { status }
+  if (status === 'completed') patch.ended_at = new Date().toISOString().split('T')[0]
+  if (status === 'active') patch.ended_at = null
+  const { error } = await supabase.from('projects').update(patch).eq('id', id)
   if (error) return { error: error.message }
   revalidatePath('/admin/projects')
   revalidatePath(`/admin/projects/${id}`)
+  revalidatePath('/admin/pipeline')
   return { success: true }
 }
 
@@ -54,6 +59,7 @@ export async function updateProject(id: string, formData: FormData) {
 
   revalidatePath('/admin/projects')
   revalidatePath(`/admin/projects/${id}`)
+  revalidatePath('/admin/pipeline')
   return { success: true }
 }
 

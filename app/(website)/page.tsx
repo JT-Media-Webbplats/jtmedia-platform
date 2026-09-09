@@ -136,6 +136,32 @@ export default function HomePage() {
           }}
         />
 
+        {/* Team photo, faded very softly into the background from the right */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden md:block w-[62%] lg:w-[70%]" aria-hidden="true">
+          <ScrollReveal variant="slide-left" delay={250} className="h-full">
+            <div
+              className="relative h-full w-full"
+              style={{
+                WebkitMaskImage:
+                  'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 30%, #000 60%), linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%)',
+                maskImage:
+                  'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 30%, #000 60%), linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%)',
+                WebkitMaskComposite: 'source-in',
+                maskComposite: 'intersect',
+              }}
+            >
+              <Image
+                src="/images/team/theo-jakob-hero-bg.webp"
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 1024px) 70vw, 62vw"
+                className="object-cover object-[center_35%] opacity-[0.14] grayscale-[30%]"
+              />
+            </div>
+          </ScrollReveal>
+        </div>
+
         {/* Animation: fade-up (hero, staggered) */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
@@ -181,69 +207,27 @@ export default function HomePage() {
                 </a>
               </div>
             </ScrollReveal>
-
-            <ScrollReveal variant="fade-up" delay={450}>
-              <div className="mt-8 flex flex-wrap items-center gap-2">
-                <span className="text-xs text-black/35 mr-1">Populärt just nu:</span>
-                {[
-                  { title: 'AI-lösningar', href: '/tjanster/ai' },
-                  { title: 'Webb & Hemsidor', href: '/tjanster/webb' },
-                  { title: 'GEO', href: '/tjanster/geo' },
-                ].map((item) => (
-                  <Link
-                    key={item.title}
-                    href={item.href}
-                    className="group inline-flex items-center gap-1.5 bg-white border border-black/8 rounded-full px-3.5 py-1.5 text-xs font-bold text-black/70 hover:border-brand-green hover:text-black transition-colors"
-                  >
-                    {item.title}
-                    <ArrowRight className="w-3 h-3 text-black/30 group-hover:text-brand-green-dark transition-colors" />
-                  </Link>
-                ))}
-              </div>
-            </ScrollReveal>
           </div>
 
-          {/* Right, team photo that slides in from the right */}
-          <div className="relative min-w-0 mt-4 lg:mt-0 lg:justify-self-end w-full max-w-xl">
-            <ScrollReveal variant="slide-left" delay={200}>
-              <div className="relative pb-8 pl-2 lg:pl-0">
-                {/* Soft green glow behind the photo */}
-                <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-brand-green/25 blur-3xl" />
-
-                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.18)] rotate-[1.5deg] hover:rotate-0 transition-transform duration-700 ease-out">
-                  <Image
-                    src="/images/team/theo-jakob-team-bild-2.webp"
-                    alt="Theo Brandt och Jakob Jolheden, grundare av JT Media AB"
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 576px, 100vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-                  <span className="absolute top-5 left-5 font-bakerie text-sm bg-white/90 backdrop-blur text-black px-3.5 py-1.5 rounded-full">
-                    Hej från Ljungby
+          {/* Right, three quick-link buttons */}
+          <div className="hidden lg:flex flex-col gap-3 w-64 justify-self-end">
+            {[
+              { title: 'AI-lösningar', href: '/tjanster/ai' },
+              { title: 'Webb & Hemsidor', href: '/tjanster/webb' },
+              { title: 'Digital Boost', href: '/tjanster/digital-boost' },
+            ].map((item, i) => (
+              <ScrollReveal key={item.title} variant="fade-up" delay={450 + i * 100}>
+                <Link
+                  href={item.href}
+                  className="group flex items-center justify-between bg-white/90 backdrop-blur-sm border border-black/8 rounded-xl px-5 py-4 hover:border-brand-green hover:shadow-[0_8px_24px_rgba(168,213,112,0.2)] hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <span className="font-bold text-black text-sm">{item.title}</span>
+                  <span className="w-7 h-7 rounded-lg bg-black/5 group-hover:bg-brand-green flex items-center justify-center transition-colors duration-300">
+                    <ArrowRight className="w-3.5 h-3.5 text-black/40 group-hover:text-black transition-colors duration-300" />
                   </span>
-                </div>
-
-                {/* Personal badge, same feel as contact page */}
-                <div className="absolute bottom-0 left-4 lg:-left-8 bg-white rounded-2xl shadow-xl border border-black/6 px-5 py-4 flex items-center gap-4">
-                  <div className="flex -space-x-3 shrink-0">
-                    {[
-                      { src: '/images/team/theo.webp', alt: 'Theo Brandt' },
-                      { src: '/images/team/jakob.webp', alt: 'Jakob Jolheden' },
-                    ].map((person) => (
-                      <div key={person.alt} className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-white">
-                        <Image src={person.src} alt={person.alt} fill sizes="44px" className="object-cover" />
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <p className="font-bold text-black text-sm leading-tight">Theo & Jakob</p>
-                    <p className="text-xs text-black/50 mt-0.5">Grundare. Ni pratar alltid direkt med oss.</p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
+                </Link>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>

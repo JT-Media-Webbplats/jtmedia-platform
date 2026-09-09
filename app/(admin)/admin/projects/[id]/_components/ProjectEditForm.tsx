@@ -10,10 +10,11 @@ interface Props {
 }
 
 const statusOptions = [
-  { value: 'active',    label: 'Aktiv' },
-  { value: 'paused',    label: 'Pausad' },
-  { value: 'completed', label: 'Avslutad' },
-  { value: 'cancelled', label: 'Avbruten' },
+  { value: 'pending',   label: 'Väntar på godkännande' },
+  { value: 'active',    label: 'Pågående' },
+  { value: 'paused',    label: 'Pausat' },
+  { value: 'completed', label: 'Klart' },
+  { value: 'cancelled', label: 'Avbrutet' },
 ]
 
 export default function ProjectEditForm({ project }: Props) {

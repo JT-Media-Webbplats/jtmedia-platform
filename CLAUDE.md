@@ -47,7 +47,7 @@ Auth protection is enforced in `middleware.ts` — unauthenticated requests to `
 
 ### Server Actions
 
-All server actions live in `app/actions/`. They use `'use server'` at the top and call `await createClient()` from the server lib. Pattern: return `{ success: boolean, error?: string }`. Existing actions: `auth.ts`, `billing.ts`, `contact.ts`, `customers.ts`, `portal-access.ts` (create/reset/delete customer logins, uses the service-role client), `projects.ts`, `seo-test.ts`, `services.ts` (customer services CRUD), `time.ts`.
+All server actions live in `app/actions/`. They use `'use server'` at the top and call `await createClient()` from the server lib. Pattern: return `{ success: boolean, error?: string }`. Existing actions: `auth.ts`, `billing.ts`, `contact.ts`, `customers.ts`, `portal-access.ts` (create/reset/delete customer logins, uses the service-role client), `projects.ts`, `prospects.ts` (pipeline prospects CRUD + convert to customer), `requests.ts` (customer portal requests + admin status), `seo-test.ts`, `services.ts` (customer services CRUD), `time.ts`.
 
 ### Styling
 
@@ -95,17 +95,38 @@ Dynamic pages use `generateStaticParams` and `generateMetadata`. All city/case d
 
 ### Admin portal
 
-All admin pages are under `app/(admin)/admin/`. Sidebar: `app/(admin)/_components/SidebarNav.tsx`. Pages: dashboard, customers, projects, billing, time, leads, settings. The customer detail page (`admin/customers/[id]`) queries Supabase and has panels for editing the customer, billing schedules, **customer services** (what the customer sees in the portal: type, domain, price, billing interval, renewal date) and **portal access** (create an e-mail + password login for the customer, reset the password, delete the login). Customers are created from `admin/customers` ("Ny kund") and deleted from the edit form on the detail page.
+All admin pages are under `app/(admin)/admin/`. Sidebar: `app/(admin)/_components/SidebarNav.tsx`. Pages: dashboard, customers, projects, pipeline, billing, time, leads, settings. The customer detail page (`admin/customers/[id]`) queries Supabase and has panels for editing the customer, billing schedules, **customer services** (what the customer sees in the portal: type, domain, price, billing interval, renewal date) and **portal access** (create an e-mail + password login for the customer, reset the password, delete the login). Customers are created from `admin/customers` ("Ny kund") and deleted from the edit form on the detail page.
+
+### Pipeline (kanban)
+
+`admin/pipeline` has two boards behind a tab switch (`?tab=prospekt` opens the second): **Projekt** (columns = `projects.status`: pending "Väntar på godkännande", active, paused, completed, cancelled hidden behind a toggle) and **Prospekt** (table `prospects`, stages to_contact → contacted → meeting → proposal → won / lost). `_components/KanbanBoard.tsx` is a generic HTML5 drag-and-drop board with optimistic moves and a per-card `<select>` fallback; `ProjectBoard` / `ProspectBoard` wrap it. Prospect CRUD lives in `app/actions/prospects.ts`; `convertProspectToCustomer` creates (or links by e-mail) a `customers` row and marks the prospect won. Column definitions and labels are in `lib/pipeline.ts`, which is also the source of project status labels for the other admin pages.
 
 ### Customer portal
 
-`app/(customer)/customer/page.tsx` is a server component that reads the logged-in user's `profiles.customer_id` and shows the customer's `customer_services` (grouped active/ended, upcoming renewals, a "Vad ni betalar" cost table with monthly/yearly totals), `projects`, and a contact card. Customers log in at `/login` with e-mail + password created by an admin. New auth users get a `profiles` row via the `handle_new_user` trigger, auto-linked to a `customers` row with the same e-mail; admin can override the link. Service labels and cost helpers (`yearlyCost`, `monthlyCost`, `formatAmount`) live in `lib/services.ts`.
+`app/(customer)/` mirrors the admin layout: dark sidebar (`_components/PortalNav.tsx`, horizontal bar on mobile) + light content. Every page calls `getPortalContext()` from `app/(customer)/_lib/context.ts` (user, profile, linked customer) and renders `NotLinked` if the profile has no `customer_id`. Pages:
+
+| Route | Purpose |
+|---|---|
+| `/customer` | Översikt: stat cards, kommande förnyelser, compact service list, shortcuts, recommendations, open requests, projects |
+| `/customer/tjanster` | Era tjänster: service cards + "Vi rekommenderar" (customer-specific upsell) |
+| `/customer/bestall` | Fler tjänster: catalogue from `lib/portal.ts` (`serviceCatalog`), "Skicka förfrågan" modal → `service_requests` |
+| `/customer/kontakt` | Kontakt: team cards + message form → `service_requests` with `kind = 'message'` |
+
+**No prices in the customer portal.** Amounts on `customer_services` are admin-only; the portal shows billing interval and renewal dates but never `amount`. The old "Vad ni betalar" table was removed on purpose (2026-09-09).
+
+**Recommendations** (`recommendServices` in `lib/portal.ts`): rule list mapping owned service types to a catalogue key + a Swedish reason (e.g. has SEO → recommend Google Ads), with generic fallbacks; excludes services the customer already has. Rendered by `app/(customer)/_components/Recommendations.tsx` (3 cards on Era tjänster, 2 on Översikt).
+
+**Resultat / Google Search Console was removed** (2026-09-09): JT Media sends manual monthly reports instead. The `customers.search_console_site` column still exists in the DB but is unused.
+
+Customer actions live in `app/actions/requests.ts` (`requestService`, `sendPortalMessage`, admin `updateRequestStatus`). Requests show up in admin under Leads ("Från kundportalen") with a status dropdown. Service labels and cost helpers (`yearlyCost`, `monthlyCost`, `formatAmount`, admin use only) live in `lib/services.ts`; catalogue, recommendations, request status labels and team contact data in `lib/portal.ts`.
+
+Customers log in at `/login` with e-mail + password created by an admin. New auth users get a `profiles` row via the `handle_new_user` trigger, auto-linked to a `customers` row with the same e-mail; admin can override the link.
 
 **First accounts**: `npx tsx scripts/seed-portal-accounts.ts` creates the admin login and a test customer login for Hårds Transport (needs `SUPABASE_SERVICE_ROLE_KEY`). Safe to re-run.
 
 ### Database schema
 
-Migrations in `supabase/migrations/`. Tables: `customers`, `packages`, `customer_packages`, `projects`, `time_entries`, `billing_schedules`, `profiles`, `contact_submissions`, `seo_test_leads`, `customer_services`. All have RLS enabled (admins via `is_admin()`, customers read their own rows through `profiles.customer_id`).
+Migrations in `supabase/migrations/` (run manually in the Supabase SQL Editor, there is no CLI setup). Tables: `customers`, `packages`, `customer_packages`, `projects`, `time_entries`, `billing_schedules`, `profiles`, `contact_submissions`, `seo_test_leads`, `customer_services`, `service_requests`, `prospects` (admin only). All have RLS enabled (admins via `is_admin()`, customers read their own rows through `profiles.customer_id`; customers may insert their own `service_requests` but not update them).
 
 ### Images
 

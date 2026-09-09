@@ -1,6 +1,7 @@
 export type Role = 'admin' | 'customer'
 export type CustomerStatus = 'active' | 'paused' | 'inactive'
-export type ProjectStatus = 'active' | 'completed' | 'paused' | 'cancelled'
+export type ProjectStatus = 'pending' | 'active' | 'paused' | 'completed' | 'cancelled'
+export type ProspectStage = 'to_contact' | 'contacted' | 'meeting' | 'proposal' | 'won' | 'lost'
 export type BillingInterval = 'monthly' | 'quarterly' | 'semi-annual' | 'yearly'
 export type ServiceInterval = BillingInterval | 'one_time'
 export type ServiceStatus = 'active' | 'paused' | 'ended'
@@ -123,6 +124,43 @@ export interface CustomerService {
   started_at: string
   renews_at: string | null
   ended_at: string | null
+  created_at: string
+  updated_at: string
+}
+
+export type ServiceRequestKind = 'service' | 'message'
+export type ServiceRequestStatus = 'new' | 'in_progress' | 'done' | 'declined'
+
+export interface ServiceRequest {
+  id: string
+  customer_id: string
+  profile_id: string | null
+  kind: ServiceRequestKind
+  service_key: string | null
+  service_name: string
+  message: string | null
+  status: ServiceRequestStatus
+  admin_note: string | null
+  created_at: string
+  updated_at: string
+  customer?: Pick<Customer, 'id' | 'name'>
+}
+
+export interface Prospect {
+  id: string
+  company: string
+  contact_name: string | null
+  email: string | null
+  phone: string | null
+  website: string | null
+  city: string | null
+  stage: ProspectStage
+  source: string | null
+  interest: string | null
+  estimated_value: number | null
+  notes: string | null
+  next_action_at: string | null
+  customer_id: string | null
   created_at: string
   updated_at: string
 }

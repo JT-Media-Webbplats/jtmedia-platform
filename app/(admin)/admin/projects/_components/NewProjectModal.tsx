@@ -55,9 +55,10 @@ export default function NewProjectModal({ customers }: { customers: Pick<Custome
             <div>
               <label className={labelCls}>Status</label>
               <select name="status" className={inputCls + ' bg-[#1a1a1a]'}>
-                <option value="active">Aktiv</option>
-                <option value="paused">Pausad</option>
-                <option value="completed">Avslutad</option>
+                <option value="pending">Väntar på godkännande</option>
+                <option value="active">Pågående</option>
+                <option value="paused">Pausat</option>
+                <option value="completed">Klart</option>
               </select>
             </div>
             <div>

@@ -12,6 +12,7 @@ import type { BillingSchedule, CustomerService } from '@/lib/supabase/types'
 export const metadata: Metadata = { title: 'Redigera kund' }
 
 const statusBadge: Record<string, string> = {
+  pending:   'bg-amber-400/15 text-amber-700',
   active:    'bg-brand-green/15 text-brand-green',
   paused:    'bg-yellow-400/15 text-yellow-600',
   inactive:  'bg-gray-100 text-gray-500',
@@ -19,7 +20,7 @@ const statusBadge: Record<string, string> = {
   cancelled: 'bg-red-400/15 text-red-500',
 }
 const statusLabel: Record<string, string> = {
-  active: 'Aktiv', paused: 'Pausad', inactive: 'Inaktiv',
+  pending: 'Väntar', active: 'Aktiv', paused: 'Pausad', inactive: 'Inaktiv',
   completed: 'Avslutad', cancelled: 'Avbruten',
 }
 const intervalLabel: Record<string, string> = {
@@ -109,7 +110,7 @@ export default async function CustomerDetailPage({ params }: { params: Promise<{
         <div className="bg-white border border-gray-200 shadow-sm rounded-2xl p-6">
           <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Projektstatus</h2>
           <div className="space-y-3">
-            {(['active', 'completed', 'paused'] as const).map((s) => {
+            {(['pending', 'active', 'paused', 'completed'] as const).map((s) => {
               const count = projects?.filter((p) => p.status === s).length ?? 0
               return (
                 <div key={s} className="flex items-center justify-between">
