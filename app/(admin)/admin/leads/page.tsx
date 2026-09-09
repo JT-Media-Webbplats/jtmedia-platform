@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { ExternalLink } from 'lucide-react'
+import type { ServiceRequest } from '@/lib/supabase/types'
+import RequestStatusSelect from './_components/RequestStatusSelect'
 
 export const metadata: Metadata = { title: 'Leads' }
 
@@ -34,7 +37,11 @@ function formatDate(iso: string) {
 export default async function LeadsPage() {
   const supabase = await createClient()
 
-  const [seoRes, contactRes] = await Promise.all([
+  const [requestRes, seoRes, contactRes] = await Promise.all([
+    supabase
+      .from('service_requests')
+      .select('*, customer:customers(id, name)')
+      .order('created_at', { ascending: false }),
     supabase
       .from('seo_test_leads')
       .select('*')
@@ -47,15 +54,83 @@ export default async function LeadsPage() {
 
   const seoLeads = (seoRes.data ?? []) as SeoLead[]
   const contactSubmissions = (contactRes.data ?? []) as ContactSubmission[]
+  const portalRequests = (requestRes.data ?? []) as ServiceRequest[]
+  const openRequests = portalRequests.filter((r) => r.status === 'new' || r.status === 'in_progress').length
 
   return (
     <div className="p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-black text-gray-900 tracking-tight">Leads</h1>
         <p className="text-gray-500 text-sm mt-1">
-          Inkomna förfrågningar från sajten
+          Inkomna förfrågningar från kundportalen och sajten
         </p>
       </div>
+
+      {/* Requests from the customer portal */}
+      <section className="mb-12">
+        <div className="flex items-baseline justify-between mb-4">
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">Från kundportalen</h2>
+            <p className="text-gray-500 text-xs mt-0.5">
+              Tjänsteförfrågningar och meddelanden från inloggade kunder
+            </p>
+          </div>
+          <span className="text-sm text-gray-400">{openRequests} öppna av {portalRequests.length}</span>
+        </div>
+
+        <div className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden">
+          {portalRequests.length === 0 ? (
+            <div className="px-6 py-16 text-center">
+              <p className="text-gray-400 text-sm">Inga förfrågningar från kundportalen ännu.</p>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    {['Kund', 'Ärende', 'Meddelande', 'Status', 'Inkom'].map((h) => (
+                      <th
+                        key={h}
+                        className="text-left px-6 py-4 text-xs font-bold uppercase tracking-widest text-gray-600"
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {portalRequests.map((r) => (
+                    <tr key={r.id} className={`transition-colors align-top ${r.status === 'done' || r.status === 'declined' ? 'opacity-60' : 'hover:bg-gray-50'}`}>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {r.customer ? (
+                          <Link href={`/admin/customers/${r.customer.id}`} className="font-semibold text-gray-900 hover:text-brand-green transition-colors">
+                            {r.customer.name}
+                          </Link>
+                        ) : (
+                          <span className="text-gray-400">Okänd kund</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <p className="font-medium text-gray-900">{r.service_name}</p>
+                        <p className="text-xs text-gray-400 mt-0.5">{r.kind === 'service' ? 'Tjänsteförfrågan' : 'Meddelande'}</p>
+                      </td>
+                      <td className="px-6 py-4 text-gray-700 max-w-xl">
+                        {r.message ? <p className="whitespace-pre-wrap">{r.message}</p> : <span className="text-gray-300">–</span>}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <RequestStatusSelect id={r.id} status={r.status} />
+                      </td>
+                      <td className="px-6 py-4 text-gray-400 text-xs whitespace-nowrap">
+                        {formatDate(r.created_at)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* SEO-test leads */}
       <section className="mb-12">

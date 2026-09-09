@@ -43,6 +43,9 @@
 }
 
 @layer utilities {
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+
   /* ── Floating card animation ── */
   .animate-float {
     animation: float 7s ease-in-out infinite;

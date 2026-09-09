@@ -2,18 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import NewProjectModal from './_components/NewProjectModal'
+import { KanbanSquare } from 'lucide-react'
 
 export const metadata: Metadata = { title: 'Projekt' }
 
-const statusStyles: Record<string, string> = {
-  active:    'bg-brand-green/15 text-brand-green',
-  completed: 'bg-blue-400/15 text-blue-500',
-  paused:    'bg-yellow-400/15 text-yellow-600',
-  cancelled: 'bg-red-400/15 text-red-500',
-}
-const statusLabels: Record<string, string> = {
-  active: 'Aktiv', completed: 'Avslutad', paused: 'Pausad', cancelled: 'Avbruten',
-}
+import { projectStatusBadge as statusStyles, projectStatusLabels as statusLabels } from '@/lib/pipeline'
 
 export default async function ProjectsPage() {
   const supabase = await createClient()
@@ -40,7 +33,12 @@ export default async function ProjectsPage() {
           <h1 className="text-3xl font-black text-gray-900 tracking-tight">Projekt</h1>
           <p className="text-gray-500 text-sm mt-1">{activeCount} aktiva · {completedCount} avslutade</p>
         </div>
-        <NewProjectModal customers={customers ?? []} />
+        <div className="flex items-center gap-3">
+          <Link href="/admin/pipeline" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-gray-900 border border-gray-200 bg-white px-4 py-2.5 rounded-full transition-colors">
+            <KanbanSquare className="w-3.5 h-3.5" /> Pipeline
+          </Link>
+          <NewProjectModal customers={customers ?? []} />
+        </div>
       </div>
 
       <div className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden">

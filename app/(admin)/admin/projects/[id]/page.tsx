@@ -5,18 +5,9 @@ import { createClient } from '@/lib/supabase/server'
 import { ArrowLeft, Clock, FileDown } from 'lucide-react'
 import ProjectEditForm from './_components/ProjectEditForm'
 import TimeLogForm from './_components/TimeLogForm'
+import { projectStatusBadge as statusBadge, projectStatusLabels as statusLabel } from '@/lib/pipeline'
 
 export const metadata: Metadata = { title: 'Projektdetaljer' }
-
-const statusBadge: Record<string, string> = {
-  active:    'bg-brand-green/15 text-brand-green',
-  completed: 'bg-blue-400/15 text-blue-500',
-  paused:    'bg-yellow-400/15 text-yellow-600',
-  cancelled: 'bg-red-400/15 text-red-500',
-}
-const statusLabel: Record<string, string> = {
-  active: 'Aktiv', completed: 'Avslutad', paused: 'Pausad', cancelled: 'Avbruten',
-}
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
