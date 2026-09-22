@@ -1,0 +1,57 @@
+{
+  "run": {
+    "summary": "Första provkörning 2026-09-22 på veckans kunddialoger. Tre möjligheter hittade bland befintliga kunder, samtliga med varm kontakt senaste dagarna.",
+    "threads_scanned": 3
+  },
+  "opportunities": [
+    {
+      "company": "Z-teknik",
+      "contact_name": "Iza Hård",
+      "email": "iza@z-teknik.se",
+      "website": "z-teknik.se",
+      "customer_name": "Z-teknik",
+      "kind": "upsell",
+      "service_key": "geo",
+      "priority": 1,
+      "summary": "Kunden har SEO och Google Ads och svarade positivt på månadsrapporten (organiska klick 319 till 408). Vi har redan börjat med strukturerad data för AI-tjänster, vilket är ett naturligt avstamp för ett GEO-upplägg.",
+      "evidence": "Vår rapport 2026-09-21: \"Organiskt har klicken gått från 319 till 408 vilket är en rätt stor ökning. Detsamma gäller era Google Ads.\" Iza svarade samma dag: \"Tack för detta, kul att det går åt rätt håll. Det har vi märkt av!\"",
+      "gmail_thread_id": "1a0c347a5fcc5586",
+      "draft_subject": "Nästa steg: syns även när kunder frågar AI",
+      "draft_body": "Hej Iza och Christian,\n\nKul att ni märker av ökningen. Det är precis den effekten vi vill se av det löpande arbetet.\n\nEn sak jag vill lyfta. I senaste omgången kompletterade vi er företagsinformation så att Google och AI-tjänster som ChatGPT kopplar ihop Z-teknik med rätt profiler. Det är första steget i det vi kallar GEO, alltså att synas i AI-genererade svar. Allt fler kunder frågar ChatGPT och Google AI istället för att googla, och där finns ingen konkurrens ännu i er bransch lokalt.\n\nVill ni att jag tar fram ett förslag på hur vi bygger vidare på det? Jag kan visa vad som krävs och vad ni kan förvänta er, det tar 15 minuter.\n\nMed vänlig hälsning,\n",
+      "estimated_value": null
+    },
+    {
+      "company": "Brandts Service",
+      "contact_name": "Fredrik Brandt",
+      "email": "fredrik@brandtsservice.se",
+      "website": "brandtsservice.se",
+      "customer_name": "Brandts Service",
+      "kind": "upsell",
+      "service_key": "other",
+      "service_name": "Drift och underhåll (e-post, domän, säkerhet)",
+      "priority": 2,
+      "summary": "Kunden hörde av sig om att mejl hamnade i skräppost. Theo löste det med DKIM på kort tid utan att det ligger något drift- eller underhållsavtal bakom. Bra läge att paketera drift, e-post och säkerhet som en löpande tjänst.",
+      "evidence": "Fredrik 2026-09-21: \"Hej många av kunderna få mail i skräppost. Finns de något man kan göra?\" Theo lade till DKIM samma dag. Fredrik: \"Men va bra. Tack.\"",
+      "gmail_thread_id": "1a0c3da0d00fa881",
+      "draft_subject": "Så slipper ni fler överraskningar med mejlen",
+      "draft_body": "Hej Fredrik,\n\nSkönt att mejlen går fram igen. Signeringen är på plats och vi har kontrollerat att den fungerar hos Gmail och Outlook.\n\nDet här är ett typiskt exempel på saker som ändras i bakgrunden utan att någon märker det förrän kunderna slutar svara. Domäninställningar, säkerhetsuppdateringar på hemsidan och certifikat behöver ses över löpande.\n\nVill ni att vi tar hand om det åt er? Då kollar vi igenom domän, e-post och hemsida varje månad, håller allt uppdaterat och hör av oss innan något blir ett problem. Ni får en kontakt att ringa när något krånglar.\n\nSäg till så skickar jag ett kort förslag på vad det skulle innebära.\n\nMed vänlig hälsning,\n",
+      "estimated_value": null
+    },
+    {
+      "company": "Traryds Metall",
+      "contact_name": "Henric Jonasson",
+      "email": "henric.jonasson@trarydsmetall.com",
+      "website": "trarydsmetall.com",
+      "customer_name": null,
+      "kind": "upsell",
+      "service_key": "seo",
+      "priority": 1,
+      "summary": "Fyra hemsidor (Traryds Metall, Ahlejon, Nya Metallgjuteriet, Armaturteknik) är färdigställda och väntar på sista kommentarer före lansering. Rätt tidpunkt att föreslå SEO och löpande underhåll för hela koncernen innan sidorna går live. Företaget saknas i kundregistret och bör läggas in.",
+      "evidence": "Vi 2026-09-18: \"Nu har vi gått igenom och uppdaterat hemsidorna med samtliga ändringar som vi gick igenom under mötet senast.\" Henric 2026-09-21: \"Vi har fått några kommentarer från övriga organisationen och jag kommer under morgondagen sammanställa detta.\"",
+      "gmail_thread_id": "1a0b491665b7098c",
+      "draft_subject": "Inför lanseringen: så får de nya sidorna trafik",
+      "draft_body": "Hej Henric,\n\nTack, vi inväntar era samlade kommentarer och justerar så snart vi fått dem.\n\nNär vi ändå närmar oss lansering vill jag lyfta en sak. En ny hemsida hittas inte av sig själv på Google, särskilt inte när det är fyra bolag som ska synas var för sig på sina egna sökord. Vi brukar rekommendera att vi sätter grunden direkt vid lanseringen: teknisk sökmotoroptimering, rätt sökord per bolag och en månadsrapport så ni ser vad som händer.\n\nSka jag ta fram ett förslag för koncernen? Då kan vi gå igenom det när sidorna är godkända, så är allt klart att köra igång samma dag som vi lanserar.\n\nMed vänlig hälsning,\n",
+      "estimated_value": null
+    }
+  ]
+}

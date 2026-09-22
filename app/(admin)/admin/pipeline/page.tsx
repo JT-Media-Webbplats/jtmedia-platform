@@ -1,21 +1,21 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import { Sparkles } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import type { Prospect, ProjectStatus } from '@/lib/supabase/types'
+import type { ProjectStatus } from '@/lib/supabase/types'
 import NewProjectModal from '../projects/_components/NewProjectModal'
-import PipelineView from './_components/PipelineView'
-import type { BoardProject } from './_components/ProjectBoard'
+import ProjectBoard, { type BoardProject } from './_components/ProjectBoard'
 
 export const metadata: Metadata = { title: 'Pipeline' }
 
-export default async function PipelinePage({ searchParams }: { searchParams?: { tab?: string } }) {
+export default async function PipelinePage() {
   const supabase = await createClient()
 
-  const [{ data: projects, error: projectsError }, { data: prospects, error: prospectsError }, { data: customers }] = await Promise.all([
+  const [{ data: projects, error: projectsError }, { data: customers }] = await Promise.all([
     supabase
       .from('projects')
       .select('id, name, status, description, budget_hours, started_at, ended_at, updated_at, customers(id, name), time_entries(hours)')
       .order('updated_at', { ascending: false }),
-    supabase.from('prospects').select('*').order('updated_at', { ascending: false }),
     supabase.from('customers').select('id, name').eq('status', 'active').order('name'),
   ])
 
@@ -32,28 +32,24 @@ export default async function PipelinePage({ searchParams }: { searchParams?: { 
     loggedHours: ((p.time_entries ?? []) as { hours: number }[]).reduce((s, t) => s + Number(t.hours), 0),
   }))
 
-  const initialTab = searchParams?.tab === 'prospekt' ? 'prospekt' : 'projekt'
-
   return (
     <div className="p-8">
       <div className="mb-6 flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-3xl font-black text-gray-900 tracking-tight">Pipeline</h1>
           <p className="text-gray-500 text-sm mt-1">
-            Dra korten mellan kolumnerna. Projekt visar var i leveransen ni är, Prospekt visar företag på väg in.
+            Leveransen: var varje projekt är just nu. Allt som ännu inte är en affär ligger under{' '}
+            <Link href="/admin/salj" className="inline-flex items-center gap-1 font-semibold text-gray-900 hover:text-brand-green-dark transition-colors">
+              <Sparkles className="w-3.5 h-3.5" /> Sälj
+            </Link>.
           </p>
         </div>
         <NewProjectModal customers={customers ?? []} />
       </div>
 
       {projectsError && <p className="mb-4 text-sm text-red-600">Kunde inte läsa projekt: {projectsError.message}</p>}
-      {prospectsError && (
-        <p className="mb-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
-          Prospekt-tabellen finns inte ännu. Kör migrationen <code className="font-mono text-xs">20260909100000_pipeline.sql</code> i Supabase.
-        </p>
-      )}
 
-      <PipelineView projects={boardProjects} prospects={(prospects ?? []) as Prospect[]} initialTab={initialTab} />
+      <ProjectBoard projects={boardProjects} />
     </div>
   )
 }

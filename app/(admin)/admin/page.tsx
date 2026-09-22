@@ -1,5 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
-import { Users, FolderKanban, TrendingUp, Clock } from 'lucide-react'
+import { Users, FolderKanban, TrendingUp, Clock, Sparkles } from 'lucide-react'
+import { isStale, STALE_AFTER_DAYS } from '@/lib/sales'
+import type { SalesOpportunity } from '@/lib/supabase/types'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Dashboard' }
@@ -28,6 +30,7 @@ export default async function AdminDashboardPage() {
     { data: recentProjects },
     { data: recentCustomers },
     { data: recentTime },
+    { data: openSales },
   ] = await Promise.all([
     supabase.from('customers').select('*', { count: 'exact', head: true }).eq('status', 'active'),
     supabase.from('projects').select('*', { count: 'exact', head: true }).eq('status', 'active'),
@@ -47,7 +50,13 @@ export default async function AdminDashboardPage() {
       .select('id, hours, description, logged_on, projects(name, customers(name))')
       .order('created_at', { ascending: false })
       .limit(4),
+    supabase.from('sales_opportunities')
+      .select('id, stage, stage_changed_at, updated_at')
+      .not('stage', 'in', '("won","lost")'),
   ])
+
+  const openSalesCount = (openSales ?? []).length
+  const staleSales = ((openSales ?? []) as Pick<SalesOpportunity, 'stage' | 'stage_changed_at' | 'updated_at'>[]).filter(isStale).length
 
   const totalHours = (timeData ?? []).reduce((s: number, r: { hours: number }) => s + Number(r.hours), 0)
 
@@ -73,6 +82,7 @@ export default async function AdminDashboardPage() {
     { label: 'MRR',            value: fmtKr(mrr),                   sub: 'Månadsintäkt', Icon: TrendingUp, accent: true  },
     { label: 'ARR',            value: fmtKr(arr),                   sub: 'Årsintäkt',  Icon: TrendingUp,   accent: false },
     { label: 'Timmar / mån',   value: `${totalHours.toFixed(1)}h`,  sub: null,         Icon: Clock,        accent: false },
+    { label: 'Öppna säljmöjligheter', value: openSalesCount, sub: staleSales > 0 ? `${staleSales} utan rörelse i ${STALE_AFTER_DAYS}+ dagar` : 'Allt rör på sig', Icon: Sparkles, accent: staleSales > 0 },
   ]
 
   // Build activity feed
@@ -123,7 +133,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-10">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 gap-4 mb-10">
         {stats.map(({ label, value, sub, Icon, accent }) => (
           <div
             key={label}

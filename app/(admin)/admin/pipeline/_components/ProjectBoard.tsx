@@ -26,7 +26,7 @@ function ProjectCard({ p }: { p: BoardProject }) {
   const pct = budget && budget > 0 ? Math.min((p.loggedHours / budget) * 100, 100) : null
   const overBudget = budget !== null && p.loggedHours > budget
   return (
-    <div className="p-4 pb-8">
+    <div className="p-3.5 pb-8">
       <Link href={`/admin/projects/${p.id}`} className="font-semibold text-sm text-gray-900 hover:text-brand-green transition-colors leading-snug block">
         {p.name}
       </Link>
