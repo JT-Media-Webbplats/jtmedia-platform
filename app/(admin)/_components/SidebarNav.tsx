@@ -10,6 +10,7 @@ import {
   Receipt,
   Clock,
   Inbox,
+  Sparkles,
   Settings,
 } from 'lucide-react'
 
@@ -21,6 +22,7 @@ const navItems = [
   { label: 'Fakturering',     href: '/admin/billing',   Icon: Receipt },
   { label: 'Tidrapportering', href: '/admin/time',      Icon: Clock },
   { label: 'Leads',           href: '/admin/leads',     Icon: Inbox },
+  { label: 'Sälj',            href: '/admin/salj',      Icon: Sparkles },
   { label: 'Inställningar',   href: '/admin/settings',  Icon: Settings },
 ]
 

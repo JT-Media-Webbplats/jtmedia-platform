@@ -8,9 +8,11 @@ interface Props {
   onClose: () => void
   title: string
   children: ReactNode
+  /** Wider dialog for forms with long text areas. */
+  wide?: boolean
 }
 
-export default function Modal({ open, onClose, title, children }: Props) {
+export default function Modal({ open, onClose, title, children, wide = false }: Props) {
   // Close on Escape
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -28,7 +30,7 @@ export default function Modal({ open, onClose, title, children }: Props) {
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
       style={{ background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}
     >
-      <div className="bg-[#111] border border-white/8 rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div className={`bg-[#111] border border-white/8 rounded-2xl w-full ${wide ? 'max-w-3xl' : 'max-w-lg'} max-h-[90vh] overflow-y-auto shadow-2xl`}>
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/8">
           <h2 className="text-base font-bold text-white">{title}</h2>

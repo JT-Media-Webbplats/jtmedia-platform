@@ -80,7 +80,12 @@ export default function KanbanBoard<K extends string>({ columns, items, onMove, 
       {error && (
         <p className="mb-4 text-xs text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>
       )}
-      <div className="flex gap-4 overflow-x-auto pb-4 -mx-8 px-8 items-start">
+      {/* All columns share the available width so the whole board is visible
+          without horizontal scrolling. Below ~170px per column it scrolls. */}
+      <div
+        className="grid gap-3 pb-4 items-start overflow-x-auto"
+        style={{ gridTemplateColumns: `repeat(${columns.length}, minmax(170px, 1fr))` }}
+      >
         {columns.map((col) => {
           const colItems = local
             .filter((i) => i.column === col.key)
@@ -92,20 +97,20 @@ export default function KanbanBoard<K extends string>({ columns, items, onMove, 
               onDragOver={(e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; if (over !== col.key) setOver(col.key) }}
               onDragLeave={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setOver(null) }}
               onDrop={(e) => onDrop(e, col.key)}
-              className={`w-[290px] shrink-0 rounded-2xl border transition-colors ${
+              className={`min-w-0 rounded-2xl border transition-colors ${
                 isOver ? 'bg-brand-green/10 border-brand-green' : 'bg-gray-100/70 border-gray-200'
               }`}
             >
-              <header className="px-4 pt-4 pb-3">
+              <header className="px-3 pt-3.5 pb-2.5">
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${col.dot}`} />
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-700 truncate">{col.label}</h3>
+                  <h3 className="text-[11px] font-bold uppercase tracking-wider text-gray-700 truncate" title={col.label}>{col.label}</h3>
                   <span className="ml-auto text-[11px] font-bold text-gray-400 bg-white border border-gray-200 rounded-full px-2 py-0.5">{colItems.length}</span>
                 </div>
                 {col.hint && <p className="text-[11px] text-gray-400 mt-1">{col.hint}</p>}
               </header>
 
-              <div className="px-3 pb-3 space-y-2.5 min-h-[120px]">
+              <div className="px-2.5 pb-2.5 space-y-2 min-h-[120px]">
                 {colItems.length === 0 && (
                   <p className="text-[11px] text-gray-400 text-center py-8 border border-dashed border-gray-300 rounded-xl">{emptyText}</p>
                 )}

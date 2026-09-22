@@ -1,7 +1,6 @@
 export type Role = 'admin' | 'customer'
 export type CustomerStatus = 'active' | 'paused' | 'inactive'
 export type ProjectStatus = 'pending' | 'active' | 'paused' | 'completed' | 'cancelled'
-export type ProspectStage = 'to_contact' | 'contacted' | 'meeting' | 'proposal' | 'won' | 'lost'
 export type BillingInterval = 'monthly' | 'quarterly' | 'semi-annual' | 'yearly'
 export type ServiceInterval = BillingInterval | 'one_time'
 export type ServiceStatus = 'active' | 'paused' | 'ended'
@@ -146,7 +145,14 @@ export interface ServiceRequest {
   customer?: Pick<Customer, 'id' | 'name'>
 }
 
-export interface Prospect {
+// ── Säljmaskin ───────────────────────────────────────────────
+export type OpportunityKind = 'upsell' | 'new' | 'reactivation'
+export type OpportunityStage = 'identified' | 'to_contact' | 'contacted' | 'dialog' | 'proposal' | 'won' | 'lost'
+export type OpportunitySource = 'agent' | 'manual'
+/** recurring = kr/år, one_time = engångsbelopp. */
+export type OpportunityValueType = 'recurring' | 'one_time'
+
+export interface SalesOpportunity {
   id: string
   company: string
   contact_name: string | null
@@ -154,13 +160,38 @@ export interface Prospect {
   phone: string | null
   website: string | null
   city: string | null
-  stage: ProspectStage
-  source: string | null
-  interest: string | null
-  estimated_value: number | null
-  notes: string | null
-  next_action_at: string | null
   customer_id: string | null
+  kind: OpportunityKind
+  service_key: string | null
+  service_name: string | null
+  stage: OpportunityStage
+  priority: 1 | 2 | 3
+  source: OpportunitySource
+  lead_source: string | null
+  summary: string | null
+  evidence: string | null
+  gmail_thread_id: string | null
+  draft_subject: string | null
+  draft_body: string | null
+  estimated_value: number | null
+  value_type: OpportunityValueType
+  next_action_at: string | null
+  meeting_at: string | null
+  stage_changed_at: string
+  sent_at: string | null
+  replied_at: string | null
+  notes: string | null
   created_at: string
   updated_at: string
+  customer?: Pick<Customer, 'id' | 'name'> | null
+}
+
+export interface SalesAgentRun {
+  id: string
+  ran_at: string
+  threads_scanned: number
+  opportunities_created: number
+  opportunities_updated: number
+  summary: string | null
+  created_at: string
 }
