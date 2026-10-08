@@ -11,6 +11,7 @@ import {
   Clock,
   Inbox,
   Sparkles,
+  FileBarChart,
   Settings,
 } from 'lucide-react'
 
@@ -21,6 +22,7 @@ const navItems = [
   { label: 'Pipeline',        href: '/admin/pipeline',  Icon: KanbanSquare },
   { label: 'Fakturering',     href: '/admin/billing',   Icon: Receipt },
   { label: 'Tidrapportering', href: '/admin/time',      Icon: Clock },
+  { label: 'Rapporter',       href: '/admin/rapporter', Icon: FileBarChart },
   { label: 'Leads',           href: '/admin/leads',     Icon: Inbox },
   { label: 'Sälj',            href: '/admin/salj',      Icon: Sparkles },
   { label: 'Inställningar',   href: '/admin/settings',  Icon: Settings },
