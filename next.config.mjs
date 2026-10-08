@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    // PDF reports: react-pdf runs in Node, and its fonts are read from disk at runtime.
+    serverComponentsExternalPackages: ['@react-pdf/renderer'],
+    outputFileTracingIncludes: {
+      '/admin/rapporter/[id]/pdf': ['./assets/report/**'],
+    },
+  },
   async redirects() {
     return [
       { source: '/ai/seo-ljungby', destination: '/seo/ljungby', permanent: true },

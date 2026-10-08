@@ -195,3 +195,62 @@ export interface SalesAgentRun {
   summary: string | null
   created_at: string
 }
+
+export type ReportClientStatus = 'active' | 'paused'
+
+export interface MonthlyReport {
+  id: string
+  report_client_id: string
+  period: string
+  sent_at: string | null
+  file_url: string | null
+  notes: string | null
+  stats: ReportStats | null
+  generated_at: string | null
+  created_at: string
+}
+
+export interface TrafficPair {
+  impressions: number
+  clicks: number
+}
+
+/** Figures behind one generated report: current 30 days vs the 30 days before. */
+export interface ReportStats {
+  start: string
+  end: string
+  prevStart: string
+  prevEnd: string
+  organic: { current: TrafficPair; previous: TrafficPair } | null
+  paid: { current: TrafficPair; previous: TrafficPair } | null
+  visitors: { current: number; previous: number } | null
+  errors: string[]
+}
+
+export interface ReportClient {
+  id: string
+  customer_id: string
+  report_day: number | null
+  status: ReportClientStatus
+  website: string | null
+  notes: string | null
+  gsc_site: string | null
+  ga4_property_id: string | null
+  ads_customer_id: string | null
+  ads_campaign_match: string | null
+  created_at: string
+  updated_at: string
+  customer?: Pick<Customer, 'id' | 'name'> | null
+}
+
+export interface SeoWorkLog {
+  id: string
+  report_client_id: string
+  period: string
+  done_at: string
+  items: string[]
+  details: string | null
+  pages: string[]
+  source: 'agent' | 'manual'
+  created_at: string
+}
