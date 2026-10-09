@@ -22,7 +22,7 @@ async function main() {
   const { renderReportPdf } = await import('../lib/report-pdf')
   const { reportEmail } = await import('../lib/reports')
 
-  const stats = await collectReportStats(client)
+  const stats = await collectReportStats({ ...client, customer })
   console.log(JSON.stringify(stats, null, 2))
   writeFileSync(out, await renderReportPdf(customer!.name, stats))
   console.log(`\n✓ ${out}\n`)

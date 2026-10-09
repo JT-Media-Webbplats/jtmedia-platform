@@ -1,7 +1,7 @@
 // Server-only: the monthly statistics report as a PDF, modelled on the Adobe Express template.
 import path from 'node:path'
 import React from 'react'
-import { Document, Font, Image, Line, Page, Polyline, Rect, StyleSheet, Svg, Text, View, renderToBuffer } from '@react-pdf/renderer'
+import { Circle, Document, Font, Image, Line, Page, Polyline, Rect, StyleSheet, Svg, Text, View, renderToBuffer } from '@react-pdf/renderer'
 import type { ReportStats, TrafficPair } from '@/lib/supabase/types'
 import { change, ctr, formatChange, formatInt, formatPct, shortDay } from '@/lib/reports'
 
@@ -71,6 +71,33 @@ function Figures({ head, data }: { head: string; data: TrafficPair }) {
   )
 }
 
+/** Sentence case for a search query: "abrasiv vattenskärning" → "Abrasiv vattenskärning". */
+const capitalize = (q: string) => q.charAt(0).toLocaleUpperCase('sv-SE') + q.slice(1)
+
+function Check() {
+  return (
+    <Svg width={12} height={12} viewBox="0 0 12 12" style={{ marginRight: 7 }}>
+      <Circle cx={6} cy={6} r={6} fill={GREEN} />
+      <Polyline points="3.2,6.2 5.2,8.1 8.8,4.2" stroke="#fff" strokeWidth={1.4} fill="none" />
+    </Svg>
+  )
+}
+
+/** Shown in place of the paid column for customers without Google Ads. */
+function Queries({ queries }: { queries: string[] }) {
+  return (
+    <View style={s.col}>
+      <Text style={s.colHead}>Bästa sökord</Text>
+      {queries.map((q) => (
+        <View key={q} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
+          <Check />
+          <Text style={{ fontSize: 10.5, flex: 1 }}>{capitalize(q)}</Text>
+        </View>
+      ))}
+    </View>
+  )
+}
+
 function ChangeLine({ label, ratio }: { label: string; ratio: number | null }) {
   return (
     <Text style={[s.smallGreen, { color: changeColor(ratio) }]}>
@@ -108,6 +135,8 @@ function Bars({ head, previous, current }: { head: string; previous: number; cur
 function ReportDocument({ customerName, stats }: { customerName: string; stats: ReportStats }) {
   const { organic, paid, visitors } = stats
   const hasTraffic = organic || paid
+  // Without Google Ads the paid column would be empty: show the best search queries there instead.
+  const queries = !paid && organic ? stats.topQueries : null
 
   return (
     <Document title={`Statistik ${customerName}`} author="JT Media AB">
@@ -129,6 +158,7 @@ function ReportDocument({ customerName, stats }: { customerName: string; stats: 
               <View style={s.cols}>
                 {organic && <Figures head="Organisk trafik" data={organic.previous} />}
                 {paid && <Figures head="Betald trafik" data={paid.previous} />}
+                {queries && queries.previous.length > 0 && <Queries queries={queries.previous} />}
               </View>
             </View>
             <View style={s.rule} />
@@ -138,6 +168,7 @@ function ReportDocument({ customerName, stats }: { customerName: string; stats: 
               <View style={s.cols}>
                 {organic && <Figures head="Organisk trafik" data={organic.current} />}
                 {paid && <Figures head="Betald trafik" data={paid.current} />}
+                {queries && queries.current.length > 0 && <Queries queries={queries.current} />}
               </View>
             </View>
             <View style={s.rule} />
