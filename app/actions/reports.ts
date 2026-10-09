@@ -119,7 +119,7 @@ export async function generateReport(reportClientId: string, period: string): Pr
   if (!/^\d{4}-\d{2}-01$/.test(period)) return { error: 'Ogiltig månad.' }
   const supabase = await createClient()
 
-  const { data: client, error } = await supabase.from('report_clients').select('*').eq('id', reportClientId).single()
+  const { data: client, error } = await supabase.from('report_clients').select('*, customer:customers(id, name)').eq('id', reportClientId).single()
   if (error || !client) return { error: error?.message ?? 'Kunden hittades inte.' }
   if (!client.gsc_site && !client.ga4_property_id && !client.ads_customer_id) {
     return { error: 'Kunden saknar datakällor. Fyll i Search Console, Analytics eller Google Ads under Redigera.' }

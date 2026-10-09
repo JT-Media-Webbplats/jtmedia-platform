@@ -224,6 +224,8 @@ export interface ReportStats {
   organic: { current: TrafficPair; previous: TrafficPair } | null
   paid: { current: TrafficPair; previous: TrafficPair } | null
   visitors: { current: number; previous: number } | null
+  /** Top Search Console queries per period (missing on reports built before 2026-10-09). */
+  topQueries?: { current: string[]; previous: string[] } | null
   errors: string[]
 }
 

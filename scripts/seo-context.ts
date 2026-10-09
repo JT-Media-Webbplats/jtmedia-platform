@@ -44,7 +44,7 @@ function findSsh(customerName: string) {
     app_name: hit.name,
     target: hit.sshHost,
     identity_file: hit.sshIdentityFile ?? null,
-    example: `ssh -o BatchMode=yes -o IdentitiesOnly=yes${hit.sshIdentityFile ? ` -i ${hit.sshIdentityFile}` : ''} ${hit.sshHost} 'cd ~/public_html && wp option get home'`,
+    example: `scripts/seo-ssh.sh ${hit.sshHost} 'cd ~/public_html && wp option get home'`,
   }
 }
 
